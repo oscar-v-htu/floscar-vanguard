@@ -1,0 +1,3491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Use the Floscar Vanguard self-discovery console to generate reflection outputs, strategic identity signals, and personal trajectory insights.">
+    <meta name="theme-color" content="#000000">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Floscar Vanguard">
+    <meta property="og:title" content="Self-Discovery | Floscar Vanguard">
+    <meta property="og:description"
+        content="A reflective console for personal intelligence, trajectory mapping, and identity signal analysis.">
+    <meta property="og:url" content="https://www.floscarvanguard.com/self-discovery.html">
+    <meta property="og:image" content="https://www.floscarvanguard.com/AI.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Self-Discovery | Floscar Vanguard">
+    <meta name="twitter:description"
+        content="Generate reflection signals and strategic self-analysis through the Floscar Vanguard self-discovery system.">
+    <link rel="canonical" href="https://www.floscarvanguard.com/self-discovery.html">
+    <link rel="icon" href="AI.jpg" type="image/jpeg">
+    <link rel="manifest" href="site.webmanifest">
+    <title>Self-Discovery | Floscar Vanguard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/fv-polish.css">
+    <script src="assets/fv-polish.js" defer></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+            background: #000;
+            color: #d6ffd6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        ::selection {
+            background: rgba(51, 255, 51, 0.28);
+            color: #031003;
+        }
+
+        .video-container {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        #bg-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.72) 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::before {
+            content: 'KNOW THYSELF';
+            position: fixed;
+            inset: 0;
+            font-size: clamp(4rem, 12vw, 10rem);
+            font-family: 'Courier New', Courier, monospace;
+            color: rgba(56, 255, 56, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-transform: uppercase;
+            letter-spacing: 0.4em;
+            z-index: 1;
+            pointer-events: none;
+            white-space: nowrap;
+            transform: translateY(-10%);
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at top left, rgba(51, 255, 51, 0.08), transparent 20%),
+                radial-gradient(circle at bottom right, rgba(51, 255, 51, 0.06), transparent 18%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            background: rgba(0, 0, 0, 0.7);
+            border-bottom: 1px solid rgba(51, 255, 51, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .page-header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .logo-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.85rem;
+            color: #b7ffb7;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .logo-link:hover {
+            color: #d7ffd7;
+            transform: translateY(-1px);
+        }
+
+        .logo-link img {
+            width: 36px;
+            height: 36px;
+            object-fit: cover;
+            object-position: center 32%;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(51, 255, 51, 0.24);
+            transition: box-shadow 0.2s ease;
+        }
+
+        .logo-link:hover img {
+            box-shadow: 0 0 28px rgba(51, 255, 51, 0.35);
+        }
+
+        .logo-link span {
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .nav-toggle {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            flex-direction: column;
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            border: 1px solid rgba(51, 255, 51, 0.32);
+            background: rgba(0, 0, 0, 0.42);
+            color: #d6ffd6;
+            cursor: pointer;
+            box-shadow: 0 0 18px rgba(51, 255, 51, 0.12);
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            border-radius: 999px;
+            background: currentColor;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .nav-toggle.is-open span:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        .nav-toggle.is-open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.is-open span:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+
+        .nav-links a {
+            color: #9cff9c;
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 0.55rem 0.75rem;
+            border-radius: 999px;
+            transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(51, 255, 51, 0.18);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 25px rgba(51, 255, 51, 0.18);
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible,
+        select:focus-visible {
+            outline: 2px solid #33ff33;
+            outline-offset: 3px;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 8, 0, 0.95);
+            backdrop-filter: blur(25px);
+            z-index: 9999;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 420px;
+            background: #0d0d0d;
+            border: 1px solid rgba(51, 255, 51, 0.34);
+            box-shadow: 0 0 60px rgba(51, 255, 51, 0.15);
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background: rgba(51, 255, 51, 0.1);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(51, 255, 51, 0.2);
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: #33ff33;
+            border-radius: 50%;
+            margin-right: 15px;
+            box-shadow: 0 0 10px #33ff33;
+            animation: pulse 2s infinite;
+        }
+
+        .terminal-title {
+            flex-grow: 1;
+            color: #33ff33;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
+            font-size: 0.65rem;
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #fff;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.02);
+            transition: 0.4s;
+        }
+
+        .contact-item:hover {
+            border-color: #33ff33;
+            background: rgba(51, 255, 51, 0.05);
+            transform: translateX(10px);
+            box-shadow: 0 0 18px rgba(51, 255, 51, 0.18);
+        }
+
+        .icon-box {
+            width: 40px;
+            text-align: center;
+            font-size: 1.8rem;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .label-box {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.2rem;
+        }
+
+        .main-label {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .sub-label {
+            color: #6d8b6d;
+            font-size: 0.75rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .wa:hover .icon-box i {
+            color: #25D366;
+        }
+
+        .phone:hover .icon-box i {
+            color: #34b7f1;
+        }
+
+        .email:hover .icon-box i {
+            color: #ff3333;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 18px;
+            cursor: pointer;
+            color: #33ff33;
+            font-size: 1.5rem;
+            line-height: 1;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+            color: #fff;
+        }
+
+        .page-wrap {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        .panel-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.45rem 0.9rem;
+            border: 1px solid rgba(51, 255, 51, 0.28);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.04);
+            color: #caffca;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-family: 'Courier New', monospace;
+            margin-bottom: 1rem;
+        }
+
+        .panel {
+            width: min(940px, 100%);
+            background: rgba(0, 8, 0, 0.8);
+            border: 1px solid rgba(51, 255, 51, 0.14);
+            border-radius: 28px;
+            padding: 2rem;
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.35), inset 0 0 24px rgba(51, 255, 51, 0.05);
+            backdrop-filter: blur(14px);
+        }
+
+        .panel h1 {
+            margin: 0 0 1rem;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            text-shadow: 0 0 18px rgba(51, 255, 51, 0.16);
+        }
+
+        .panel p {
+            margin: 0 0 2rem;
+            line-height: 1.8;
+            color: #c9ffc9;
+            opacity: 0.92;
+        }
+
+        .panel-shell {
+            display: grid;
+            grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.85fr);
+            gap: 1.4rem;
+            align-items: start;
+        }
+
+        .panel-main,
+        .panel-side {
+            display: grid;
+            gap: 1.25rem;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.9rem;
+        }
+
+        .status-card {
+            padding: 1rem 1.05rem;
+            border-radius: 18px;
+            border: 1px solid rgba(51, 255, 51, 0.12);
+            background: linear-gradient(180deg, rgba(8, 20, 8, 0.88), rgba(4, 10, 4, 0.72));
+            box-shadow: inset 0 0 22px rgba(51, 255, 51, 0.05);
+        }
+
+        .status-card span {
+            display: block;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: #8fdc8f;
+            font-family: 'Courier New', monospace;
+            margin-bottom: 0.55rem;
+        }
+
+        .status-card strong {
+            display: block;
+            font-size: 1.4rem;
+            color: #f2fff2;
+            margin-bottom: 0.15rem;
+        }
+
+        .status-card small {
+            color: #9ec79e;
+            line-height: 1.5;
+        }
+
+        .mode-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .track-row {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .track-card {
+            text-align: left;
+            padding: 0.95rem 1rem;
+            border-radius: 18px;
+            border: 1px solid rgba(51, 255, 51, 0.14);
+            background: rgba(255, 255, 255, 0.03);
+            color: #d8ffd8;
+            cursor: pointer;
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .track-card:hover,
+        .track-card.is-active {
+            transform: translateY(-2px);
+            border-color: rgba(51, 255, 51, 0.42);
+            background: rgba(51, 255, 51, 0.1);
+            box-shadow: 0 12px 26px rgba(51, 255, 51, 0.12);
+        }
+
+        .track-card strong {
+            display: block;
+            margin-bottom: 0.45rem;
+            font-size: 0.86rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #efffef;
+        }
+
+        .track-card span {
+            display: block;
+            color: #9cc89c;
+            line-height: 1.55;
+            font-size: 0.88rem;
+        }
+
+        .track-visual,
+        .service-visual,
+        .rail-visual,
+        .result-hero {
+            width: 100%;
+            border-radius: 16px;
+            background-size: cover;
+            background-position: center;
+            border: 1px solid rgba(51, 255, 51, 0.1);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .track-visual::after,
+        .service-visual::after,
+        .rail-visual::after,
+        .result-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(2, 12, 2, 0.08), rgba(2, 12, 2, 0.52));
+        }
+
+        .track-visual {
+            height: 120px;
+            margin-top: 0.8rem;
+        }
+
+        .track-identity {
+            background-image: url('https://images.pexels.com/photos/15410078/pexels-photo-15410078.jpeg?auto=compress&cs=tinysrgb&w=900');
+        }
+
+        .track-builder {
+            background-image: url('https://images.pexels.com/photos/9784238/pexels-photo-9784238.jpeg?auto=compress&cs=tinysrgb&w=900');
+        }
+
+        .track-leadership {
+            background-image: url('https://images.pexels.com/photos/5212666/pexels-photo-5212666.jpeg?auto=compress&cs=tinysrgb&w=900');
+        }
+
+        .track-summary {
+            padding: 0.95rem 1rem;
+            border-radius: 18px;
+            border: 1px solid rgba(51, 255, 51, 0.12);
+            background: linear-gradient(180deg, rgba(8, 18, 8, 0.9), rgba(5, 10, 5, 0.75));
+            color: #d9ffd9;
+            line-height: 1.7;
+            margin-bottom: 0.85rem;
+        }
+
+        .track-summary strong {
+            display: block;
+            margin-bottom: 0.3rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            color: #f3fff3;
+        }
+
+        .mode-chip {
+            border: 1px solid rgba(51, 255, 51, 0.18);
+            background: rgba(255, 255, 255, 0.03);
+            color: #cbffcb;
+            padding: 0.8rem 1rem;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .mode-chip:hover,
+        .mode-chip.is-active {
+            transform: translateY(-1px);
+            border-color: rgba(51, 255, 51, 0.5);
+            background: rgba(51, 255, 51, 0.14);
+            box-shadow: 0 10px 24px rgba(51, 255, 51, 0.12);
+        }
+
+        .question-grid {
+            display: grid;
+            gap: 1.25rem;
+            grid-template-columns: repeat(2, minmax(220px, 1fr));
+            align-items: start;
+        }
+
+        .question-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .question-group.is-wide {
+            grid-column: span 2;
+        }
+
+        .field-meta {
+            font-size: 0.8rem;
+            color: #86b486;
+            letter-spacing: 0.04em;
+        }
+
+        label {
+            color: #a8ffab;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 1rem 1.1rem;
+            border-radius: 16px;
+            border: 1px solid rgba(51, 255, 51, 0.18);
+            background: rgba(0, 0, 0, 0.55);
+            color: #d8ffd8;
+            font-size: 1rem;
+            outline: none;
+            box-shadow: inset 0 0 18px rgba(0, 255, 0, 0.05);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: rgba(51, 255, 51, 0.45);
+            box-shadow: 0 0 30px rgba(51, 255, 51, 0.15);
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .button-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            margin-top: 1.75rem;
+        }
+
+        .secondary-btn {
+            padding: 0.95rem 1.3rem;
+            border-radius: 999px;
+            border: 1px solid rgba(51, 255, 51, 0.24);
+            background: rgba(255, 255, 255, 0.03);
+            color: #d8ffd8;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+        }
+
+        .secondary-btn:hover {
+            transform: translateY(-2px);
+            border-color: rgba(51, 255, 51, 0.45);
+            box-shadow: 0 14px 30px rgba(51, 255, 51, 0.12);
+        }
+
+        .scan-button {
+            padding: 1rem 1.8rem;
+            border-radius: 999px;
+            border: 1px solid rgba(51, 255, 51, 0.5);
+            background: linear-gradient(135deg, rgba(140, 255, 140, 0.95), rgba(85, 235, 85, 0.8));
+            color: #000;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.22s ease, box-shadow 0.22s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scan-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(51, 255, 51, 0.2);
+        }
+
+        .scan-button.scanning::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.18) 0%, transparent 60%);
+            opacity: 0.85;
+            animation: pulseScan 1.2s ease-in-out infinite;
+        }
+
+        @keyframes pulseScan {
+
+            0%,
+            100% {
+                transform: scale(0.95);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1.05);
+                opacity: 0.9;
+            }
+        }
+
+        .result-box {
+            margin-top: 1.75rem;
+            padding: 1.6rem;
+            border-radius: 22px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(51, 255, 51, 0.16);
+            box-shadow: inset 0 0 28px rgba(51, 255, 51, 0.06);
+            display: none;
+        }
+
+        .result-box.is-visible {
+            display: block;
+        }
+
+        .result-hero {
+            height: 180px;
+            margin: 0 0 1rem;
+            background-image: url('https://images.pexels.com/photos/8386437/pexels-photo-8386437.jpeg?auto=compress&cs=tinysrgb&w=1200');
+        }
+
+        .result-box h3 {
+            margin: 0 0 1rem;
+            font-size: 1.45rem;
+            letter-spacing: 0.08em;
+        }
+
+        .result-box p {
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .result-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .result-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.45rem 0.8rem;
+            border-radius: 999px;
+            background: rgba(51, 255, 51, 0.1);
+            border: 1px solid rgba(51, 255, 51, 0.14);
+            color: #dfffdc;
+            font-size: 0.74rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-family: 'Courier New', monospace;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(240px, 0.9fr);
+            gap: 1rem;
+            margin-top: 1.2rem;
+        }
+
+        .result-column {
+            display: grid;
+            gap: 0.95rem;
+        }
+
+        .result-card {
+            padding: 1rem 1.05rem;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(51, 255, 51, 0.12);
+        }
+
+        .result-card h4 {
+            margin: 0 0 0.7rem;
+            font-size: 0.92rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #cbffcb;
+        }
+
+        .result-list {
+            margin: 0;
+            padding-left: 1.15rem;
+            color: #d6ffd6;
+            line-height: 1.7;
+        }
+
+        .result-prompt {
+            padding: 1rem 1.1rem;
+            border-left: 3px solid rgba(51, 255, 51, 0.5);
+            background: rgba(51, 255, 51, 0.06);
+            color: #ecffec;
+        }
+
+        .scan-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .mission-rail {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .rail-card {
+            padding: 1.1rem;
+            border-radius: 22px;
+            background: rgba(0, 0, 0, 0.52);
+            border: 1px solid rgba(51, 255, 51, 0.14);
+            box-shadow: inset 0 0 24px rgba(51, 255, 51, 0.04);
+        }
+
+        .rail-card h3 {
+            margin: 0 0 0.85rem;
+            font-size: 0.96rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #d9ffd9;
+        }
+
+        .rail-visual {
+            height: 122px;
+            margin-bottom: 0.9rem;
+        }
+
+        .rail-visual-pulse {
+            background-image: url('https://images.pexels.com/photos/9784250/pexels-photo-9784250.jpeg?auto=compress&cs=tinysrgb&w=900');
+        }
+
+        .rail-visual-telemetry {
+            background-image: url('https://images.pexels.com/photos/8442027/pexels-photo-8442027.jpeg?auto=compress&cs=tinysrgb&w=900');
+        }
+
+        .rail-visual-history {
+            background-image: url('https://images.pexels.com/photos/10853852/pexels-photo-10853852.jpeg?auto=compress&cs=tinysrgb&w=900');
+        }
+
+        .telemetry-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.9rem;
+        }
+
+        .telemetry-card {
+            padding: 0.85rem 0.9rem;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(51, 255, 51, 0.1);
+        }
+
+        .telemetry-card span {
+            display: block;
+            margin-bottom: 0.35rem;
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #8fc68f;
+            font-family: 'Courier New', monospace;
+        }
+
+        .telemetry-card strong {
+            display: block;
+            font-size: 1.15rem;
+            color: #efffef;
+        }
+
+        .telemetry-card small {
+            display: block;
+            margin-top: 0.2rem;
+            color: #8db48d;
+            line-height: 1.55;
+        }
+
+        .rail-card p {
+            margin: 0;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #c0e3c0;
+        }
+
+        .signal-meter {
+            margin-top: 0.9rem;
+        }
+
+        .signal-meter-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.4rem;
+            color: #bfe6bf;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-family: 'Courier New', monospace;
+        }
+
+        .signal-meter-track {
+            height: 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.06);
+            overflow: hidden;
+        }
+
+        .signal-meter-fill {
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, rgba(93, 255, 93, 0.45), rgba(178, 255, 178, 0.95));
+            width: 0;
+            transition: width 0.35s ease;
+        }
+
+        .rail-list,
+        .history-list {
+            display: grid;
+            gap: 0.75rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .rail-list li,
+        .history-card {
+            padding: 0.9rem 1rem;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(51, 255, 51, 0.1);
+            color: #d6ffd6;
+            line-height: 1.65;
+        }
+
+        .history-card strong {
+            display: block;
+            margin-bottom: 0.35rem;
+            color: #eeffee;
+        }
+
+        .history-card span {
+            display: block;
+            margin-top: 0.45rem;
+            color: #8db48d;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-family: 'Courier New', monospace;
+        }
+
+        .history-card.is-selected {
+            border-color: rgba(51, 255, 51, 0.34);
+            box-shadow: 0 0 24px rgba(51, 255, 51, 0.12);
+        }
+
+        .history-card.is-secondary {
+            border-color: rgba(122, 230, 255, 0.36);
+            box-shadow: 0 0 24px rgba(122, 230, 255, 0.14);
+        }
+
+        .history-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+            margin-top: 0.8rem;
+        }
+
+        .history-action {
+            padding: 0.6rem 0.9rem;
+            border-radius: 999px;
+            border: 1px solid rgba(51, 255, 51, 0.18);
+            background: rgba(255, 255, 255, 0.03);
+            color: #d8ffd8;
+            cursor: pointer;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .compare-console {
+            display: grid;
+            gap: 0.9rem;
+        }
+
+        .compare-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.8rem;
+        }
+
+        .compare-grid.is-diff {
+            grid-template-columns: 1fr;
+        }
+
+        .compare-column {
+            padding: 1rem;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(51, 255, 51, 0.1);
+        }
+
+        .compare-column h4 {
+            margin: 0 0 0.55rem;
+            font-size: 0.82rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #ecffec;
+        }
+
+        .compare-column p,
+        .compare-column li {
+            color: #c7e3c7;
+            line-height: 1.65;
+        }
+
+        .compare-empty {
+            padding: 1rem;
+            border-radius: 16px;
+            border: 1px dashed rgba(51, 255, 51, 0.16);
+            color: #92bd92;
+            line-height: 1.7;
+        }
+
+        .compare-overview {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.8rem;
+        }
+
+        .compare-overview-card {
+            padding: 1rem;
+            border-radius: 16px;
+            border: 1px solid rgba(51, 255, 51, 0.12);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+        }
+
+        .compare-overview-card.is-later {
+            border-color: rgba(122, 230, 255, 0.24);
+        }
+
+        .compare-overview-card strong,
+        .compare-diff-row strong {
+            display: block;
+            margin-bottom: 0.35rem;
+            color: #f0fff0;
+        }
+
+        .compare-diff-list {
+            display: grid;
+            gap: 0.7rem;
+        }
+
+        .compare-diff-row {
+            padding: 0.95rem 1rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            background: rgba(255, 255, 255, 0.025);
+        }
+
+        .compare-diff-row.is-changed {
+            border-color: rgba(51, 255, 51, 0.2);
+            box-shadow: 0 0 18px rgba(51, 255, 51, 0.08);
+        }
+
+        .compare-diff-row.is-same {
+            opacity: 0.8;
+        }
+
+        .compare-diff-label {
+            margin-bottom: 0.6rem;
+            font-size: 0.76rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #93bf93;
+            font-family: 'Courier New', monospace;
+        }
+
+        .compare-diff-values {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.75rem;
+        }
+
+        .compare-diff-panel {
+            padding: 0.8rem 0.9rem;
+            border-radius: 14px;
+            background: rgba(0, 0, 0, 0.26);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: #d2edd2;
+            line-height: 1.65;
+        }
+
+        .compare-diff-panel span {
+            display: block;
+            margin-bottom: 0.35rem;
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #8eb98e;
+            font-family: 'Courier New', monospace;
+        }
+
+        .compare-diff-meta {
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #9ed69e;
+            font-family: 'Courier New', monospace;
+        }
+
+        .compare-diff-row.is-same .compare-diff-meta {
+            color: #83a783;
+        }
+
+        .compare-diff-values ul {
+            margin: 0;
+            padding-left: 1rem;
+        }
+
+        .visual-sources {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto 1.5rem;
+            padding: 0 1.5rem;
+        }
+
+        .visual-sources-card {
+            padding: 1.2rem 1.3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(51, 255, 51, 0.12);
+            background: rgba(0, 10, 0, 0.44);
+            box-shadow: inset 0 0 22px rgba(51, 255, 51, 0.04);
+        }
+
+        .visual-sources-card h3 {
+            margin: 0 0 0.45rem;
+            color: #e7ffe7;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.92rem;
+        }
+
+        .visual-sources-card p {
+            margin: 0;
+            color: #c8e5c8;
+            line-height: 1.7;
+        }
+
+        .source-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+            margin-top: 0.9rem;
+        }
+
+        .source-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.55rem 0.9rem;
+            border-radius: 999px;
+            border: 1px solid rgba(51, 255, 51, 0.16);
+            color: #d8ffd8;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .section-caption {
+            margin-top: 0.65rem;
+            font-size: 0.76rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #93bf93;
+            font-family: 'Courier New', monospace;
+        }
+
+        .service-visual {
+            height: 128px;
+            margin-bottom: 0.95rem;
+        }
+
+        .service-consulting {
+            background-image: url('https://images.pexels.com/photos/9784238/pexels-photo-9784238.jpeg?auto=compress&cs=tinysrgb&w=900');
+        }
+
+        .service-tools {
+            background-image: url('https://images.pexels.com/photos/12899149/pexels-photo-12899149.jpeg?auto=compress&cs=tinysrgb&w=900');
+        }
+
+        .service-research {
+            background-image: url('https://images.pexels.com/photos/8442027/pexels-photo-8442027.jpeg?auto=compress&cs=tinysrgb&w=900');
+        }
+
+        .service-donate {
+            background-image: url('https://images.pexels.com/photos/30616137/pexels-photo-30616137.jpeg?auto=compress&cs=tinysrgb&w=900');
+        }
+
+        .reveal-target {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.45s ease, transform 0.45s ease;
+        }
+
+        .reveal-target.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .command-ribbon {
+            position: sticky;
+            bottom: 16px;
+            z-index: 4;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem 1rem;
+        }
+
+        .command-ribbon-inner {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: center;
+            padding: 0.85rem 1rem;
+            border-radius: 18px;
+            border: 1px solid rgba(51, 255, 51, 0.14);
+            background: rgba(0, 10, 0, 0.72);
+            backdrop-filter: blur(14px);
+        }
+
+        .command-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #bde3bd;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-family: 'Courier New', monospace;
+        }
+
+        .command-chip span {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 2rem;
+            padding: 0.24rem 0.45rem;
+            border-radius: 999px;
+            border: 1px solid rgba(51, 255, 51, 0.2);
+            background: rgba(51, 255, 51, 0.08);
+            color: #f3fff3;
+        }
+
+        .command-palette {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 8vh 1.25rem 2rem;
+            background: rgba(0, 8, 0, 0.76);
+            backdrop-filter: blur(18px);
+            z-index: 10010;
+        }
+
+        .command-palette.is-open {
+            display: flex;
+        }
+
+        .command-palette-card {
+            width: min(680px, 100%);
+            border-radius: 24px;
+            border: 1px solid rgba(51, 255, 51, 0.18);
+            background: rgba(3, 12, 3, 0.96);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+            overflow: hidden;
+        }
+
+        .command-palette-header {
+            padding: 0.95rem 1rem;
+            border-bottom: 1px solid rgba(51, 255, 51, 0.12);
+        }
+
+        .command-palette-input {
+            width: 100%;
+            padding: 0.95rem 1rem;
+            border-radius: 16px;
+            border: 1px solid rgba(51, 255, 51, 0.14);
+            background: rgba(255, 255, 255, 0.03);
+            color: #edffed;
+            font-size: 0.98rem;
+        }
+
+        .command-palette-list {
+            display: grid;
+            gap: 0.25rem;
+            padding: 0.75rem;
+            max-height: 55vh;
+            overflow: auto;
+        }
+
+        .command-palette-item {
+            width: 100%;
+            text-align: left;
+            padding: 0.85rem 0.9rem;
+            border-radius: 16px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: #d8ffd8;
+            cursor: pointer;
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .command-palette-item.is-active,
+        .command-palette-item:hover {
+            background: rgba(51, 255, 51, 0.1);
+            border-color: rgba(51, 255, 51, 0.16);
+        }
+
+        .command-palette-item strong {
+            display: block;
+            margin-bottom: 0.2rem;
+            font-size: 0.88rem;
+            letter-spacing: 0.05em;
+            color: #f3fff3;
+        }
+
+        .command-palette-item span {
+            display: block;
+            color: #90bf90;
+            font-size: 0.82rem;
+            line-height: 1.55;
+        }
+
+        .command-palette-empty {
+            padding: 1rem;
+            color: #90bf90;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .print-brief {
+            display: none;
+        }
+
+        .print-brief-inner {
+            color: #041004;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .print-brief h1,
+        .print-brief h2 {
+            margin: 0 0 0.7rem;
+            color: #041004;
+        }
+
+        .print-brief p,
+        .print-brief li {
+            color: #143214;
+            line-height: 1.6;
+        }
+
+        .print-brief-section {
+            margin-top: 1.2rem;
+            padding-top: 0.9rem;
+            border-top: 1px solid rgba(4, 16, 4, 0.16);
+        }
+
+        .print-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.8rem;
+        }
+
+        .print-meta-item {
+            padding: 0.8rem 0.9rem;
+            border: 1px solid rgba(4, 16, 4, 0.14);
+            background: rgba(4, 16, 4, 0.03);
+        }
+
+        .print-meta-item strong {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        body.is-printing>* {
+            display: none !important;
+        }
+
+        body.is-printing .print-brief {
+            display: block !important;
+            position: static;
+            padding: 0;
+            background: #fff;
+            color: #041004;
+        }
+
+        @media print {
+            body {
+                background: #fff;
+            }
+
+            .print-brief {
+                display: block;
+                padding: 0;
+            }
+        }
+
+        .toast-stack {
+            position: fixed;
+            right: 18px;
+            bottom: 20px;
+            z-index: 10020;
+            display: grid;
+            gap: 0.7rem;
+            width: min(92vw, 360px);
+            pointer-events: none;
+        }
+
+        .toast-item {
+            padding: 0.9rem 1rem;
+            border-radius: 18px;
+            border: 1px solid rgba(51, 255, 51, 0.18);
+            background: rgba(5, 18, 5, 0.94);
+            box-shadow: 0 16px 42px rgba(0, 0, 0, 0.32);
+            transform: translateY(10px);
+            opacity: 0;
+            animation: toastIn 0.24s ease forwards;
+        }
+
+        .toast-item strong {
+            display: block;
+            margin-bottom: 0.25rem;
+            color: #f1fff1;
+            font-size: 0.86rem;
+            letter-spacing: 0.04em;
+        }
+
+        .toast-item span {
+            color: #97c797;
+            font-size: 0.84rem;
+            line-height: 1.55;
+        }
+
+        @keyframes toastIn {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .service-grid {
+            display: grid;
+            gap: 1.25rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            padding: 1.5rem;
+            border-radius: 22px;
+            background: rgba(0, 0, 0, 0.58);
+            border: 1px solid rgba(51, 255, 51, 0.16);
+            box-shadow: inset 0 0 24px rgba(51, 255, 51, 0.05);
+        }
+
+        .service-card h3 {
+            margin: 0 0 0.75rem;
+            color: #c9ffc9;
+            letter-spacing: 0.05em;
+        }
+
+        .service-card p {
+            margin: 0 0 1.1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.85rem 1.3rem;
+            border-radius: 999px;
+            border: 1px solid rgba(51, 255, 51, 0.38);
+            background: rgba(51, 255, 51, 0.12);
+            color: #d8ffd8;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            background: rgba(51, 255, 51, 0.18);
+            box-shadow: 0 12px 24px rgba(51, 255, 51, 0.16);
+        }
+
+        .hint {
+            margin-top: 0.4rem;
+            color: #99ff99;
+            opacity: 0.88;
+            font-size: 0.92rem;
+        }
+
+        @media (max-width: 840px) {
+            .page-header {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .logo-link {
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+                letter-spacing: 0.12em;
+                font-size: 0.92rem;
+                gap: 0.65rem;
+            }
+
+            .logo-link span {
+                white-space: normal;
+            }
+
+            .nav-toggle {
+                display: inline-flex;
+                align-self: flex-end;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+                justify-content: center;
+                gap: 0.5rem;
+                padding-top: 0.35rem;
+            }
+
+            .nav-links.is-open {
+                display: flex;
+            }
+
+            .nav-links a {
+                font-size: 0.84rem;
+                padding: 0.55rem 0.7rem;
+                text-align: center;
+            }
+
+            .page-wrap {
+                padding: 1.5rem 1rem 2rem;
+            }
+
+            .button-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .scan-button {
+                width: 100%;
+            }
+
+            .secondary-btn {
+                width: 100%;
+            }
+
+            .panel-shell,
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .status-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .track-row,
+            .print-meta-grid,
+            .compare-grid,
+            .compare-overview,
+            .compare-diff-values,
+            .telemetry-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .question-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .question-group.is-wide {
+                grid-column: span 1;
+            }
+        }
+
+        @media (max-width: 620px) {
+            body::before {
+                font-size: clamp(2.6rem, 16vw, 4.5rem);
+                letter-spacing: 0.18em;
+                white-space: normal;
+                text-align: center;
+                padding: 0 1rem;
+            }
+
+            .panel {
+                padding: 1.5rem;
+            }
+
+            .panel h1 {
+                font-size: clamp(2rem, 11vw, 2.6rem);
+                letter-spacing: 0.12em;
+            }
+
+            .panel p {
+                line-height: 1.65;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .command-ribbon {
+                bottom: 8px;
+            }
+
+            .command-ribbon-inner {
+                justify-content: flex-start;
+            }
+
+            .toast-stack {
+                right: 12px;
+                left: 12px;
+                width: auto;
+            }
+
+            .command-palette {
+                padding-top: 5vh;
+            }
+
+            .btn,
+            .service-card .btn {
+                width: 100%;
+            }
+
+            .contact-grid {
+                padding: 20px;
+            }
+
+            .contact-item {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="video-container">
+        <video autoplay muted loop playsinline id="bg-video">
+            <source src="assets/bg-animation.mp4" type="video/mp4">
+            <source src="assets/cyber-animation.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="overlay"></div>
+    </div>
+    <header>
+        <div class="page-header">
+            <a class="logo-link" href="profile.html">
+                <img src="AI.jpg" alt="AI logo" />
+                <span>Floscar Vanguard</span>
+            </a>
+            <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false"
+                aria-controls="site-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav-links" id="site-nav">
+                <a href="home.html">Home</a>
+                <a href="home.html#features">Features</a>
+                <a href="login.html">Login</a>
+                <a href="trends.html">Trends</a>
+                <a href="self-discovery.html">Self-Discovery</a>
+                <a href="tools.html">Tools</a>
+                <a href="profile.html">Profile</a>
+                <a href="javascript:void(0)" onclick="openContactModal()">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <div class="page-wrap">
+        <div class="panel">
+            <div class="panel-kicker">Personal Signal // Reflection Engine</div>
+            <div class="panel-shell">
+                <div class="panel-main">
+                    <div>
+                        <h1>Self-Discovery</h1>
+                        <p>Move beyond a simple prompt-and-response loop. This reflection console reads your current
+                            direction, pressure points, and operating rhythm, then returns a more structured personal
+                            brief with strengths, blind spots, and your next useful move.</p>
+                    </div>
+
+                    <div class="status-grid" aria-label="Reflection status indicators">
+                        <div class="status-card reveal-target">
+                            <span>Scan Mode</span>
+                            <strong id="scanModeLabel">Visionary</strong>
+                            <small id="scanModeNote">Long-horizon guidance with future-facing reflection.</small>
+                        </div>
+                        <div class="status-card reveal-target">
+                            <span>Field Depth</span>
+                            <strong id="completionValue">00%</strong>
+                            <small>Live completion across the reflection inputs.</small>
+                        </div>
+                        <div class="status-card reveal-target">
+                            <span>Signal Status</span>
+                            <strong id="signalStateLabel">Awaiting Input</strong>
+                            <small id="signalStateNote">Complete the fields to unlock a structured brief.</small>
+                        </div>
+                    </div>
+
+                    <form id="discovery-form">
+                        <div class="track-row" role="tablist" aria-label="Guided reflection tracks">
+                            <button class="track-card is-active reveal-target" type="button" data-track="identity">
+                                <strong>Identity Reset</strong>
+                                <span>Recenter on who you are becoming and what deserves your energy now.</span>
+                                <div class="track-visual track-identity" aria-hidden="true"></div>
+                            </button>
+                            <button class="track-card reveal-target" type="button" data-track="builder">
+                                <strong>Builder Path</strong>
+                                <span>Translate ambition into systems, sequencing, and proof-driven progress.</span>
+                                <div class="track-visual track-builder" aria-hidden="true"></div>
+                            </button>
+                            <button class="track-card reveal-target" type="button" data-track="leadership">
+                                <strong>Leadership Pulse</strong>
+                                <span>Reflect on influence, steadiness, and what others need from your direction.</span>
+                                <div class="track-visual track-leadership" aria-hidden="true"></div>
+                            </button>
+                        </div>
+
+                        <div class="track-summary reveal-target" id="trackSummary">
+                            <strong>Active Track // Identity Reset</strong>
+                            <span id="trackSummaryText">This guided path helps you reconnect direction, inner trust, and
+                                the version of yourself you are actively building.</span>
+                        </div>
+
+                        <div class="mode-row" role="tablist" aria-label="Reflection modes">
+                            <button class="mode-chip is-active" type="button" data-mode="visionary">Visionary</button>
+                            <button class="mode-chip" type="button" data-mode="strategic">Strategic</button>
+                            <button class="mode-chip" type="button" data-mode="grounded">Grounded</button>
+                        </div>
+
+                        <div class="question-grid">
+                            <div class="question-group">
+                                <label id="goalLabel" for="goal">What is one goal you feel most excited about?</label>
+                                <input id="goal" type="text" placeholder="Your future ambition" required>
+                                <div class="field-meta" id="goalMeta">Anchor the brief in a target you genuinely care
+                                    about.</div>
+                            </div>
+                            <div class="question-group">
+                                <label id="strengthLabel" for="strength">What personal strength do you rely on
+                                    most?</label>
+                                <input id="strength" type="text" placeholder="Your strongest trait" required>
+                                <div class="field-meta" id="strengthMeta">Name the trait that keeps showing up when
+                                    pressure rises.</div>
+                            </div>
+                            <div class="question-group">
+                                <label id="challengeLabel" for="challenge">What challenge are you ready to
+                                    overcome?</label>
+                                <select id="challenge" required>
+                                    <option value="">Choose one</option>
+                                    <option value="confidence">Confidence</option>
+                                    <option value="focus">Focus</option>
+                                    <option value="balance">Balance</option>
+                                    <option value="change">Change</option>
+                                </select>
+                                <div class="field-meta" id="challengeMeta">This defines the friction point your brief
+                                    must resolve.</div>
+                            </div>
+                            <div class="question-group">
+                                <label id="energyLabel" for="energy">What kind of energy are you working with right
+                                    now?</label>
+                                <select id="energy" required>
+                                    <option value="">Choose one</option>
+                                    <option value="calm">Calm and clear</option>
+                                    <option value="driven">Driven and intense</option>
+                                    <option value="stretched">Stretched but determined</option>
+                                    <option value="rebuilding">Recovering and rebuilding</option>
+                                </select>
+                                <div class="field-meta" id="energyMeta">This changes the tone of the guidance and pace
+                                    of action.</div>
+                            </div>
+                            <div class="question-group">
+                                <label id="horizonLabel" for="horizon">How soon do you want to feel meaningful
+                                    progress?</label>
+                                <select id="horizon" required>
+                                    <option value="">Choose one</option>
+                                    <option value="week">Within a week</option>
+                                    <option value="month">Within a month</option>
+                                    <option value="quarter">Within a quarter</option>
+                                    <option value="year">Over the next year</option>
+                                </select>
+                                <div class="field-meta" id="horizonMeta">The system uses this to scale urgency and next
+                                    moves.</div>
+                            </div>
+                            <div class="question-group">
+                                <label id="environmentLabel" for="environment">Which environment describes your current
+                                    season best?</label>
+                                <select id="environment" required>
+                                    <option value="">Choose one</option>
+                                    <option value="build">Building something new</option>
+                                    <option value="transition">Navigating transition</option>
+                                    <option value="leadership">Leading others</option>
+                                    <option value="reinvention">Reinventing direction</option>
+                                </select>
+                                <div class="field-meta" id="environmentMeta">Context matters more than motivation
+                                    slogans.</div>
+                            </div>
+                            <div class="question-group is-wide">
+                                <label id="visionLabel" for="vision">How do you want to impact the world?</label>
+                                <textarea id="vision" placeholder="Share your vision"></textarea>
+                                <div class="field-meta" id="visionMeta">Optional, but richer language produces a
+                                    stronger personal brief.</div>
+                            </div>
+                        </div>
+                        <div class="button-row">
+                            <button class="scan-button" type="submit">Run Self-Scan</button>
+                            <button class="secondary-btn" type="button" id="saveReflectionBtn">Save Reflection</button>
+                            <button class="secondary-btn" type="button" id="copyReflectionBtn">Copy Brief</button>
+                            <button class="secondary-btn" type="button" id="exportReflectionBtn">Export Brief</button>
+                            <button class="secondary-btn" type="button" id="printReflectionBtn">Print Brief</button>
+                            <span class="hint" id="scanHint">A shimmer effect will appear while your answers are being
+                                analyzed.</span>
+                        </div>
+                    </form>
+
+                    <div class="result-box" id="result-box" aria-live="polite">
+                        <h3>Self-Discovery Brief</h3>
+                        <div class="result-hero reveal-target" aria-hidden="true"></div>
+                        <div class="result-meta">
+                            <div class="result-pill" id="resultModePill">Mode // Visionary</div>
+                            <div class="result-pill" id="resultArchetypePill">Archetype // Signal Builder</div>
+                            <div class="result-pill" id="resultClarityPill">Clarity // 00%</div>
+                        </div>
+                        <p id="result-text"></p>
+                        <div class="result-grid">
+                            <div class="result-column">
+                                <div class="result-card reveal-target">
+                                    <h4>Strength Vector</h4>
+                                    <ul class="result-list" id="strengthVectorList"></ul>
+                                </div>
+                                <div class="result-card reveal-target">
+                                    <h4>Immediate Next Moves</h4>
+                                    <ul class="result-list" id="nextMovesList"></ul>
+                                </div>
+                            </div>
+                            <div class="result-column">
+                                <div class="result-card reveal-target">
+                                    <h4>Inner Prompt</h4>
+                                    <div class="result-prompt" id="resultPrompt"></div>
+                                </div>
+                                <div class="result-card reveal-target">
+                                    <h4>Reflection Snapshot</h4>
+                                    <ul class="result-list" id="snapshotList"></ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="scan-actions">
+                            <button class="secondary-btn" type="button" id="rerunReflectionBtn">Rerun Scan</button>
+                            <button class="secondary-btn" type="button" id="shareReflectionBtn">Share Brief</button>
+                        </div>
+                    </div>
+
+                    <div class="service-grid">
+                        <div class="service-card reveal-target">
+                            <div class="service-visual service-consulting" aria-hidden="true"></div>
+                            <h3>Technical Consulting</h3>
+                            <p>Get expert guidance on integrating AI into your specific workflow or hardware projects.
+                            </p>
+                            <a href="javascript:void(0)" onclick="openConsultationHub()" class="btn">Book Now</a>
+                        </div>
+                        <div class="service-card reveal-target">
+                            <div class="service-visual service-tools" aria-hidden="true"></div>
+                            <h3>Premium Tools</h3>
+                            <p>Access exclusive, high-performance AI models and automation scripts built for power
+                                users.</p>
+                            <a href="tools.html" class="btn">Access Tools</a>
+                        </div>
+                        <div class="service-card reveal-target">
+                            <div class="service-visual service-research" aria-hidden="true"></div>
+                            <h3>Support Research</h3>
+                            <p>Help us push the boundaries of Biometric AI and Edge Intelligence through direct
+                                contribution.
+                            </p>
+                            <a href="biometric-ai.html" class="btn">View Research</a>
+                        </div>
+                        <div class="service-card reveal-target">
+                            <div class="service-visual service-donate" aria-hidden="true"></div>
+                            <h3>Global Funding</h3>
+                            <p>Support the platform through direct bank-transfer details and email follow-up for
+                                sponsorship requests.</p>
+                            <a href="javascript:void(0)" class="btn" onclick="showDonateInfo()">View Bank Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="panel-side">
+                    <div class="mission-rail">
+                        <div class="rail-card reveal-target">
+                            <h3>Reflection Pulse</h3>
+                            <div class="rail-visual rail-visual-pulse" aria-hidden="true"></div>
+                            <p id="reflectionPulseText">The console is waiting for enough personal signal to distinguish
+                                aspiration from noise.</p>
+                            <div class="signal-meter">
+                                <div class="signal-meter-head">
+                                    <span>Clarity Index</span>
+                                    <span id="clarityValue">00%</span>
+                                </div>
+                                <div class="signal-meter-track">
+                                    <div class="signal-meter-fill" id="clarityFill"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rail-card reveal-target">
+                            <h3>Reflection Telemetry</h3>
+                            <div class="rail-visual rail-visual-telemetry" aria-hidden="true"></div>
+                            <div class="telemetry-grid" id="telemetryGrid">
+                                <div class="telemetry-card">
+                                    <span>Saved Briefs</span>
+                                    <strong id="telemetrySavedCount">0</strong>
+                                    <small>Stored reflections available for recall and compare.</small>
+                                </div>
+                                <div class="telemetry-card">
+                                    <span>Dominant Archetype</span>
+                                    <strong id="telemetryArchetype">Awaiting</strong>
+                                    <small id="telemetryArchetypeNote">Run and save reflections to surface a
+                                        pattern.</small>
+                                </div>
+                                <div class="telemetry-card">
+                                    <span>Active Track</span>
+                                    <strong id="telemetryTrack">Identity Reset</strong>
+                                    <small id="telemetryTrackNote">Prompt structure is currently
+                                        identity-centered.</small>
+                                </div>
+                                <div class="telemetry-card">
+                                    <span>Last Scan</span>
+                                    <strong id="telemetryLastScan">Offline</strong>
+                                    <small id="telemetryLastScanNote">No reflection brief generated in this session
+                                        yet.</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rail-card reveal-target">
+                            <h3>Interpretation Notes</h3>
+                            <ul class="rail-list" id="interpretationList">
+                                <li>Choose a scan mode to shape the tone of the brief.</li>
+                                <li>Higher completion unlocks a sharper clarity score.</li>
+                                <li>The saved brief remains available on your next visit.</li>
+                            </ul>
+                        </div>
+
+                        <div class="rail-card reveal-target">
+                            <h3>Recent Reflections</h3>
+                            <div class="rail-visual rail-visual-history" aria-hidden="true"></div>
+                            <div class="history-list" id="historyList">
+                                <div class="history-card">
+                                    <strong>No reflection saved yet</strong>
+                                    <div>Run a scan and save it to build a personal reflection trail.</div>
+                                    <span>Awaiting first entry</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rail-card reveal-target">
+                            <h3>Compare Console</h3>
+                            <div class="compare-console" id="compareConsole">
+                                <div class="compare-empty">Save at least two reflection briefs, then use Compare on any
+                                    saved entries to inspect how your track, archetype, and next moves are shifting over
+                                    time.</div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+    <div class="command-ribbon">
+        <div class="command-ribbon-inner">
+            <div class="command-chip"><span>1</span> Visionary Mode</div>
+            <div class="command-chip"><span>2</span> Strategic Mode</div>
+            <div class="command-chip"><span>3</span> Grounded Mode</div>
+            <div class="command-chip"><span>/</span> Command Palette</div>
+            <div class="command-chip"><span>S</span> Save Reflection</div>
+            <div class="command-chip"><span>C</span> Copy Brief</div>
+            <div class="command-chip"><span>R</span> Run Scan</div>
+            <div class="command-chip"><span>P</span> Print Brief</div>
+        </div>
+    </div>
+    <section class="visual-sources">
+        <div class="visual-sources-card reveal-target">
+            <h3>Visual Sources</h3>
+            <p>The futuristic imagery layer on this page is sourced from curated technology collections on Pexels and
+                mapped to identity, builder, leadership, telemetry, and systems themes.</p>
+            <div class="source-links">
+                <a href="https://www.pexels.com/search/artificial%20intelligence/" target="_blank"
+                    rel="noopener noreferrer">Artificial Intelligence</a>
+                <a href="https://www.pexels.com/search/robotics/" target="_blank" rel="noopener noreferrer">Robotics</a>
+                <a href="https://www.pexels.com/search/medical%20technology/" target="_blank"
+                    rel="noopener noreferrer">Medical Technology</a>
+                <a href="https://www.pexels.com/search/education%20technology/" target="_blank"
+                    rel="noopener noreferrer">Education Technology</a>
+                <a href="https://www.pexels.com/search/military%20technology/" target="_blank"
+                    rel="noopener noreferrer">Military Technology</a>
+            </div>
+        </div>
+    </section>
+    <footer
+        style="position:relative; z-index:2; text-align:center; padding:0 1rem 2rem; color:#8cff8c; opacity:0.75; font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; font-family:'Courier New', monospace;">
+        Floscar Vanguard • Self-Discovery • Reflection Engine • Futuristic Interface Layer</footer>
+    <div id="contactModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="terminal-header"><span class="status-dot"></span><span
+                    class="terminal-title">ENCRYPTED_COMMS_HUB_ESTABLISHED</span><span class="close-btn"
+                    onclick="closeContactModal()">&times;</span></div>
+            <div class="contact-grid"><a href="javascript:void(0)" onclick="openWhatsAppContact()"
+                    class="contact-item wa">
+                    <div class="icon-box"><i class="fab fa-whatsapp"></i></div>
+                    <div class="label-box"><span class="main-label">WhatsApp</span><span class="sub-label">Instant App
+                            Redirection</span></div>
+                </a><a href="javascript:void(0)" onclick="openPhoneContact()" class="contact-item phone">
+                    <div class="icon-box"><i class="fas fa-phone-alt"></i></div>
+                    <div class="label-box"><span class="main-label">Direct Line</span><span class="sub-label">Voice
+                            Comms Protocol</span></div>
+                </a><a href="javascript:void(0)" onclick="openEmailContact()" class="contact-item email">
+                    <div class="icon-box"><i class="fas fa-envelope"></i></div>
+                    <div class="label-box"><span class="main-label">Secure Mail</span><span
+                            class="sub-label">vordzorgbeoscar02@gmail.com</span></div>
+                </a></div>
+        </div>
+    </div>
+    <section id="printBrief" class="print-brief" aria-hidden="true">
+        <div class="print-brief-inner">
+            <p>Floscar Vanguard // Printable Self-Discovery Brief</p>
+            <h1 id="printBriefTitle">Personal Reflection Brief</h1>
+            <p id="printBriefIntro">Generated from the active Self-Discovery console.</p>
+
+            <div class="print-brief-section">
+                <h2>Profile Snapshot</h2>
+                <div class="print-meta-grid">
+                    <div class="print-meta-item"><strong>Track</strong><span id="printMetaTrack"></span></div>
+                    <div class="print-meta-item"><strong>Mode</strong><span id="printMetaMode"></span></div>
+                    <div class="print-meta-item"><strong>Archetype</strong><span id="printMetaArchetype"></span></div>
+                    <div class="print-meta-item"><strong>Clarity</strong><span id="printMetaClarity"></span></div>
+                </div>
+            </div>
+
+            <div class="print-brief-section">
+                <h2>Summary</h2>
+                <p id="printSummary"></p>
+            </div>
+
+            <div class="print-brief-section">
+                <h2>Strength Vector</h2>
+                <ul id="printStrengthList"></ul>
+            </div>
+
+            <div class="print-brief-section">
+                <h2>Immediate Next Moves</h2>
+                <ol id="printMovesList"></ol>
+            </div>
+
+            <div class="print-brief-section">
+                <h2>Inner Prompt</h2>
+                <p id="printPrompt"></p>
+            </div>
+
+            <div class="print-brief-section">
+                <h2>Reflection Snapshot</h2>
+                <ul id="printSnapshotList"></ul>
+            </div>
+        </div>
+    </section>
+
+    <div id="commandPalette" class="command-palette" aria-hidden="true">
+        <div class="command-palette-card" role="dialog" aria-modal="true" aria-label="Reflection command palette">
+            <div class="command-palette-header">
+                <input id="commandPaletteInput" class="command-palette-input" type="text"
+                    placeholder="Type a command, mode, track, or action">
+            </div>
+            <div id="commandPaletteList" class="command-palette-list"></div>
+        </div>
+    </div>
+
+    <div id="toastStack" class="toast-stack" aria-live="polite" aria-atomic="true"></div>
+    <script>
+        let contactHubMode = 'general';
+
+        function setupMobileMenu() {
+            const toggle = document.querySelector('.nav-toggle');
+            const nav = document.querySelector('.nav-links');
+
+            if (!toggle || !nav) {
+                return;
+            }
+
+            const closeMenu = () => {
+                nav.classList.remove('is-open');
+                toggle.classList.remove('is-open');
+                toggle.setAttribute('aria-expanded', 'false');
+            };
+
+            toggle.addEventListener('click', () => {
+                const willOpen = !nav.classList.contains('is-open');
+                nav.classList.toggle('is-open', willOpen);
+                toggle.classList.toggle('is-open', willOpen);
+                toggle.setAttribute('aria-expanded', String(willOpen));
+            });
+
+            nav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            window.addEventListener('resize', () => {
+                if (window.getComputedStyle(toggle).display === 'none') {
+                    closeMenu();
+                }
+            });
+        }
+
+        function openContactModal(mode = 'general') {
+            contactHubMode = mode;
+            document.getElementById('contactModal').style.display = 'block';
+        }
+        function openConsultationHub() { openContactModal('consultation'); }
+        function closeContactModal() { document.getElementById('contactModal').style.display = 'none'; }
+        function openWhatsAppContact() { const message = contactHubMode === 'consultation' ? 'Hello Oscar, I would like to book a technical consultation session for Floscar Vanguard.' : 'Hello Oscar, I would like to discuss a project.'; const encodedMessage = encodeURIComponent(message); const appUrl = `whatsapp://send?phone=233547912435&text=${encodedMessage}`; const webUrl = `https://wa.me/233547912435?text=${encodedMessage}`; const startedAt = Date.now(); window.location.href = appUrl; window.setTimeout(() => { if (document.visibilityState === 'visible' && Date.now() - startedAt < 1600) { window.open(webUrl, '_blank', 'noopener'); } }, 900); }
+        function openPhoneContact() { const dialUrl = 'tel:+233547912435'; const startedAt = Date.now(); window.location.href = dialUrl; window.setTimeout(() => { if (document.visibilityState === 'visible' && Date.now() - startedAt < 1600) { window.alert('Call Oscar at +233 54 791 2435'); } }, 900); }
+        function openEmailContact() { const subject = contactHubMode === 'consultation' ? 'Consultation Request - Floscar Vanguard' : 'Project Inquiry - Floscar Vanguard'; const body = contactHubMode === 'consultation' ? 'Hello Oscar,%0D%0A%0D%0AI would like to book a technical consultation session.%0D%0A%0D%0AProject Details:%0D%0A[Describe your project here]%0D%0A%0D%0APreferred Meeting Date:%0D%0A%0D%0AThank you!' : ''; const mailAppUrl = body ? `mailto:vordzorgbeoscar02@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}` : `mailto:vordzorgbeoscar02@gmail.com?subject=${encodeURIComponent(subject)}`; const webMailUrl = body ? `https://mail.google.com/mail/?view=cm&fs=1&to=vordzorgbeoscar02@gmail.com&su=${encodeURIComponent(subject)}&body=${body}` : `https://mail.google.com/mail/?view=cm&fs=1&to=vordzorgbeoscar02@gmail.com&su=${encodeURIComponent(subject)}`; const startedAt = Date.now(); window.location.href = mailAppUrl; window.setTimeout(() => { if (document.visibilityState === 'visible' && Date.now() - startedAt < 1600) { window.open(webMailUrl, '_blank', 'noopener'); } }, 900); }
+        function showDonateInfo() {
+            const choice = confirm(
+                "SUPPORT FLOSCAR VANGUARD\n\n" +
+                "Bank: CalBank\n" +
+                "Account: 2394010600001\n" +
+                "Name: VORDZORGBE OSCAR DZIEDZORM\n\n" +
+                "Click 'OK' to email Oscar for sponsorship inquiries or MoMo details."
+            );
+
+            if (choice) {
+                window.location.href = "mailto:vordzorgbeoscar02@gmail.com?subject=Sponsorship/Donation Inquiry";
+            }
+        }
+
+        const STORAGE_KEYS = {
+            inputs: 'floscar-self-discovery-inputs',
+            result: 'floscar-self-discovery-result',
+            history: 'floscar-self-discovery-history',
+            mode: 'floscar-self-discovery-mode',
+            track: 'floscar-self-discovery-track'
+        };
+
+        const reflectionTracks = {
+            identity: {
+                label: 'Identity Reset',
+                summary: 'This guided path helps you reconnect direction, inner trust, and the version of yourself you are actively building.',
+                focus: 'reconnecting direction, inner trust, and the self you are actively building',
+                labels: {
+                    goal: 'What future version of yourself feels most important right now?',
+                    strength: 'What quality in you keeps surviving difficult seasons?',
+                    challenge: 'What internal barrier are you ready to stop negotiating with?',
+                    energy: 'What kind of inner energy are you living with right now?',
+                    horizon: 'When do you want to feel your inner life become more aligned?',
+                    environment: 'What season best describes your personal life or identity shift?',
+                    vision: 'What kind of person do you want your life to reflect?'
+                },
+                meta: {
+                    goal: 'Focus on identity direction, not just external achievement.',
+                    strength: 'Choose the trait that still appears when confidence drops.',
+                    challenge: 'This identifies the pattern your reflection must interrupt.',
+                    energy: 'Your internal energy sets the emotional tone of the guidance.',
+                    horizon: 'Alignment has a timing component as well as an intention.',
+                    environment: 'Name the season honestly so the brief matches reality.',
+                    vision: 'Optional, but this helps the system reflect values and identity more clearly.'
+                },
+                placeholders: {
+                    goal: 'The version of me I am trying to become',
+                    strength: 'The trait that has carried me',
+                    vision: 'Describe the life, energy, or identity you want to embody'
+                }
+            },
+            builder: {
+                label: 'Builder Path',
+                summary: 'This guided path turns ambition into leverage, execution rhythm, and proof-driven movement.',
+                focus: 'turning ambition into leverage, execution rhythm, and proof-driven movement',
+                labels: {
+                    goal: 'What are you trying to build, launch, or make real?',
+                    strength: 'What builder trait gives you an edge when complexity rises?',
+                    challenge: 'Which execution obstacle is most likely to slow your progress?',
+                    energy: 'What operating energy are you bringing to the work right now?',
+                    horizon: 'When do you need visible traction on this build?',
+                    environment: 'What operating context best describes your current work season?',
+                    vision: 'What outcome should this build create for others?'
+                },
+                meta: {
+                    goal: 'Name the thing you are actively trying to bring into reality.',
+                    strength: 'Choose the strength that produces leverage, not just effort.',
+                    challenge: 'This helps the brief focus on what will actually block execution.',
+                    energy: 'Execution advice changes depending on your current operating tempo.',
+                    horizon: 'A realistic time horizon prevents abstract motivational advice.',
+                    environment: 'Context helps the brief distinguish startup energy from reinvention or transition.',
+                    vision: 'Optional, but clarity of service sharpens the guidance.'
+                },
+                placeholders: {
+                    goal: 'The product, system, or project I want to build',
+                    strength: 'The trait that helps me execute under pressure',
+                    vision: 'Describe the result this work should create for people'
+                }
+            },
+            leadership: {
+                label: 'Leadership Pulse',
+                summary: 'This guided path helps you reflect on influence, steadiness, and how your decisions shape others.',
+                focus: 'influence, steadiness, and how your decisions shape other people',
+                labels: {
+                    goal: 'What kind of leadership outcome matters most to you now?',
+                    strength: 'What leadership quality do others most reliably receive from you?',
+                    challenge: 'What leadership pressure are you ready to handle differently?',
+                    energy: 'How would you describe the leadership energy you are carrying?',
+                    horizon: 'When do you want to feel a healthier leadership rhythm emerge?',
+                    environment: 'Which leadership context best matches your current season?',
+                    vision: 'How do you want people to experience your influence?'
+                },
+                meta: {
+                    goal: 'Focus on the quality of leadership you are trying to create, not just the task list.',
+                    strength: 'Name the quality that people can actually feel from your presence.',
+                    challenge: 'This is the pressure point where your leadership brief should concentrate.',
+                    energy: 'Leadership interpretation changes when you are stretched, calm, or rebuilding.',
+                    horizon: 'This shapes whether the guidance pushes recovery, speed, or sustained change.',
+                    environment: 'Name the real context so the brief can speak to your leadership season.',
+                    vision: 'Optional, but it helps define the impact you want your leadership to leave behind.'
+                },
+                placeholders: {
+                    goal: 'The kind of leadership impact I want to create',
+                    strength: 'The leadership trait people trust in me',
+                    vision: 'Describe how you want others to experience your influence'
+                }
+            }
+        };
+
+        const reflectionModes = {
+            visionary: {
+                label: 'Visionary',
+                note: 'Long-horizon guidance with future-facing reflection.',
+                pulse: 'This mode emphasizes future potential, aspiration, and the shape of the path ahead.',
+                promptLead: 'If you stopped waiting for certainty, what meaningful move would you authorize next?'
+            },
+            strategic: {
+                label: 'Strategic',
+                note: 'Decision-focused guidance centered on structure and leverage.',
+                pulse: 'This mode translates emotion into sequencing, leverage points, and cleaner decisions.',
+                promptLead: 'Which one decision would reduce noise and create disproportionate clarity this week?'
+            },
+            grounded: {
+                label: 'Grounded',
+                note: 'Steadier guidance for rebuilding trust, pace, and consistency.',
+                pulse: 'This mode favors steadiness, humane pacing, and rebuilding alignment without theatrics.',
+                promptLead: 'What would healing progress look like if it were quiet, consistent, and real?'
+            }
+        };
+
+        const challengeMap = {
+            confidence: {
+                label: 'Confidence',
+                friction: 'self-trust under pressure',
+                moves: ['Name one decision you already know is right and act on it.', 'Replace vague self-doubt with a concrete proof trail of past wins.']
+            },
+            focus: {
+                label: 'Focus',
+                friction: 'protecting attention from fragmentation',
+                moves: ['Remove one recurring distraction from your daily environment.', 'Choose a single weekly priority and define what finished looks like.']
+            },
+            balance: {
+                label: 'Balance',
+                friction: 'sustaining ambition without draining your core systems',
+                moves: ['Create a recovery ritual that is scheduled, not optional.', 'Define one boundary that protects both work and rest.']
+            },
+            change: {
+                label: 'Change',
+                friction: 'moving forward before every variable is stable',
+                moves: ['Name what the old season can no longer ask of you.', 'Turn reinvention into a sequence of small public commitments.']
+            }
+        };
+
+        const energyMap = {
+            calm: 'You are in a state that can support thoughtful momentum without forcing urgency.',
+            driven: 'Your momentum is strong, but the brief should protect against overextension and blind acceleration.',
+            stretched: 'You still have forward energy, but the system needs to simplify your next moves.',
+            rebuilding: 'The reflection should favor trust, pacing, and sustainable confidence over raw speed.'
+        };
+
+        const horizonMap = {
+            week: 'immediate traction',
+            month: 'visible movement this month',
+            quarter: 'a solid season of progress',
+            year: 'deep long-range positioning'
+        };
+
+        const environmentMap = {
+            build: 'building something new',
+            transition: 'moving through a period of transition',
+            leadership: 'carrying leadership responsibility for others',
+            reinvention: 'reinventing your direction from the inside out'
+        };
+
+        const uiState = {
+            mode: 'visionary',
+            track: 'identity',
+            lastResult: null,
+            scanTimer: null,
+            commandItems: [],
+            filteredCommandItems: [],
+            activeCommandIndex: 0,
+            compareSelection: [],
+            csrfToken: '',
+            isAuthenticated: false
+        };
+
+        const form = document.getElementById('discovery-form');
+        const scanButton = document.querySelector('.scan-button');
+        const resultBox = document.getElementById('result-box');
+        const resultText = document.getElementById('result-text');
+        const toastStack = document.getElementById('toastStack');
+        const commandPalette = document.getElementById('commandPalette');
+        const commandPaletteInput = document.getElementById('commandPaletteInput');
+        const commandPaletteList = document.getElementById('commandPaletteList');
+
+        function loadStoredJson(key, fallback) {
+            try {
+                const raw = window.localStorage.getItem(key);
+                return raw ? JSON.parse(raw) : fallback;
+            } catch {
+                return fallback;
+            }
+        }
+
+        function escapeHtml(text) {
+            return String(text || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        async function apiRequest(url, options = {}) {
+            const method = (options.method || 'GET').toUpperCase();
+            const response = await fetch(url, {
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(method !== 'GET' && uiState.csrfToken ? { 'X-CSRF-Token': uiState.csrfToken } : {}),
+                    ...(options.headers || {})
+                },
+                ...options
+            });
+
+            const isJson = response.headers.get('content-type')?.includes('application/json');
+            const data = isJson ? await response.json() : null;
+
+            if (data?.csrfToken) {
+                uiState.csrfToken = data.csrfToken;
+            }
+
+            if (!response.ok) {
+                const error = new Error(data?.error || 'Request failed.');
+                error.status = response.status;
+                throw error;
+            }
+
+            return data;
+        }
+
+        function saveStoredJson(key, value) {
+            try {
+                window.localStorage.setItem(key, JSON.stringify(value));
+            } catch {
+                // Ignore storage failures.
+            }
+        }
+
+        function showToast(title, message) {
+            if (!toastStack) {
+                return;
+            }
+
+            const toast = document.createElement('div');
+            toast.className = 'toast-item';
+            toast.innerHTML = `<strong>${title}</strong><span>${message}</span>`;
+            toastStack.appendChild(toast);
+            window.setTimeout(() => toast.remove(), 2600);
+        }
+
+        function normalizeReflectionEntry(entry) {
+            if (!entry) {
+                return null;
+            }
+
+            const normalizedSummary = String(entry.summary || '').toLowerCase();
+            const inferredTrackKey = Object.keys(reflectionTracks).find(key => normalizedSummary.includes(`${reflectionTracks[key].label.toLowerCase()} reflection`));
+            const trackFromLabel = Object.keys(reflectionTracks).find(key => reflectionTracks[key].label === entry.track);
+            const isLegacyGenericSummary = normalizedSummary.startsWith('your reflection signal suggests');
+            const modeKey = entry.modeKey || String(entry.mode || '').toLowerCase() || 'visionary';
+            const resolvedTrackKey = inferredTrackKey || (!isLegacyGenericSummary && (entry.trackKey || trackFromLabel)) || 'identity';
+            return {
+                id: entry.id || `reflection-${entry.createdAt || Date.now()}`,
+                ...entry,
+                mode: entry.mode || reflectionModes[modeKey]?.label || 'Visionary',
+                track: entry.track || reflectionTracks[resolvedTrackKey]?.label || 'Identity Reset',
+                modeKey,
+                trackKey: resolvedTrackKey
+            };
+        }
+
+        function getStoredHistory() {
+            const history = loadStoredJson(STORAGE_KEYS.history, []);
+            return history.map(normalizeReflectionEntry).filter(Boolean);
+        }
+
+        function saveHistoryEntries(entries) {
+            saveStoredJson(STORAGE_KEYS.history, entries.map(normalizeReflectionEntry));
+        }
+
+        function mergeReflectionHistory(...collections) {
+            const seenIds = new Set();
+            return collections
+                .flat()
+                .map(normalizeReflectionEntry)
+                .filter(entry => {
+                    if (!entry || seenIds.has(entry.id)) {
+                        return false;
+                    }
+                    seenIds.add(entry.id);
+                    return true;
+                })
+                .sort((left, right) => new Date(right.createdAt).getTime() - new Date(left.createdAt).getTime())
+                .slice(0, 6);
+        }
+
+        function syncLocalReflectionState(latest, history) {
+            const normalizedHistory = mergeReflectionHistory(history || []);
+            const normalizedLatest = normalizeReflectionEntry(latest) || normalizedHistory[0] || null;
+
+            if (normalizedLatest) {
+                saveStoredJson(STORAGE_KEYS.result, normalizedLatest);
+            }
+            if (normalizedHistory.length) {
+                saveHistoryEntries(normalizedHistory);
+            }
+
+            return { latest: normalizedLatest, history: normalizedHistory };
+        }
+
+        async function hydrateReflectionsFromServer() {
+            try {
+                const me = await apiRequest('/api/session-status');
+                if (!me.authenticated) {
+                    uiState.isAuthenticated = false;
+                    return;
+                }
+                uiState.isAuthenticated = true;
+                const remoteLatest = me.profile?.reflectionLatest || null;
+                const remoteHistory = Array.isArray(me.profile?.reflectionHistory) ? me.profile.reflectionHistory : [];
+                const localLatest = loadStoredJson(STORAGE_KEYS.result, null);
+                const localHistory = getStoredHistory();
+                const mergedHistory = mergeReflectionHistory(remoteHistory, localHistory, remoteLatest ? [remoteLatest] : [], localLatest ? [localLatest] : []);
+                const freshest = mergedHistory[0] || normalizeReflectionEntry(remoteLatest) || normalizeReflectionEntry(localLatest);
+
+                syncLocalReflectionState(freshest, mergedHistory);
+
+                if (freshest && (!uiState.lastResult || new Date(freshest.createdAt).getTime() >= new Date(uiState.lastResult.createdAt || 0).getTime())) {
+                    renderReflectionResult(freshest);
+                }
+
+                renderHistory();
+            } catch (error) {
+                if (error.status === 401) {
+                    uiState.isAuthenticated = false;
+                    return;
+                }
+            }
+        }
+
+        async function persistReflectionToServer(reflection) {
+            if (!uiState.isAuthenticated) {
+                return null;
+            }
+
+            try {
+                const response = await apiRequest('/api/reflections', {
+                    method: 'POST',
+                    body: JSON.stringify({ reflection })
+                });
+                return syncLocalReflectionState(response.latest, response.history);
+            } catch (error) {
+                if (error.status === 401) {
+                    uiState.isAuthenticated = false;
+                    return null;
+                }
+
+                throw error;
+            }
+        }
+
+        function formatReflectionStamp(value) {
+            if (!value) {
+                return 'Awaiting';
+            }
+
+            return new Date(value).toLocaleString([], {
+                month: 'short',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function applyUrlState() {
+            const url = new URL(window.location.href);
+            const params = url.searchParams;
+
+            if (uiState.mode !== 'visionary') {
+                params.set('mode', uiState.mode);
+            } else {
+                params.delete('mode');
+            }
+
+            if (uiState.track !== 'identity') {
+                params.set('track', uiState.track);
+            } else {
+                params.delete('track');
+            }
+
+            window.history.replaceState({}, '', `${url.pathname}${params.toString() ? `?${params.toString()}` : ''}${url.hash}`);
+        }
+
+        function readUrlState() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                mode: params.get('mode'),
+                track: params.get('track'),
+                entry: params.get('entry')
+            };
+        }
+
+        function updateReflectionUrlEntry(entryId) {
+            const url = new URL(window.location.href);
+            if (entryId) {
+                url.searchParams.set('entry', entryId);
+            } else {
+                url.searchParams.delete('entry');
+            }
+            window.history.replaceState({}, '', `${url.pathname}${url.search}${url.hash}`);
+        }
+
+        function getFormValues() {
+            return {
+                goal: document.getElementById('goal').value.trim(),
+                strength: document.getElementById('strength').value.trim(),
+                challenge: document.getElementById('challenge').value,
+                energy: document.getElementById('energy').value,
+                horizon: document.getElementById('horizon').value,
+                environment: document.getElementById('environment').value,
+                vision: document.getElementById('vision').value.trim()
+            };
+        }
+
+        function setFormValues(values) {
+            ['goal', 'strength', 'challenge', 'energy', 'horizon', 'environment', 'vision'].forEach(field => {
+                const element = document.getElementById(field);
+                if (element && typeof values?.[field] === 'string') {
+                    element.value = values[field];
+                }
+            });
+        }
+
+        function computeCompletion(values) {
+            const fields = ['goal', 'strength', 'challenge', 'energy', 'horizon', 'environment', 'vision'];
+            const filled = fields.filter(field => String(values[field] || '').trim()).length;
+            return Math.round((filled / fields.length) * 100);
+        }
+
+        function updateLiveStatus() {
+            const values = getFormValues();
+            const completion = computeCompletion(values);
+            const mode = reflectionModes[uiState.mode];
+            const track = reflectionTracks[uiState.track];
+            const hasCoreSignal = values.goal && values.strength && values.challenge && values.energy && values.horizon && values.environment;
+
+            document.getElementById('scanModeLabel').textContent = mode.label;
+            document.getElementById('scanModeNote').textContent = mode.note;
+            document.getElementById('completionValue').textContent = `${String(completion).padStart(2, '0')}%`;
+            document.getElementById('signalStateLabel').textContent = hasCoreSignal ? 'Signal Ready' : 'Awaiting Input';
+            document.getElementById('signalStateNote').textContent = hasCoreSignal ? 'Enough detail is available to generate a deeper personal brief.' : 'Complete the required fields to unlock stronger interpretation.';
+            document.getElementById('reflectionPulseText').textContent = hasCoreSignal ? mode.pulse : 'The console is waiting for enough personal signal to distinguish aspiration from noise.';
+            document.getElementById('clarityValue').textContent = `${String(completion).padStart(2, '0')}%`;
+            document.getElementById('clarityFill').style.width = `${completion}%`;
+            document.getElementById('scanHint').textContent = hasCoreSignal ? 'The scan can now assemble a structured brief with next moves and a reflection prompt.' : 'A shimmer effect will appear while your answers are being analyzed.';
+            document.getElementById('trackSummary').querySelector('strong').textContent = `Active Track // ${track.label}`;
+            document.getElementById('trackSummaryText').textContent = track.summary;
+            saveStoredJson(STORAGE_KEYS.inputs, values);
+        }
+
+        function applyTrackConfiguration() {
+            const track = reflectionTracks[uiState.track];
+            if (!track) {
+                return;
+            }
+
+            document.querySelectorAll('.track-card').forEach(card => {
+                card.classList.toggle('is-active', card.dataset.track === uiState.track);
+            });
+
+            ['goal', 'strength', 'challenge', 'energy', 'horizon', 'environment', 'vision'].forEach(field => {
+                const label = document.getElementById(`${field}Label`);
+                const meta = document.getElementById(`${field}Meta`);
+                const input = document.getElementById(field);
+
+                if (label && track.labels[field]) {
+                    label.textContent = track.labels[field];
+                }
+
+                if (meta && track.meta[field]) {
+                    meta.textContent = track.meta[field];
+                }
+
+                if (input && track.placeholders?.[field]) {
+                    input.setAttribute('placeholder', track.placeholders[field]);
+                }
+            });
+        }
+
+        function setTrack(trackKey) {
+            if (!reflectionTracks[trackKey]) {
+                return;
+            }
+
+            uiState.track = trackKey;
+            saveStoredJson(STORAGE_KEYS.track, trackKey);
+            applyTrackConfiguration();
+            updateInterpretationNotes();
+            updateLiveStatus();
+            refreshReflectionResultIfPossible();
+            applyUrlState();
+        }
+
+        function setMode(modeKey) {
+            if (!reflectionModes[modeKey]) {
+                return;
+            }
+
+            uiState.mode = modeKey;
+            saveStoredJson(STORAGE_KEYS.mode, modeKey);
+            document.querySelectorAll('.mode-chip').forEach(chip => {
+                chip.classList.toggle('is-active', chip.dataset.mode === modeKey);
+            });
+            updateInterpretationNotes();
+            updateLiveStatus();
+            refreshReflectionResultIfPossible();
+            applyUrlState();
+        }
+
+        function updateInterpretationNotes() {
+            const mode = reflectionModes[uiState.mode];
+            const track = reflectionTracks[uiState.track];
+            const list = document.getElementById('interpretationList');
+            const values = getFormValues();
+            const challengeLabel = values.challenge ? challengeMap[values.challenge].label : 'your selected challenge';
+            const environmentLabel = values.environment ? environmentMap[values.environment] : 'your current context';
+            list.innerHTML = [
+                `Current guided path: ${track.label}. ${track.summary}`,
+                `${mode.label} mode is active, so the brief will lean into ${mode.note.toLowerCase()}`,
+                `Current challenge focus: ${challengeLabel.toLowerCase()} under ${environmentLabel}.`,
+                'Save the reflection to keep a short history of previous scans on this device.'
+            ].map(item => `<li>${item}</li>`).join('');
+        }
+
+        function refreshReflectionResultIfPossible() {
+            const values = getFormValues();
+            const hasCoreSignal = values.goal && values.strength && values.challenge && values.energy && values.horizon && values.environment;
+
+            if (!hasCoreSignal || !uiState.lastResult) {
+                return;
+            }
+
+            renderReflectionResult(buildReflectionResult(values));
+        }
+
+        function buildReflectionResult(values) {
+            const mode = reflectionModes[uiState.mode];
+            const track = reflectionTracks[uiState.track];
+            const challenge = challengeMap[values.challenge];
+            const energyText = energyMap[values.energy];
+            const horizonText = horizonMap[values.horizon];
+            const environmentText = environmentMap[values.environment];
+            const completion = computeCompletion(values);
+            const clarity = Math.max(62, Math.min(98, completion + (values.vision ? 8 : 0)));
+            const archetype = uiState.mode === 'visionary'
+                ? 'Signal Builder'
+                : uiState.mode === 'strategic'
+                    ? 'Pattern Navigator'
+                    : 'Steady Architect';
+
+            return {
+                id: `reflection-${Date.now()}`,
+                createdAt: new Date().toISOString(),
+                action: 'scan',
+                mode: mode.label,
+                modeKey: uiState.mode,
+                track: track.label,
+                trackKey: uiState.track,
+                archetype,
+                clarity,
+                summary: `Your ${track.label.toLowerCase()} reflection suggests that ${values.goal.toLowerCase()} matters because it aligns with a deeper identity pattern, not just a temporary ambition. ${energyText} Right now, your strongest usable asset is ${values.strength.toLowerCase()}, and the real work is resolving ${challenge.friction} while you are ${environmentText}. The next phase should optimize for ${horizonText}, not perfection.`,
+                vector: [
+                    `${values.strength} is your stabilizing trait when uncertainty rises.`,
+                    `${track.label} keeps the brief focused on ${track.focus}.`,
+                    `${mode.label} mode indicates you benefit from guidance that protects meaning, not just momentum.`,
+                    `${values.goal} becomes more achievable when paired with smaller proof-driven actions.`
+                ],
+                nextMoves: [
+                    ...challenge.moves,
+                    `Create one concrete checkpoint toward ${values.goal.toLowerCase()} within ${horizonText}.`
+                ],
+                prompt: `${mode.promptLead} How would ${values.strength.toLowerCase()} answer that question today?`,
+                snapshot: [
+                    `Goal focus: ${values.goal}`,
+                    `Pressure point: ${challenge.label}`,
+                    `Energy state: ${values.energy}`,
+                    `Progress horizon: ${values.horizon}`,
+                    `Context: ${environmentText}`,
+                    `Impact vision: ${values.vision || 'Meaningful change without a fully defined statement yet.'}`
+                ],
+                inputs: { ...values }
+            };
+        }
+
+        function renderReflectionResult(result) {
+            const normalizedResult = normalizeReflectionEntry(result);
+            uiState.lastResult = normalizedResult;
+            resultText.textContent = normalizedResult.summary;
+            document.getElementById('resultModePill').textContent = `Mode // ${normalizedResult.mode}`;
+            document.getElementById('resultArchetypePill').textContent = `Archetype // ${normalizedResult.archetype}`;
+            document.getElementById('resultClarityPill').textContent = `Clarity // ${normalizedResult.clarity}%`;
+            document.getElementById('strengthVectorList').innerHTML = normalizedResult.vector.map(item => `<li>${item}</li>`).join('');
+            document.getElementById('nextMovesList').innerHTML = normalizedResult.nextMoves.map(item => `<li>${item}</li>`).join('');
+            document.getElementById('resultPrompt').textContent = normalizedResult.prompt;
+            document.getElementById('snapshotList').innerHTML = normalizedResult.snapshot.map(item => `<li>${item}</li>`).join('');
+            resultBox.classList.add('is-visible');
+            saveStoredJson(STORAGE_KEYS.result, uiState.lastResult);
+            updatePrintBrief();
+            renderTelemetry();
+            renderCompareConsole();
+        }
+
+        function buildReflectionEvent(action, sourceEntry = uiState.lastResult) {
+            const normalizedEntry = normalizeReflectionEntry(sourceEntry);
+            if (!normalizedEntry) {
+                return null;
+            }
+
+            return {
+                ...normalizedEntry,
+                id: `reflection-${action}-${Date.now()}`,
+                createdAt: new Date().toISOString(),
+                action
+            };
+        }
+
+        async function captureReflectionEvent(action, sourceEntry = uiState.lastResult, options = {}) {
+            const eventEntry = buildReflectionEvent(action, sourceEntry);
+            if (!eventEntry) {
+                return { event: null, synced: false };
+            }
+
+            const nextHistory = mergeReflectionHistory([eventEntry], getStoredHistory());
+            saveHistoryEntries(nextHistory);
+
+            if (options.promote) {
+                uiState.lastResult = eventEntry;
+                saveStoredJson(STORAGE_KEYS.result, eventEntry);
+            }
+
+            renderHistory();
+
+            try {
+                const serverState = await persistReflectionToServer(eventEntry);
+                if (options.promote && serverState?.latest) {
+                    uiState.lastResult = serverState.latest;
+                    saveStoredJson(STORAGE_KEYS.result, uiState.lastResult);
+                }
+                renderHistory();
+                return { event: eventEntry, synced: Boolean(serverState) };
+            } catch (error) {
+                showToast('Saved Locally', error.message || 'The account sync failed, but the reflection event is still stored on this device.');
+                return { event: eventEntry, synced: false };
+            }
+        }
+
+        function buildShareText() {
+            if (!uiState.lastResult) {
+                return '';
+            }
+
+            return [
+                'FLOSCAR VANGUARD // SELF-DISCOVERY BRIEF',
+                `Track: ${uiState.lastResult.track || reflectionTracks[uiState.track].label}`,
+                `Mode: ${uiState.lastResult.mode}`,
+                `Archetype: ${uiState.lastResult.archetype}`,
+                `Clarity: ${uiState.lastResult.clarity}%`,
+                '',
+                uiState.lastResult.summary,
+                '',
+                'Next Moves:',
+                ...uiState.lastResult.nextMoves.map((item, index) => `${index + 1}. ${item}`),
+                '',
+                `Inner Prompt: ${uiState.lastResult.prompt}`
+            ].join('\n');
+        }
+
+        function formatCompareValue(value) {
+            if (Array.isArray(value)) {
+                return `<ul>${value.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
+            }
+
+            return `<div>${escapeHtml(value)}</div>`;
+        }
+
+        function getCompareRows(entries) {
+            const [earlier, later] = entries;
+            const rows = [
+                { label: 'Track', earlier: earlier.track, later: later.track },
+                { label: 'Mode', earlier: earlier.mode, later: later.mode },
+                { label: 'Archetype', earlier: earlier.archetype, later: later.archetype },
+                { label: 'Clarity', earlier: `${earlier.clarity}%`, later: `${later.clarity}%` },
+                { label: 'Summary', earlier: earlier.summary, later: later.summary },
+                { label: 'Next Moves', earlier: earlier.nextMoves.slice(0, 3), later: later.nextMoves.slice(0, 3) },
+                { label: 'Inner Prompt', earlier: earlier.prompt, later: later.prompt }
+            ];
+
+            return rows.map(row => ({
+                ...row,
+                changed: JSON.stringify(row.earlier) !== JSON.stringify(row.later)
+            }));
+        }
+
+        function renderHistory() {
+            const history = getStoredHistory();
+            const historyList = document.getElementById('historyList');
+
+            if (!history.length) {
+                historyList.innerHTML = `
+                    <div class="history-card">
+                        <strong>No reflection saved yet</strong>
+                        <div>Run a scan and save it to build a personal reflection trail.</div>
+                        <span>Awaiting first entry</span>
+                    </div>
+                `;
+                renderTelemetry();
+                renderCompareConsole();
+                return;
+            }
+
+            historyList.innerHTML = history.map(entry => {
+                const stamp = formatReflectionStamp(entry.createdAt);
+                const isPrimary = uiState.compareSelection[0] === entry.id;
+                const isSecondary = uiState.compareSelection[1] === entry.id;
+
+                return `
+                    <div class="history-card ${isPrimary ? 'is-selected' : ''} ${isSecondary ? 'is-secondary' : ''}">
+                        <strong>${entry.archetype}</strong>
+                        <div>${entry.summary}</div>
+                        <span>${entry.track || 'Reflection'} // ${entry.mode} // ${entry.action || 'save'} // ${stamp}</span>
+                        <div class="history-actions">
+                            <button class="history-action" type="button" data-action="load" data-id="${entry.id}">Load Brief</button>
+                            <button class="history-action" type="button" data-action="compare" data-id="${entry.id}">${isPrimary || isSecondary ? 'Selected' : 'Compare'}</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            historyList.querySelectorAll('.history-action').forEach(button => {
+                button.addEventListener('click', () => {
+                    const action = button.dataset.action;
+                    const entryId = button.dataset.id;
+                    if (action === 'load') {
+                        loadSavedReflection(entryId);
+                    }
+                    if (action === 'compare') {
+                        toggleCompareSelection(entryId);
+                    }
+                });
+            });
+
+            renderTelemetry();
+            renderCompareConsole();
+        }
+
+        function renderTelemetry() {
+            const history = getStoredHistory();
+            const savedCountNode = document.getElementById('telemetrySavedCount');
+            const archetypeNode = document.getElementById('telemetryArchetype');
+            const archetypeNoteNode = document.getElementById('telemetryArchetypeNote');
+            const trackNode = document.getElementById('telemetryTrack');
+            const trackNoteNode = document.getElementById('telemetryTrackNote');
+            const lastScanNode = document.getElementById('telemetryLastScan');
+            const lastScanNoteNode = document.getElementById('telemetryLastScanNote');
+
+            if (!savedCountNode) {
+                return;
+            }
+
+            const dominantArchetype = history.reduce((accumulator, entry) => {
+                accumulator[entry.archetype] = (accumulator[entry.archetype] || 0) + 1;
+                return accumulator;
+            }, {});
+            const topArchetype = Object.entries(dominantArchetype).sort((left, right) => right[1] - left[1])[0];
+
+            savedCountNode.textContent = String(history.length);
+            archetypeNode.textContent = topArchetype?.[0] || 'Awaiting';
+            archetypeNoteNode.textContent = topArchetype ? `${topArchetype[1]} saved brief${topArchetype[1] === 1 ? '' : 's'} align with this pattern.` : 'Run and save reflections to surface a pattern.';
+            trackNode.textContent = reflectionTracks[uiState.track].label;
+            trackNoteNode.textContent = `Current prompt structure is tuned for ${reflectionTracks[uiState.track].focus}.`;
+            lastScanNode.textContent = uiState.lastResult ? formatReflectionStamp(uiState.lastResult.createdAt) : 'Offline';
+            lastScanNoteNode.textContent = uiState.lastResult ? `${uiState.lastResult.archetype} brief is active in the console.` : 'No reflection brief generated in this session yet.';
+        }
+
+        function loadSavedReflection(entryId, options = {}) {
+            const history = getStoredHistory();
+            const entry = history.find(item => item.id === entryId);
+            if (!entry) {
+                return;
+            }
+
+            setFormValues(entry.inputs || {});
+            setTrack(entry.trackKey || uiState.track);
+            setMode(entry.modeKey || uiState.mode);
+            renderReflectionResult(entry);
+            updateInterpretationNotes();
+            updateLiveStatus();
+            updateReflectionUrlEntry(entry.id);
+            if (!options.silent) {
+                showToast('Brief Loaded', `${entry.archetype} was restored into the reflection console.`);
+                captureReflectionEvent('load', entry).catch(() => {
+                    // Local state already captured.
+                });
+            }
+        }
+
+        function loadReflectionFromUrl() {
+            const urlState = readUrlState();
+            if (!urlState.entry) {
+                return false;
+            }
+
+            const target = getStoredHistory().find(entry => entry.id === urlState.entry);
+            if (!target) {
+                return false;
+            }
+
+            loadSavedReflection(target.id, { silent: true });
+            return true;
+        }
+
+        function toggleCompareSelection(entryId) {
+            const nextSelection = [...uiState.compareSelection];
+            const existingIndex = nextSelection.indexOf(entryId);
+            if (existingIndex >= 0) {
+                nextSelection.splice(existingIndex, 1);
+            } else if (nextSelection.length < 2) {
+                nextSelection.push(entryId);
+            } else {
+                nextSelection.shift();
+                nextSelection.push(entryId);
+            }
+            uiState.compareSelection = nextSelection;
+            renderHistory();
+            if (nextSelection.length === 2) {
+                const latestSelected = getStoredHistory().find(entry => entry.id === entryId);
+                captureReflectionEvent('compare', latestSelected || uiState.lastResult).catch(() => {
+                    // Local state already captured.
+                });
+            }
+            showToast('Compare Updated', nextSelection.length ? 'Reflection compare console updated.' : 'Compare selection cleared.');
+        }
+
+        function renderCompareConsole() {
+            const compareConsole = document.getElementById('compareConsole');
+            if (!compareConsole) {
+                return;
+            }
+
+            const history = getStoredHistory();
+            const selectedEntries = uiState.compareSelection
+                .map(id => history.find(entry => entry.id === id))
+                .filter(Boolean);
+
+            if (!selectedEntries.length) {
+                compareConsole.innerHTML = '<div class="compare-empty">Save at least two reflection briefs, then use Compare on any saved entries to inspect how your track, archetype, and next moves are shifting over time.</div>';
+                return;
+            }
+
+            if (selectedEntries.length === 1) {
+                const entry = selectedEntries[0];
+                compareConsole.innerHTML = `
+                    <div class="compare-grid">
+                        <div class="compare-column">
+                            <h4>${escapeHtml(entry.track || 'Reflection')} // ${escapeHtml(entry.archetype)}</h4>
+                            <p>${escapeHtml(entry.summary)}</p>
+                            <ul class="result-list">
+                                ${entry.nextMoves.slice(0, 2).map(item => `<li>${escapeHtml(item)}</li>`).join('')}
+                            </ul>
+                            <div class="section-caption">${escapeHtml(entry.mode)} // ${escapeHtml(formatReflectionStamp(entry.createdAt))}</div>
+                        </div>
+                        <div class="compare-empty">Select one more saved brief to generate a change map across track, mode, archetype, clarity, summary, and next moves.</div>
+                    </div>
+                `;
+                return;
+            }
+
+            const orderedEntries = [...selectedEntries].sort((left, right) => new Date(left.createdAt).getTime() - new Date(right.createdAt).getTime());
+            const diffRows = getCompareRows(orderedEntries);
+            const changedCount = diffRows.filter(row => row.changed).length;
+
+            compareConsole.innerHTML = `
+                <div class="compare-grid is-diff">
+                    <div class="compare-overview">
+                        <div class="compare-overview-card">
+                            <strong>Earlier Signal</strong>
+                            <div>${escapeHtml(orderedEntries[0].track)} // ${escapeHtml(orderedEntries[0].archetype)}</div>
+                            <div class="section-caption">${escapeHtml(orderedEntries[0].mode)} // ${escapeHtml(formatReflectionStamp(orderedEntries[0].createdAt))}</div>
+                        </div>
+                        <div class="compare-overview-card is-later">
+                            <strong>Later Signal</strong>
+                            <div>${escapeHtml(orderedEntries[1].track)} // ${escapeHtml(orderedEntries[1].archetype)}</div>
+                            <div class="section-caption">${escapeHtml(orderedEntries[1].mode)} // ${escapeHtml(formatReflectionStamp(orderedEntries[1].createdAt))}</div>
+                        </div>
+                    </div>
+                    <div class="compare-diff-row ${changedCount ? 'is-changed' : 'is-same'}">
+                        <div class="compare-diff-label">Change Summary</div>
+                        <div class="compare-diff-meta">${changedCount} of ${diffRows.length} tracked reflection signals changed between these briefs.</div>
+                    </div>
+                    <div class="compare-diff-list">
+                        ${diffRows.map(row => `
+                            <div class="compare-diff-row ${row.changed ? 'is-changed' : 'is-same'}">
+                                <div class="compare-diff-label">${escapeHtml(row.label)}</div>
+                                <div class="compare-diff-values">
+                                    <div class="compare-diff-panel">
+                                        <span>Earlier</span>
+                                        ${formatCompareValue(row.earlier)}
+                                    </div>
+                                    <div class="compare-diff-panel">
+                                        <span>Later</span>
+                                        ${formatCompareValue(row.later)}
+                                    </div>
+                                </div>
+                                <div class="section-caption">${row.changed ? 'Shift detected' : 'No change detected'}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        async function saveCurrentReflection() {
+            if (!uiState.lastResult) {
+                showToast('No Brief Yet', 'Run a self-scan before saving a reflection.');
+                return;
+            }
+
+            const { event, synced } = await captureReflectionEvent('save', uiState.lastResult, { promote: true });
+            if (event) {
+                updateReflectionUrlEntry(event.id);
+            }
+            showToast('Reflection Saved', synced ? 'Your latest brief was stored locally and synced to your account.' : 'Your latest brief was stored on this device.');
+        }
+
+        async function copyCurrentBrief() {
+            if (!uiState.lastResult) {
+                showToast('No Brief Yet', 'Run a self-scan before copying a brief.');
+                return;
+            }
+
+            await navigator.clipboard.writeText(buildShareText());
+            showToast('Brief Copied', 'The current self-discovery brief is now on your clipboard.');
+        }
+
+        function exportCurrentBrief() {
+            if (!uiState.lastResult) {
+                showToast('No Brief Yet', 'Run a self-scan before exporting a brief.');
+                return;
+            }
+
+            const blob = new Blob([buildShareText()], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'floscar-self-discovery-brief.txt';
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            URL.revokeObjectURL(url);
+            captureReflectionEvent('export').catch(() => {
+                // Local state already captured.
+            });
+            showToast('Export Complete', 'The brief file download was started.');
+        }
+
+        async function shareCurrentBrief() {
+            if (!uiState.lastResult) {
+                showToast('No Brief Yet', 'Run a self-scan before sharing a brief.');
+                return;
+            }
+
+            const shareText = buildShareText();
+            if (navigator.share) {
+                await navigator.share({
+                    title: 'Floscar Vanguard Self-Discovery Brief',
+                    text: shareText,
+                    url: window.location.href
+                });
+                captureReflectionEvent('share').catch(() => {
+                    // Local state already captured.
+                });
+                showToast('Brief Shared', 'The reflection brief was sent to the system share sheet.');
+                return;
+            }
+
+            await navigator.clipboard.writeText(`${shareText}\n\n${window.location.href}`);
+            captureReflectionEvent('share').catch(() => {
+                // Local state already captured.
+            });
+            showToast('Share Link Copied', 'The brief and page link were copied to your clipboard.');
+        }
+
+        function updatePrintBrief() {
+            if (!uiState.lastResult) {
+                return;
+            }
+
+            document.getElementById('printBriefTitle').textContent = `${uiState.lastResult.track || reflectionTracks[uiState.track].label} Personal Reflection Brief`;
+            document.getElementById('printBriefIntro').textContent = 'Generated from the active Self-Discovery console and current guided reflection state.';
+            document.getElementById('printMetaTrack').textContent = uiState.lastResult.track || reflectionTracks[uiState.track].label;
+            document.getElementById('printMetaMode').textContent = uiState.lastResult.mode;
+            document.getElementById('printMetaArchetype').textContent = uiState.lastResult.archetype;
+            document.getElementById('printMetaClarity').textContent = `${uiState.lastResult.clarity}%`;
+            document.getElementById('printSummary').textContent = uiState.lastResult.summary;
+            document.getElementById('printStrengthList').innerHTML = uiState.lastResult.vector.map(item => `<li>${item}</li>`).join('');
+            document.getElementById('printMovesList').innerHTML = uiState.lastResult.nextMoves.map(item => `<li>${item}</li>`).join('');
+            document.getElementById('printPrompt').textContent = uiState.lastResult.prompt;
+            document.getElementById('printSnapshotList').innerHTML = uiState.lastResult.snapshot.map(item => `<li>${item}</li>`).join('');
+        }
+
+        function printCurrentBrief() {
+            if (!uiState.lastResult) {
+                showToast('No Brief Yet', 'Run a self-scan before printing a brief.');
+                return;
+            }
+
+            updatePrintBrief();
+            captureReflectionEvent('print').catch(() => {
+                // Local state already captured.
+            });
+            document.body.classList.add('is-printing');
+            window.print();
+        }
+
+        function setupSectionReveals() {
+            const targets = Array.from(document.querySelectorAll('.reveal-target'));
+            if (!targets.length) {
+                return;
+            }
+
+            if (!('IntersectionObserver' in window)) {
+                targets.forEach(target => target.classList.add('is-visible'));
+                return;
+            }
+
+            const observer = new IntersectionObserver((entries, revealObserver) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
+                    entry.target.classList.add('is-visible');
+                    revealObserver.unobserve(entry.target);
+                });
+            }, { threshold: 0.18 });
+
+            targets.forEach(target => observer.observe(target));
+        }
+
+        function openCommandPalette() {
+            if (!commandPalette || !commandPaletteInput) {
+                return;
+            }
+
+            commandPalette.classList.add('is-open');
+            commandPalette.setAttribute('aria-hidden', 'false');
+            filterCommandPalette('');
+            commandPaletteInput.value = '';
+            commandPaletteInput.focus();
+        }
+
+        function closeCommandPalette() {
+            if (!commandPalette) {
+                return;
+            }
+
+            commandPalette.classList.remove('is-open');
+            commandPalette.setAttribute('aria-hidden', 'true');
+        }
+
+        function renderCommandPalette() {
+            if (!commandPaletteList) {
+                return;
+            }
+
+            if (!uiState.filteredCommandItems.length) {
+                commandPaletteList.innerHTML = '<div class="command-palette-empty">No matching commands</div>';
+                return;
+            }
+
+            commandPaletteList.innerHTML = uiState.filteredCommandItems.map((item, index) => `
+                <button class="command-palette-item ${index === uiState.activeCommandIndex ? 'is-active' : ''}" type="button" data-index="${index}">
+                    <strong>${item.title}</strong>
+                    <span>${item.description}</span>
+                </button>
+            `).join('');
+
+            commandPaletteList.querySelectorAll('.command-palette-item').forEach(button => {
+                button.addEventListener('click', () => {
+                    const item = uiState.filteredCommandItems[Number(button.dataset.index)];
+                    if (item) {
+                        item.run();
+                        showToast('Command Executed', item.title);
+                        closeCommandPalette();
+                    }
+                });
+            });
+        }
+
+        function filterCommandPalette(query) {
+            const value = query.trim().replace(/^\/+/, '').toLowerCase();
+            if (commandPaletteInput && commandPaletteInput.value.trim().startsWith('/')) {
+                commandPaletteInput.value = commandPaletteInput.value.replace(/^\/+/, '');
+            }
+            uiState.filteredCommandItems = uiState.commandItems.filter(item => {
+                if (!value) {
+                    return true;
+                }
+
+                return item.title.toLowerCase().includes(value) || item.description.toLowerCase().includes(value);
+            });
+            uiState.activeCommandIndex = 0;
+            renderCommandPalette();
+        }
+
+        function setupCommandPalette() {
+            uiState.commandItems = [
+                { title: 'Track: Identity Reset', description: 'Switch to the identity-centered reflection track', run: () => setTrack('identity') },
+                { title: 'Track: Builder Path', description: 'Switch to the builder-focused reflection track', run: () => setTrack('builder') },
+                { title: 'Track: Leadership Pulse', description: 'Switch to the leadership-focused reflection track', run: () => setTrack('leadership') },
+                { title: 'Mode: Visionary', description: 'Switch to visionary guidance mode', run: () => setMode('visionary') },
+                { title: 'Mode: Strategic', description: 'Switch to strategic guidance mode', run: () => setMode('strategic') },
+                { title: 'Mode: Grounded', description: 'Switch to grounded guidance mode', run: () => setMode('grounded') },
+                { title: 'Run Reflection Scan', description: 'Analyze the current form inputs', run: runReflectionScan },
+                { title: 'Save Reflection', description: 'Store the current brief in recent reflections', run: () => saveCurrentReflection().catch(() => showToast('Save Failed', 'The reflection could not be saved.')) },
+                { title: 'Copy Brief', description: 'Copy the current brief to the clipboard', run: () => copyCurrentBrief().catch(() => showToast('Copy Failed', 'The browser could not copy the current brief.')) },
+                { title: 'Export Brief', description: 'Download the current brief as a text file', run: exportCurrentBrief },
+                { title: 'Print Brief', description: 'Generate a print-ready personal brief', run: printCurrentBrief },
+                { title: 'Share Brief', description: 'Share the brief or copy a shareable version', run: () => shareCurrentBrief().catch(() => showToast('Share Failed', 'The browser could not share the current brief.')) }
+            ];
+
+            commandPaletteInput?.addEventListener('input', event => {
+                filterCommandPalette(event.target.value);
+            });
+
+            commandPaletteInput?.addEventListener('keydown', event => {
+                if (event.key === 'ArrowDown') {
+                    event.preventDefault();
+                    uiState.activeCommandIndex = Math.min(uiState.activeCommandIndex + 1, Math.max(uiState.filteredCommandItems.length - 1, 0));
+                    renderCommandPalette();
+                }
+
+                if (event.key === 'ArrowUp') {
+                    event.preventDefault();
+                    uiState.activeCommandIndex = Math.max(uiState.activeCommandIndex - 1, 0);
+                    renderCommandPalette();
+                }
+
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    const item = uiState.filteredCommandItems[uiState.activeCommandIndex];
+                    if (item) {
+                        item.run();
+                        showToast('Command Executed', item.title);
+                        closeCommandPalette();
+                    }
+                }
+
+                if (event.key === 'Escape') {
+                    event.preventDefault();
+                    closeCommandPalette();
+                }
+            });
+
+            commandPalette?.addEventListener('click', event => {
+                if (event.target === commandPalette) {
+                    closeCommandPalette();
+                }
+            });
+        }
+
+        function runReflectionScan() {
+            const values = getFormValues();
+            if (!values.goal || !values.strength || !values.challenge || !values.energy || !values.horizon || !values.environment) {
+                resultText.textContent = 'Please complete every required field before running the self-scan.';
+                resultBox.classList.add('is-visible');
+                showToast('Missing Inputs', 'Complete the required reflection fields first.');
+                return;
+            }
+
+            if (uiState.scanTimer) {
+                window.clearTimeout(uiState.scanTimer);
+            }
+
+            scanButton.classList.add('scanning');
+            scanButton.disabled = true;
+            resultBox.classList.remove('is-visible');
+            document.getElementById('signalStateLabel').textContent = 'Scanning';
+            document.getElementById('signalStateNote').textContent = 'Parsing intention, friction, pace, and context into a structured brief.';
+
+            uiState.scanTimer = window.setTimeout(() => {
+                scanButton.classList.remove('scanning');
+                scanButton.disabled = false;
+                const result = buildReflectionResult(values);
+                renderReflectionResult(result);
+                document.getElementById('signalStateLabel').textContent = 'Brief Generated';
+                document.getElementById('signalStateNote').textContent = 'Your reflection console has produced a structured interpretation.';
+                showToast('Scan Complete', 'Your self-discovery brief is ready.');
+            }, 1550);
+        }
+
+        form.addEventListener('submit', event => {
+            event.preventDefault();
+            runReflectionScan();
+        });
+
+        form.querySelectorAll('input, textarea, select').forEach(field => {
+            field.addEventListener('input', updateLiveStatus);
+            field.addEventListener('change', () => {
+                updateInterpretationNotes();
+                updateLiveStatus();
+            });
+        });
+
+        document.querySelectorAll('.mode-chip').forEach(chip => {
+            chip.addEventListener('click', () => setMode(chip.dataset.mode));
+        });
+
+        document.querySelectorAll('.track-card').forEach(card => {
+            card.addEventListener('click', () => setTrack(card.dataset.track));
+        });
+
+        document.getElementById('saveReflectionBtn')?.addEventListener('click', () => {
+            saveCurrentReflection().catch(() => showToast('Save Failed', 'The reflection could not be saved.'));
+        });
+        document.getElementById('copyReflectionBtn')?.addEventListener('click', () => {
+            copyCurrentBrief().catch(() => showToast('Copy Failed', 'The browser could not copy the current brief.'));
+        });
+        document.getElementById('exportReflectionBtn')?.addEventListener('click', exportCurrentBrief);
+        document.getElementById('printReflectionBtn')?.addEventListener('click', printCurrentBrief);
+        document.getElementById('shareReflectionBtn')?.addEventListener('click', () => {
+            shareCurrentBrief().catch(() => showToast('Share Failed', 'The browser could not share the current brief.'));
+        });
+        document.getElementById('rerunReflectionBtn')?.addEventListener('click', runReflectionScan);
+        document.addEventListener('DOMContentLoaded', async () => {
+            setupMobileMenu();
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                const linkPage = new URL(link.href, window.location.origin).pathname.split('/').pop();
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+
+            const urlState = readUrlState();
+
+            const storedMode = loadStoredJson(STORAGE_KEYS.mode, 'visionary');
+            const storedTrack = loadStoredJson(STORAGE_KEYS.track, 'identity');
+            const storedInputs = loadStoredJson(STORAGE_KEYS.inputs, {});
+            const storedResult = loadStoredJson(STORAGE_KEYS.result, null);
+
+            setFormValues(storedInputs);
+            const initialTrack = urlState.track && Object.prototype.hasOwnProperty.call(reflectionTracks, urlState.track)
+                ? urlState.track
+                : (Object.prototype.hasOwnProperty.call(reflectionTracks, storedTrack) ? storedTrack : 'identity');
+            const initialMode = urlState.mode && Object.prototype.hasOwnProperty.call(reflectionModes, urlState.mode)
+                ? urlState.mode
+                : (Object.prototype.hasOwnProperty.call(reflectionModes, storedMode) ? storedMode : 'visionary');
+
+            setTrack(initialTrack);
+            setMode(initialMode);
+            updateInterpretationNotes();
+            updateLiveStatus();
+            renderHistory();
+            setupCommandPalette();
+            setupSectionReveals();
+
+            if (storedResult) {
+                renderReflectionResult(storedResult);
+                refreshReflectionResultIfPossible();
+            }
+
+            await hydrateReflectionsFromServer();
+            loadReflectionFromUrl();
+
+            window.addEventListener('afterprint', () => {
+                document.body.classList.remove('is-printing');
+            });
+
+            applyUrlState();
+
+            document.addEventListener('keydown', event => {
+                const activeTag = document.activeElement?.tagName;
+                const isEditable = activeTag === 'INPUT' || activeTag === 'TEXTAREA' || activeTag === 'SELECT';
+                const hasModifier = event.ctrlKey || event.metaKey || event.altKey;
+
+                if (hasModifier) {
+                    return;
+                }
+
+                if (event.key === 'Escape' && commandPalette?.classList.contains('is-open')) {
+                    closeCommandPalette();
+                    return;
+                }
+
+                if (!isEditable && event.key === '/' && !commandPalette?.classList.contains('is-open')) {
+                    event.preventDefault();
+                    openCommandPalette();
+                    return;
+                }
+
+                if (!isEditable && event.key === '1') {
+                    setMode('visionary');
+                }
+
+                if (!isEditable && event.key === '2') {
+                    setMode('strategic');
+                }
+
+                if (!isEditable && event.key === '3') {
+                    setMode('grounded');
+                }
+
+                if (!isEditable && (event.key === 'r' || event.key === 'R')) {
+                    runReflectionScan();
+                }
+
+                if (!isEditable && (event.key === 'p' || event.key === 'P')) {
+                    event.preventDefault();
+                    printCurrentBrief();
+                }
+
+                if (!isEditable && (event.key === 's' || event.key === 'S')) {
+                    event.preventDefault();
+                    saveCurrentReflection().catch(() => showToast('Save Failed', 'The reflection could not be saved.'));
+                }
+
+                if (!isEditable && (event.key === 'c' || event.key === 'C')) {
+                    event.preventDefault();
+                    copyCurrentBrief().catch(() => showToast('Copy Failed', 'The browser could not copy the current brief.'));
+                }
+            });
+        });
+        window.onclick = function (event) { const modal = document.getElementById('contactModal'); if (event.target === modal) { modal.style.display = 'none'; } };
+    </script>
+    <script src="contact-hub.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,4396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Track the biggest AI signals, agentic system shifts, robotics momentum, and sector intelligence through the Floscar Vanguard trends console.">
+    <meta name="theme-color" content="#000000">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Floscar Vanguard">
+    <meta property="og:title" content="Trends | Floscar Vanguard">
+    <meta property="og:description"
+        content="A live intelligence dashboard for agentic AI, robotics, healthcare, defense, education, and product architecture signals.">
+    <meta property="og:url" content="https://www.floscarvanguard.com/trends.html">
+    <meta property="og:image" content="https://www.floscarvanguard.com/AI.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Trends | Floscar Vanguard">
+    <meta name="twitter:description" content="Monitor 2026 AI signals through the Floscar Vanguard intelligence feed.">
+    <link rel="canonical" href="https://www.floscarvanguard.com/trends.html">
+    <link rel="icon" href="AI.jpg" type="image/jpeg">
+    <link rel="manifest" href="site.webmanifest">
+    <title>Trends | Floscar Vanguard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/fv-polish.css">
+    <script src="assets/fv-polish.js" defer></script>
+    <style>
+        :root {
+            --neon-green: #33ff33;
+            --neon-bright: #a8ffa8;
+            --text-main: #e8ffe8;
+            --text-dim: #b7d9b7;
+            --panel-bg: rgba(5, 18, 5, 0.68);
+            --panel-border: rgba(51, 255, 51, 0.18);
+            --glass-strong: rgba(51, 255, 51, 0.08);
+            --mono: 'Courier New', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+            background: #000;
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background: rgba(51, 255, 51, 0.28);
+            color: #031003;
+        }
+
+        .video-container {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        #bg-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at top, rgba(51, 255, 51, 0.12), transparent 28%),
+                linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.82) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(51, 255, 51, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(51, 255, 51, 0.03) 1px, transparent 1px);
+            background-size: 42px 42px;
+            opacity: 0.18;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(0, 0, 0, 0.72);
+            border-bottom: 1px solid rgba(51, 255, 51, 0.15);
+            backdrop-filter: blur(12px);
+        }
+
+        .page-header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .logo-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.85rem;
+            color: #b7ffb7;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .logo-link:hover {
+            color: #d7ffd7;
+            transform: translateY(-1px);
+        }
+
+        .logo-link img {
+            width: 36px;
+            height: 36px;
+            object-fit: cover;
+            object-position: center 32%;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(51, 255, 51, 0.24);
+        }
+
+        .logo-link span {
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .nav-toggle {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            flex-direction: column;
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            border: 1px solid rgba(51, 255, 51, 0.32);
+            background: rgba(0, 0, 0, 0.42);
+            color: var(--text-main);
+            cursor: pointer;
+            box-shadow: 0 0 18px rgba(51, 255, 51, 0.12);
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            border-radius: 999px;
+            background: currentColor;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .nav-toggle.is-open span:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        .nav-toggle.is-open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.is-open span:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+
+        .nav-links a {
+            color: #9cff9c;
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 0.55rem 0.75rem;
+            border-radius: 999px;
+            transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(51, 255, 51, 0.18);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 25px rgba(51, 255, 51, 0.18);
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--neon-green);
+            outline-offset: 3px;
+        }
+
+        .ticker-wrap {
+            position: sticky;
+            top: 69px;
+            width: 100%;
+            overflow: hidden;
+            background: rgba(0, 20, 0, 0.82);
+            border-bottom: 1px solid rgba(51, 255, 51, 0.28);
+            backdrop-filter: blur(10px);
+            z-index: 15;
+        }
+
+        .command-bar {
+            position: sticky;
+            top: 113px;
+            z-index: 14;
+            background: rgba(2, 14, 2, 0.84);
+            border-bottom: 1px solid rgba(51, 255, 51, 0.14);
+            backdrop-filter: blur(10px);
+        }
+
+        .command-bar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .command-label {
+            color: #9eff9e;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .command-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.35rem 0.6rem;
+            border-radius: 999px;
+            border: 1px solid rgba(51, 255, 51, 0.14);
+            background: rgba(255, 255, 255, 0.03);
+            color: #d9ffd9;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.06em;
+        }
+
+        .command-chip kbd {
+            padding: 0.16rem 0.34rem;
+            border-radius: 7px;
+            border: 1px solid rgba(51, 255, 51, 0.18);
+            background: rgba(0, 0, 0, 0.32);
+            color: #8fff8f;
+            font: inherit;
+        }
+
+        .mission-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-top: 0.95rem;
+        }
+
+        .mission-action {
+            border: 1px solid rgba(51, 255, 51, 0.16);
+            background: rgba(255, 255, 255, 0.03);
+            color: #dfffdc;
+            padding: 0.65rem 0.9rem;
+            border-radius: 999px;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .mission-action:hover {
+            transform: translateY(-1px);
+            border-color: rgba(51, 255, 51, 0.34);
+            background: rgba(51, 255, 51, 0.08);
+        }
+
+        .command-palette {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 10010;
+            background: rgba(0, 8, 0, 0.82);
+            backdrop-filter: blur(16px);
+        }
+
+        .command-palette.is-open {
+            display: block;
+        }
+
+        .command-palette-card {
+            width: min(92vw, 760px);
+            margin: 10vh auto 0;
+            border-radius: 24px;
+            border: 1px solid rgba(51, 255, 51, 0.2);
+            background: rgba(4, 18, 4, 0.94);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+            overflow: hidden;
+        }
+
+        .command-palette-head {
+            padding: 1rem 1.1rem;
+            border-bottom: 1px solid rgba(51, 255, 51, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .command-palette-input {
+            width: 100%;
+            border: 1px solid rgba(51, 255, 51, 0.16);
+            background: rgba(0, 0, 0, 0.28);
+            color: #ecffec;
+            padding: 0.95rem 1rem;
+            border-radius: 16px;
+            font-family: var(--mono);
+            font-size: 0.92rem;
+        }
+
+        .command-palette-input::placeholder {
+            color: #8ab98a;
+        }
+
+        .command-palette-list {
+            display: grid;
+            gap: 0;
+            max-height: min(62vh, 520px);
+            overflow: auto;
+        }
+
+        .command-palette-item {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid rgba(51, 255, 51, 0.08);
+            background: transparent;
+            color: #e8ffe8;
+            padding: 0.95rem 1.1rem;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.18s ease;
+        }
+
+        .command-palette-item:hover,
+        .command-palette-item.is-active {
+            background: rgba(51, 255, 51, 0.08);
+        }
+
+        .command-palette-item strong {
+            display: block;
+            margin-bottom: 0.28rem;
+            color: #f4fff4;
+            font-size: 0.92rem;
+            letter-spacing: 0.04em;
+        }
+
+        .command-palette-item span {
+            color: var(--text-dim);
+            font-size: 0.82rem;
+            line-height: 1.55;
+        }
+
+        .command-palette-empty {
+            padding: 1rem 1.1rem;
+            color: #97c797;
+            font-family: var(--mono);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .toast-stack {
+            position: fixed;
+            right: 20px;
+            bottom: 22px;
+            z-index: 10020;
+            display: grid;
+            gap: 0.7rem;
+            width: min(92vw, 360px);
+            pointer-events: none;
+        }
+
+        .toast-item {
+            padding: 0.9rem 1rem;
+            border-radius: 18px;
+            border: 1px solid rgba(51, 255, 51, 0.18);
+            background: rgba(5, 18, 5, 0.94);
+            box-shadow: 0 16px 42px rgba(0, 0, 0, 0.32);
+            transform: translateY(10px);
+            opacity: 0;
+            animation: toastIn 0.24s ease forwards;
+        }
+
+        .toast-item strong {
+            display: block;
+            margin-bottom: 0.25rem;
+            color: #f1fff1;
+            font-size: 0.86rem;
+            letter-spacing: 0.04em;
+        }
+
+        .toast-item span {
+            color: var(--text-dim);
+            font-size: 0.84rem;
+            line-height: 1.55;
+        }
+
+        .toast-item.is-success {
+            border-color: rgba(51, 255, 51, 0.24);
+        }
+
+        .toast-item.is-info {
+            border-color: rgba(122, 230, 255, 0.24);
+        }
+
+        .toast-item.is-warning {
+            border-color: rgba(255, 242, 122, 0.28);
+        }
+
+        @keyframes toastIn {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .print-brief {
+            display: none;
+        }
+
+        .print-brief-inner {
+            color: #041004;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .print-brief h1,
+        .print-brief h2 {
+            margin: 0 0 0.7rem;
+            color: #041004;
+        }
+
+        .print-brief p,
+        .print-brief li {
+            color: #143214;
+            line-height: 1.6;
+        }
+
+        .print-brief-section {
+            margin-top: 1.35rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(4, 16, 4, 0.16);
+        }
+
+        .print-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.8rem;
+        }
+
+        .print-meta-item {
+            padding: 0.8rem 0.9rem;
+            border: 1px solid rgba(4, 16, 4, 0.14);
+            background: rgba(4, 16, 4, 0.03);
+        }
+
+        .print-meta-item strong {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        body.is-printing>* {
+            display: none !important;
+        }
+
+        body.is-printing .print-brief {
+            display: block !important;
+            position: static;
+            padding: 0;
+            background: #fff;
+            color: #041004;
+        }
+
+        @media print {
+            body {
+                background: #fff;
+            }
+
+            .print-brief {
+                display: block;
+                padding: 0;
+            }
+        }
+
+        .ticker {
+            display: inline-block;
+            white-space: nowrap;
+            padding-right: 100%;
+            animation: ticker 24s linear infinite;
+            font-family: var(--mono);
+            font-size: 0.82rem;
+            color: var(--neon-green);
+            padding: 0.85rem 0;
+        }
+
+        .ticker-item {
+            display: inline-block;
+            padding: 0 3.5rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+        }
+
+        @keyframes ticker {
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+
+            100% {
+                transform: translate3d(-100%, 0, 0);
+            }
+        }
+
+        .page-shell {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        .hero-panel {
+            display: grid;
+            grid-template-columns: 1.4fr 0.9fr;
+            gap: 1.5rem;
+            align-items: stretch;
+            margin-bottom: 2rem;
+        }
+
+        .hero-copy,
+        .signal-panel,
+        .trend-entry,
+        .summary-card {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            backdrop-filter: blur(12px);
+            box-shadow: inset 0 0 24px rgba(0, 255, 0, 0.05), 0 12px 32px rgba(0, 0, 0, 0.22);
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .hero-copy {
+            padding: 2rem;
+            border-radius: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-copy::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(130deg, rgba(51, 255, 51, 0.1), transparent 28%, transparent 72%, rgba(51, 255, 51, 0.08)),
+                radial-gradient(circle at top right, rgba(51, 255, 51, 0.16), transparent 30%);
+            pointer-events: none;
+        }
+
+        .hero-copy>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.45rem 0.9rem;
+            border: 1px solid rgba(51, 255, 51, 0.28);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.04);
+            color: #caffca;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-family: var(--mono);
+            margin-bottom: 1rem;
+        }
+
+        .page-title {
+            margin: 0 0 0.9rem;
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            text-shadow: 0 0 24px rgba(51, 255, 51, 0.2);
+        }
+
+        .page-copy {
+            max-width: 820px;
+            margin: 0;
+            color: var(--text-dim);
+            line-height: 1.85;
+        }
+
+        .hero-copy strong {
+            color: var(--neon-bright);
+        }
+
+        .cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.75rem;
+        }
+
+        .cta-row a,
+        .cta-row button {
+            background: linear-gradient(135deg, rgba(140, 255, 140, 0.96), rgba(90, 235, 90, 0.84));
+            color: #021102;
+            padding: 0.95rem 1.5rem;
+            border-radius: 999px;
+            border: none;
+            text-decoration: none;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.24s ease, box-shadow 0.24s ease, filter 0.24s ease;
+        }
+
+        .cta-row a:hover,
+        .cta-row button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(51, 255, 51, 0.18);
+            filter: saturate(1.08);
+        }
+
+        .signal-panel {
+            padding: 1.4rem;
+            border-radius: 24px;
+            display: grid;
+            gap: 0.95rem;
+            align-content: start;
+        }
+
+        .signal-card {
+            padding: 1rem 1.1rem;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(51, 255, 51, 0.12);
+            transition: opacity 0.2s ease, transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .signal-label {
+            display: block;
+            margin-bottom: 0.35rem;
+            font-family: var(--mono);
+            color: #90ff90;
+            font-size: 0.74rem;
+            letter-spacing: 0.14em;
+        }
+
+        .signal-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: #f4fff4;
+        }
+
+        .signal-copy {
+            margin: 0.35rem 0 0;
+            color: var(--text-dim);
+            line-height: 1.6;
+            font-size: 0.92rem;
+        }
+
+        .intel-dashboard {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+            gap: 1.5rem;
+            margin: 0 0 2rem;
+        }
+
+        .dashboard-card {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 24px;
+            padding: 1.4rem;
+            backdrop-filter: blur(12px);
+            box-shadow: inset 0 0 24px rgba(0, 255, 0, 0.05), 0 12px 32px rgba(0, 0, 0, 0.22);
+        }
+
+        .dashboard-card h2 {
+            margin: 0 0 1rem;
+            font-size: 1rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #f5fff5;
+        }
+
+        .score-list {
+            display: grid;
+            gap: 0.95rem;
+        }
+
+        .score-row {
+            display: grid;
+            grid-template-columns: 145px 1fr 44px;
+            gap: 0.85rem;
+            align-items: center;
+            transition: opacity 0.2s ease, transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .score-label,
+        .score-value,
+        .region-code {
+            font-family: var(--mono);
+            font-size: 0.82rem;
+            letter-spacing: 0.08em;
+        }
+
+        .score-label,
+        .region-code {
+            color: #c8ffc8;
+        }
+
+        .score-value {
+            color: #9eff9e;
+            text-align: right;
+        }
+
+        .score-track {
+            height: 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.06);
+            overflow: hidden;
+            border: 1px solid rgba(51, 255, 51, 0.08);
+        }
+
+        .score-fill {
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, rgba(51, 255, 51, 0.38), rgba(168, 255, 168, 0.95));
+            box-shadow: 0 0 18px rgba(51, 255, 51, 0.25);
+        }
+
+        .regional-grid {
+            display: grid;
+            gap: 0.85rem;
+        }
+
+        .regional-node {
+            padding: 0.95rem 1rem;
+            border-radius: 18px;
+            border: 1px solid rgba(51, 255, 51, 0.12);
+            background: rgba(255, 255, 255, 0.03);
+            transition: opacity 0.2s ease, transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .regional-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.45rem;
+        }
+
+        .regional-node p {
+            margin: 0;
+            color: var(--text-dim);
+            line-height: 1.65;
+            font-size: 0.92rem;
+        }
+
+        .signal-card.is-muted,
+        .score-row.is-muted,
+        .regional-node.is-muted {
+            opacity: 0.32;
+            filter: saturate(0.5);
+            transform: scale(0.99);
+        }
+
+        .feed-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin: 0 0 1.25rem;
+        }
+
+        .filter-chip {
+            border: 1px solid rgba(51, 255, 51, 0.24);
+            background: rgba(255, 255, 255, 0.03);
+            color: #caffca;
+            padding: 0.6rem 0.95rem;
+            border-radius: 999px;
+            font-family: var(--mono);
+            font-size: 0.76rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .filter-chip:hover,
+        .filter-chip.is-active {
+            background: rgba(51, 255, 51, 0.14);
+            border-color: rgba(51, 255, 51, 0.42);
+            box-shadow: 0 0 20px rgba(51, 255, 51, 0.12);
+            transform: translateY(-1px);
+        }
+
+        .feed-empty {
+            display: none;
+            padding: 1.2rem 1.3rem;
+            border-radius: 18px;
+            border: 1px dashed rgba(51, 255, 51, 0.24);
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text-dim);
+            font-family: var(--mono);
+            letter-spacing: 0.06em;
+        }
+
+        .trend-entry.is-hidden {
+            display: none;
+        }
+
+        .detail-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 6, 0, 0.94);
+            backdrop-filter: blur(22px);
+            z-index: 10000;
+        }
+
+        .detail-card {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: min(92vw, 880px);
+            max-height: 88vh;
+            overflow: auto;
+            border-radius: 28px;
+            background: rgba(4, 14, 4, 0.95);
+            border: 1px solid rgba(51, 255, 51, 0.26);
+            box-shadow: 0 0 60px rgba(51, 255, 51, 0.14);
+        }
+
+        .detail-image {
+            width: 100%;
+            height: min(38vh, 320px);
+            object-fit: cover;
+            display: block;
+        }
+
+        .detail-body {
+            padding: 1.4rem 1.5rem 1.6rem;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.6fr) minmax(220px, 0.8fr);
+            gap: 1.25rem;
+            align-items: start;
+        }
+
+        .detail-body h3 {
+            margin: 0.55rem 0 0.75rem;
+            font-size: clamp(1.35rem, 3vw, 2rem);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .detail-body p {
+            margin: 0;
+            color: var(--text-dim);
+            line-height: 1.8;
+        }
+
+        .detail-meta {
+            display: grid;
+            gap: 0.9rem;
+        }
+
+        .detail-chip,
+        .detail-note {
+            border-radius: 18px;
+            border: 1px solid rgba(51, 255, 51, 0.14);
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.95rem 1rem;
+        }
+
+        .detail-chip span,
+        .detail-note span {
+            display: block;
+            margin-bottom: 0.35rem;
+            font-family: var(--mono);
+            color: #96ff96;
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .detail-chip strong {
+            color: #f5fff5;
+            letter-spacing: 0.08em;
+        }
+
+        .detail-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            color: #33ff33;
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(51, 255, 51, 0.22);
+            width: 42px;
+            height: 42px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .detail-close:hover {
+            color: #fff;
+            transform: rotate(90deg);
+        }
+
+        .mini-chart {
+            margin-top: 1rem;
+            padding-top: 0.85rem;
+            border-top: 1px solid rgba(51, 255, 51, 0.12);
+        }
+
+        .mini-chart svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .tool-path-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .tool-path-card {
+            padding: 1rem 1.05rem;
+            border-radius: 18px;
+            border: 1px solid rgba(51, 255, 51, 0.12);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .tool-path-card span {
+            display: block;
+            margin-bottom: 0.45rem;
+            color: #9cffad;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .tool-path-card strong {
+            display: block;
+            margin-bottom: 0.55rem;
+            color: #f4fff4;
+            letter-spacing: 0.06em;
+        }
+
+        .tool-path-card p {
+            margin: 0 0 0.8rem;
+            color: var(--text-dim);
+            line-height: 1.65;
+            font-size: 0.9rem;
+        }
+
+        .tool-path-card a {
+            color: #d7ffd7;
+            text-decoration: none;
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .chart-axis {
+            stroke: rgba(51, 255, 51, 0.22);
+            stroke-width: 1;
+        }
+
+        .chart-line {
+            fill: none;
+            stroke: #8fff8f;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 220;
+            stroke-dashoffset: 220;
+            animation: chartReveal 2.4s ease forwards;
+            filter: drop-shadow(0 0 8px rgba(51, 255, 51, 0.4));
+        }
+
+        .chart-point {
+            fill: #d7ffd7;
+            stroke: #33ff33;
+            stroke-width: 2;
+        }
+
+        .chart-label {
+            fill: #9dcb9d;
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 0.08em;
+        }
+
+        @keyframes chartReveal {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .feed-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 2fr) minmax(260px, 0.9fr);
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .intelligence-log {
+            position: relative;
+            padding-left: 2.8rem;
+        }
+
+        .intelligence-log::before {
+            content: '';
+            position: absolute;
+            left: 0.7rem;
+            top: 0.4rem;
+            bottom: 0.4rem;
+            width: 2px;
+            background: linear-gradient(180deg, rgba(51, 255, 51, 0.8), rgba(51, 255, 51, 0.08));
+            box-shadow: 0 0 18px rgba(51, 255, 51, 0.26);
+        }
+
+        .trend-entry {
+            position: relative;
+            padding: 1.8rem;
+            margin-bottom: 1.35rem;
+            border-radius: 24px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .trend-entry:hover {
+            transform: translateY(-4px) scale(1.01);
+            border-color: rgba(51, 255, 51, 0.34);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.24), 0 0 28px rgba(51, 255, 51, 0.14);
+        }
+
+        .trend-entry::before {
+            content: '';
+            position: absolute;
+            left: -2.48rem;
+            top: 1.7rem;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--neon-green);
+            box-shadow: 0 0 16px rgba(51, 255, 51, 0.75);
+        }
+
+        .trend-entry::after {
+            content: '>>';
+            position: absolute;
+            left: -4.1rem;
+            top: 1.34rem;
+            color: var(--neon-green);
+            font-family: var(--mono);
+            font-size: 1rem;
+            letter-spacing: 0.08em;
+        }
+
+        .trend-media {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 18px;
+            display: block;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(51, 255, 51, 0.12);
+            box-shadow: 0 0 18px rgba(51, 255, 51, 0.08);
+        }
+
+        .trend-content {
+            padding: 0.1rem 0.25rem 0.3rem;
+        }
+
+        .trend-meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+            margin-bottom: 0.95rem;
+        }
+
+        .meta-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.42rem 0.75rem;
+            border-radius: 999px;
+            border: 1px solid rgba(51, 255, 51, 0.18);
+            background: rgba(255, 255, 255, 0.03);
+            color: #d8ffd8;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .meta-pill strong {
+            color: #98ff98;
+            font-weight: 700;
+        }
+
+        .timestamp {
+            display: inline-block;
+            margin-bottom: 0.75rem;
+            font-family: var(--mono);
+            color: #91ff91;
+            font-size: 0.76rem;
+            letter-spacing: 0.12em;
+            opacity: 0.78;
+        }
+
+        .trend-title {
+            margin: 0 0 0.85rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-size: 1.28rem;
+            color: #f5fff5;
+        }
+
+        .trend-desc {
+            margin: 0;
+            color: #c7eac7;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .summary-column {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .mission-control {
+            padding: 1.2rem;
+            cursor: default;
+        }
+
+        .mission-control h3 {
+            margin: 0 0 0.9rem;
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.85rem;
+        }
+
+        .mission-cell {
+            padding: 0.85rem 0.9rem;
+            border-radius: 16px;
+            border: 1px solid rgba(51, 255, 51, 0.12);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .mission-label {
+            display: block;
+            margin-bottom: 0.35rem;
+            color: #8fff8f;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .mission-value {
+            color: #f4fff4;
+            font-family: var(--mono);
+            font-size: 0.95rem;
+            letter-spacing: 0.06em;
+        }
+
+        .mission-health {
+            margin-top: 0.95rem;
+            padding: 0.95rem 1rem;
+            border-radius: 18px;
+            border: 1px solid rgba(51, 255, 51, 0.12);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .mission-health-bar {
+            height: 10px;
+            margin-top: 0.65rem;
+            border-radius: 999px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(51, 255, 51, 0.08);
+        }
+
+        .mission-health-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, rgba(51, 255, 51, 0.42), rgba(168, 255, 168, 0.98));
+            box-shadow: 0 0 18px rgba(51, 255, 51, 0.25);
+            transition: width 0.55s ease;
+        }
+
+        .alert-queue,
+        .activity-log {
+            padding: 1.2rem;
+            cursor: default;
+        }
+
+        .alert-queue h3,
+        .activity-log h3 {
+            margin: 0 0 0.9rem;
+        }
+
+        .alert-stack,
+        .activity-list {
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .snapshot-history-list,
+        .snapshot-compare-list {
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .alert-item,
+        .activity-item {
+            padding: 0.9rem 1rem;
+            border-radius: 16px;
+            border: 1px solid rgba(51, 255, 51, 0.12);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .alert-item {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 0.8rem;
+            align-items: start;
+        }
+
+        .alert-item strong,
+        .activity-item strong {
+            display: block;
+            margin-bottom: 0.35rem;
+            color: #efffef;
+            font-size: 0.86rem;
+            letter-spacing: 0.04em;
+        }
+
+        .alert-item p,
+        .activity-item p {
+            margin: 0;
+            color: var(--text-dim);
+            line-height: 1.65;
+            font-size: 0.9rem;
+        }
+
+        .alert-dismiss {
+            border: 1px solid rgba(51, 255, 51, 0.16);
+            background: rgba(255, 255, 255, 0.03);
+            color: #9eff9e;
+            border-radius: 999px;
+            width: 34px;
+            height: 34px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .alert-dismiss:hover {
+            color: #f4fff4;
+            border-color: rgba(51, 255, 51, 0.36);
+        }
+
+        .alert-meta,
+        .activity-meta {
+            display: block;
+            margin-bottom: 0.45rem;
+            color: #8fff8f;
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .empty-rail-note {
+            margin: 0;
+            padding: 0.95rem 1rem;
+            border-radius: 16px;
+            border: 1px dashed rgba(51, 255, 51, 0.16);
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text-dim);
+            font-family: var(--mono);
+            font-size: 0.76rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .snapshot-history-card,
+        .snapshot-compare-row {
+            padding: 0.95rem 1rem;
+            border-radius: 16px;
+            border: 1px solid rgba(51, 255, 51, 0.12);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .snapshot-history-card strong,
+        .snapshot-compare-panel strong {
+            display: block;
+            margin-bottom: 0.35rem;
+            color: #efffef;
+            font-size: 0.86rem;
+            letter-spacing: 0.04em;
+        }
+
+        .snapshot-history-card span,
+        .snapshot-compare-label {
+            display: block;
+            margin-top: 0.45rem;
+            color: #8fff8f;
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .snapshot-history-card.is-selected {
+            border-color: rgba(51, 255, 51, 0.34);
+            box-shadow: 0 0 24px rgba(51, 255, 51, 0.12);
+        }
+
+        .snapshot-history-card.is-secondary {
+            border-color: rgba(122, 230, 255, 0.34);
+            box-shadow: 0 0 24px rgba(122, 230, 255, 0.12);
+        }
+
+        .snapshot-history-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+            margin-top: 0.8rem;
+        }
+
+        .snapshot-history-action {
+            padding: 0.58rem 0.9rem;
+            border-radius: 999px;
+            border: 1px solid rgba(51, 255, 51, 0.16);
+            background: rgba(255, 255, 255, 0.03);
+            color: #d8ffd8;
+            cursor: pointer;
+            font-size: 0.76rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-family: var(--mono);
+        }
+
+        .snapshot-compare-row.is-changed {
+            border-color: rgba(51, 255, 51, 0.2);
+            box-shadow: 0 0 18px rgba(51, 255, 51, 0.08);
+        }
+
+        .snapshot-compare-values {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.7rem;
+        }
+
+        .snapshot-compare-panel {
+            padding: 0.8rem 0.9rem;
+            border-radius: 14px;
+            background: rgba(0, 0, 0, 0.26);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: #d2edd2;
+            line-height: 1.65;
+        }
+
+        .snapshot-compare-panel small {
+            display: block;
+            margin-bottom: 0.35rem;
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #8eb98e;
+            font-family: var(--mono);
+        }
+
+        .snapshot-compare-empty {
+            padding: 1rem;
+            border-radius: 16px;
+            border: 1px dashed rgba(51, 255, 51, 0.16);
+            color: #92bd92;
+            line-height: 1.7;
+        }
+
+        .summary-card {
+            border-radius: 22px;
+            padding: 0;
+            overflow: hidden;
+            cursor: default;
+        }
+
+        .summary-card h3 {
+            margin: 0;
+            color: #f5fff5;
+            font-size: 1rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .briefing-toggle {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1.1rem 1.2rem;
+            border: none;
+            background: transparent;
+            color: inherit;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .briefing-toggle:hover {
+            background: rgba(255, 255, 255, 0.025);
+        }
+
+        .briefing-head {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            min-width: 0;
+        }
+
+        .briefing-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.38rem 0.68rem;
+            border-radius: 999px;
+            border: 1px solid rgba(51, 255, 51, 0.18);
+            background: rgba(255, 255, 255, 0.03);
+            color: #d7ffd7;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+
+        .briefing-status::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #7dff7d;
+            box-shadow: 0 0 12px rgba(51, 255, 51, 0.65);
+        }
+
+        .briefing-status.status-priority::before {
+            background: #fff27a;
+            box-shadow: 0 0 12px rgba(255, 242, 122, 0.65);
+        }
+
+        .briefing-status.status-watch::before {
+            background: #7ae6ff;
+            box-shadow: 0 0 12px rgba(122, 230, 255, 0.65);
+        }
+
+        .briefing-chevron {
+            color: #91ff91;
+            font-family: var(--mono);
+            font-size: 1rem;
+            transition: transform 0.24s ease;
+        }
+
+        .briefing-panel.is-open .briefing-chevron {
+            transform: rotate(90deg);
+        }
+
+        .briefing-body {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.3s ease;
+        }
+
+        .briefing-panel.is-open .briefing-body {
+            grid-template-rows: 1fr;
+        }
+
+        .briefing-body-inner {
+            overflow: hidden;
+        }
+
+        .briefing-content {
+            padding: 0 1.2rem 1.2rem;
+            border-top: 1px solid rgba(51, 255, 51, 0.08);
+        }
+
+        .briefing-kicker {
+            display: inline-block;
+            margin: 0.95rem 0 0.7rem;
+            color: #8fff8f;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .summary-card p,
+        .summary-card li {
+            color: var(--text-dim);
+            line-height: 1.7;
+            font-size: 0.94rem;
+        }
+
+        .summary-card ul {
+            margin: 0;
+            padding-left: 1.05rem;
+        }
+
+        .summary-card li+li {
+            margin-top: 0.45rem;
+        }
+
+        .terminal-note {
+            padding: 1rem 1.1rem;
+            border-radius: 18px;
+            background: rgba(0, 0, 0, 0.28);
+            border: 1px solid rgba(51, 255, 51, 0.16);
+            font-family: var(--mono);
+            color: #a8fca8;
+            font-size: 0.82rem;
+            line-height: 1.7;
+        }
+
+        .insight-rotator {
+            margin-top: 0.9rem;
+            padding: 0.9rem 1rem;
+            border-radius: 16px;
+            border: 1px solid rgba(51, 255, 51, 0.12);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .insight-rotator-label {
+            display: block;
+            margin-bottom: 0.45rem;
+            color: #8fff8f;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .insight-line {
+            margin: 0;
+            color: #efffef;
+            line-height: 1.7;
+            min-height: 3.4em;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        .insight-line.is-transitioning {
+            opacity: 0.15;
+            transform: translateY(4px);
+        }
+
+        .credits-panel {
+            margin: 1.5rem 0 0;
+            border-radius: 22px;
+            border: 1px solid rgba(51, 255, 51, 0.16);
+            background: var(--panel-bg);
+            box-shadow: inset 0 0 24px rgba(0, 255, 0, 0.05), 0 12px 32px rgba(0, 0, 0, 0.16);
+            overflow: hidden;
+        }
+
+        .credits-panel summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 1rem 1.2rem;
+            font-family: var(--mono);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #d9ffd9;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .credits-panel summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .credits-panel[open] summary {
+            border-bottom: 1px solid rgba(51, 255, 51, 0.12);
+        }
+
+        .credits-list {
+            display: grid;
+            gap: 0.8rem;
+            padding: 1rem 1.2rem 1.25rem;
+        }
+
+        .credit-item {
+            display: grid;
+            gap: 0.35rem;
+            padding: 0.9rem 1rem;
+            border-radius: 16px;
+            border: 1px solid rgba(51, 255, 51, 0.12);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .credit-item strong {
+            color: #f5fff5;
+            letter-spacing: 0.06em;
+        }
+
+        .credit-item a {
+            color: #9eff9e;
+            text-decoration: none;
+            word-break: break-word;
+        }
+
+        .credit-item a:hover {
+            color: #d9ffd9;
+            text-decoration: underline;
+        }
+
+        footer {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem 2rem;
+            color: #8cff8c;
+            text-align: center;
+            opacity: 0.75;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-family: var(--mono);
+            position: relative;
+            z-index: 2;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 8, 0, 0.95);
+            backdrop-filter: blur(25px);
+            z-index: 9999;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 420px;
+            background: #0d0d0d;
+            border: 1px solid rgba(51, 255, 51, 0.34);
+            box-shadow: 0 0 60px rgba(51, 255, 51, 0.15);
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background: rgba(51, 255, 51, 0.1);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(51, 255, 51, 0.2);
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: #33ff33;
+            border-radius: 50%;
+            margin-right: 15px;
+            box-shadow: 0 0 10px #33ff33;
+            animation: pulse 2s infinite;
+        }
+
+        .terminal-title {
+            flex-grow: 1;
+            color: #33ff33;
+            font-family: var(--mono);
+            letter-spacing: 1px;
+            font-size: 0.65rem;
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #fff;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.02);
+            transition: 0.4s;
+        }
+
+        .contact-item:hover {
+            border-color: #33ff33;
+            background: rgba(51, 255, 51, 0.05);
+            transform: translateX(10px);
+            box-shadow: 0 0 18px rgba(51, 255, 51, 0.18);
+        }
+
+        .icon-box {
+            width: 40px;
+            text-align: center;
+            font-size: 1.8rem;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .label-box {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.2rem;
+        }
+
+        .main-label {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .sub-label {
+            color: #6d8b6d;
+            font-size: 0.75rem;
+            font-family: var(--mono);
+        }
+
+        .wa:hover .icon-box i {
+            color: #25D366;
+        }
+
+        .phone:hover .icon-box i {
+            color: #34b7f1;
+        }
+
+        .email:hover .icon-box i {
+            color: #ff3333;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 18px;
+            cursor: pointer;
+            color: #33ff33;
+            font-size: 1.5rem;
+            line-height: 1;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+            color: #fff;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.45;
+            }
+        }
+
+        @media (max-width: 960px) {
+
+            .intel-dashboard,
+            .hero-panel,
+            .feed-layout,
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tool-path-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .page-header {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .logo-link {
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+                letter-spacing: 0.12em;
+                font-size: 0.92rem;
+                gap: 0.65rem;
+            }
+
+            .logo-link span {
+                white-space: normal;
+            }
+
+            .nav-toggle {
+                display: inline-flex;
+                align-self: flex-end;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+                justify-content: center;
+                gap: 0.5rem;
+                padding-top: 0.35rem;
+            }
+
+            .nav-links.is-open {
+                display: flex;
+            }
+
+            .nav-links a {
+                font-size: 0.84rem;
+                padding: 0.55rem 0.7rem;
+                text-align: center;
+            }
+
+            .ticker-wrap {
+                top: 122px;
+            }
+
+            .command-bar {
+                top: 164px;
+            }
+
+            .command-bar-inner {
+                padding: 0.7rem 1rem;
+            }
+
+            .mission-actions {
+                flex-direction: column;
+            }
+
+            .mission-action {
+                width: 100%;
+            }
+
+            .toast-stack {
+                right: 14px;
+                left: 14px;
+                width: auto;
+            }
+
+            .print-meta-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ticker {
+                font-size: 0.74rem;
+                padding: 0.7rem 0;
+            }
+
+            .page-shell {
+                padding: 1.75rem 1rem 3rem;
+            }
+
+            .hero-copy,
+            .signal-panel,
+            .dashboard-card,
+            .trend-entry,
+            .summary-card {
+                border-radius: 22px;
+            }
+
+            .hero-copy,
+            .trend-entry {
+
+                .motion-ready .trend-entry.is-reveal-pending {
+                    opacity: 0;
+                    transform: translateY(28px) scale(0.985);
+                }
+
+                .motion-ready .trend-entry.is-visible {
+                    opacity: 1;
+                    transform: none;
+                    transition:
+                        opacity 0.55s ease,
+                        transform 0.55s ease,
+                        box-shadow 0.3s ease,
+                        border-color 0.3s ease;
+                    transition-delay: var(--reveal-delay, 0ms);
+                }
+
+                padding: 1.5rem;
+            }
+
+            .trend-media {
+                height: 190px;
+            }
+
+            .page-title {
+                font-size: clamp(2rem, 11vw, 2.8rem);
+                letter-spacing: 0.12em;
+            }
+
+            .page-copy,
+            .trend-desc {
+                font-size: 0.97rem;
+                line-height: 1.75;
+            }
+
+            .score-row {
+                grid-template-columns: 1fr;
+                gap: 0.35rem;
+            }
+
+            .feed-controls {
+                gap: 0.55rem;
+            }
+
+            .filter-chip {
+                width: 100%;
+                text-align: center;
+            }
+
+            .trend-meta-row {
+                gap: 0.5rem;
+            }
+
+            .meta-pill {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .mission-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .alert-item {
+                grid-template-columns: 1fr;
+            }
+
+            .score-value {
+                text-align: left;
+            }
+
+            .intelligence-log {
+                padding-left: 2rem;
+            }
+
+            .intelligence-log::before {
+                left: 0.45rem;
+            }
+
+            .trend-entry::before {
+                left: -1.95rem;
+            }
+
+            .trend-entry::after {
+                display: none;
+            }
+
+            .cta-row {
+                flex-direction: column;
+            }
+
+            .cta-row a,
+            .cta-row button {
+                width: 100%;
+                text-align: center;
+            }
+
+            .contact-grid {
+                padding: 20px;
+            }
+
+            .contact-item {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="video-container">
+        <video autoplay muted loop playsinline id="bg-video">
+            <source src="assets/bg-animation.mp4" type="video/mp4">
+            <source src="assets/cyber-animation.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="overlay"></div>
+    </div>
+
+    <header>
+        <div class="page-header">
+            <a class="logo-link" href="home.html">
+                <img src="AI.jpg" alt="AI logo" />
+                <span>Floscar Vanguard</span>
+            </a>
+            <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false"
+                aria-controls="site-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav-links" id="site-nav">
+                <a href="home.html">Home</a>
+                <a href="home.html#features">Features</a>
+                <a href="login.html">Login</a>
+                <a href="trends.html">Trends</a>
+                <a href="self-discovery.html">Self-Discovery</a>
+                <a href="tools.html">Tools</a>
+                <a href="profile.html">Profile</a>
+                <a href="javascript:void(0)" onclick="openContactModal()">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <span class="ticker-item">VANGUARD_INTEL: AGENTIC AI DEPLOYMENT REACHES 65% IN TECH SECTOR</span>
+            <span class="ticker-item">ALERT: QUANTUM-READY PROTOCOLS MANDATED FOR FINANCIAL DATA</span>
+            <span class="ticker-item">MARKET: DEMAND FOR AI-NATIVE ARCHITECTS UP 120%</span>
+            <span class="ticker-item">DEV_LOG: LOCAL SLM PERFORMANCE NOW CHALLENGES CLOUD-FIRST WORKFLOWS</span>
+            <span class="ticker-item">ROBOTICS_FEED: VISION-LANGUAGE AGENTS NOW DRIVE AUTONOMOUS WAREHOUSE
+                ADAPTATION</span>
+            <span class="ticker-item">DEFENSE_SIGNAL: HUMAN-OVERSIGHT LAYERS EXPAND AROUND AUTONOMOUS DECISION
+                STACKS</span>
+            <span class="ticker-item">HEALTHCARE_NODE: CLINICAL COPILOTS SHIFT FROM NOTE TAKING TO CAREFLOW
+                ORCHESTRATION</span>
+            <span class="ticker-item">EDTECH_STATUS: ADAPTIVE TUTORS NOW PERSONALIZE CURRICULUM IN REAL TIME</span>
+            <span class="ticker-item">ARCHITECT_STATUS: ONLINE // CONSULTATION_OPEN</span>
+        </div>
+    </div>
+
+    <div class="command-bar">
+        <div class="command-bar-inner">
+            <span class="command-label">Command Layer</span>
+            <span class="command-chip"><kbd>1-6</kbd> Filter Signals</span>
+            <span class="command-chip"><kbd>/</kbd> Command Palette</span>
+            <span class="command-chip"><kbd>A</kbd> Architect Panel</span>
+            <span class="command-chip"><kbd>P</kbd> Priorities</span>
+            <span class="command-chip"><kbd>S</kbd> Sector Watch</span>
+            <span class="command-chip"><kbd>T</kbd> Terminal Note</span>
+            <span class="command-chip"><kbd>Esc</kbd> Close Modal</span>
+        </div>
+    </div>
+
+    <main class="page-shell">
+        <section class="hero-panel">
+            <div class="hero-copy">
+                <div class="page-kicker">Global Intelligence Feed // April 2026</div>
+                <h1 class="page-title">Trends</h1>
+                <p class="page-copy">Floscar Vanguard is tracking the transition from <strong>chat-first
+                        assistants</strong> to <strong>agentic systems</strong> that can plan, execute, and self-correct
+                    across multi-step workflows. This intelligence feed translates the biggest 2026 signals into a
+                    design, product, and architecture briefing.</p>
+                <div class="cta-row">
+                    <a href="tools.html">Access Tools</a>
+                    <a href="self-discovery.html">Run Self-Scan</a>
+                    <button type="button" onclick="openContactModal()">Discuss a Project</button>
+                </div>
+            </div>
+            <aside class="signal-panel">
+                <div class="signal-card" data-categories="core">
+                    <span class="signal-label">PRIMARY SHIFT</span>
+                    <div class="signal-value">AGENTIC AI</div>
+                    <p class="signal-copy">Systems now chain planning, tool usage, code execution, and validation into a
+                        single operational loop.</p>
+                </div>
+                <div class="signal-card" data-categories="core">
+                    <span class="signal-label">MARKET DEMAND</span>
+                    <div class="signal-value" data-count-to="120" data-prefix="+" data-suffix="%">+120%</div>
+                    <p class="signal-copy">AI-native architects are in demand because businesses need orchestration, not
+                        just prompts.</p>
+                </div>
+                <div class="signal-card" data-categories="core,robotics,healthcare,education">
+                    <span class="signal-label">INFRA DIRECTION</span>
+                    <div class="signal-value">LOCAL + EDGE</div>
+                    <p class="signal-copy">Smaller specialized models are reducing latency, cost, and dependence on
+                        remote-only inference.</p>
+                </div>
+            </aside>
+        </section>
+
+        <section class="intel-dashboard">
+            <section class="dashboard-card">
+                <h2>Signal Strength Matrix</h2>
+                <div class="score-list">
+                    <div class="score-row" data-categories="core">
+                        <span class="score-label">Agentic Adoption</span>
+                        <div class="score-track">
+                            <div class="score-fill" style="width: 92%;" data-width-to="92"></div>
+                        </div>
+                        <span class="score-value" data-count-to="92">92</span>
+                    </div>
+                    <div class="score-row" data-categories="core,robotics,healthcare,education">
+                        <span class="score-label">Edge Readiness</span>
+                        <div class="score-track">
+                            <div class="score-fill" style="width: 78%;" data-width-to="78"></div>
+                        </div>
+                        <span class="score-value" data-count-to="78">78</span>
+                    </div>
+                    <div class="score-row" data-categories="core,defense,healthcare">
+                        <span class="score-label">Regulatory Pressure</span>
+                        <div class="score-track">
+                            <div class="score-fill" style="width: 84%;" data-width-to="84"></div>
+                        </div>
+                        <span class="score-value" data-count-to="84">84</span>
+                    </div>
+                    <div class="score-row" data-categories="robotics">
+                        <span class="score-label">Embodied AI Growth</span>
+                        <div class="score-track">
+                            <div class="score-fill" style="width: 71%;" data-width-to="71"></div>
+                        </div>
+                        <span class="score-value" data-count-to="71">71</span>
+                    </div>
+                    <div class="score-row" data-categories="education">
+                        <span class="score-label">Tutor Personalization</span>
+                        <div class="score-track">
+                            <div class="score-fill" style="width: 76%;" data-width-to="76"></div>
+                        </div>
+                        <span class="score-value" data-count-to="76">76</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dashboard-card">
+                <h2>Regional Watch</h2>
+                <div class="regional-grid">
+                    <div class="regional-node" data-categories="core,defense,healthcare">
+                        <div class="regional-head"><span class="region-code">NA // North America</span><span
+                                class="score-value">High Velocity</span></div>
+                        <p>Enterprise agent deployment, healthcare workflow tooling, and defense-adjacent trust
+                            architecture are accelerating in parallel.</p>
+                    </div>
+                    <div class="regional-node" data-categories="core,defense,healthcare">
+                        <div class="regional-head"><span class="region-code">EU // Europe</span><span
+                                class="score-value">Policy Dense</span></div>
+                        <p>Governance pressure is shaping procurement, with privacy-preserving AI and compliance-aware
+                            product design becoming a competitive advantage.</p>
+                    </div>
+                    <div class="regional-node" data-categories="robotics,core">
+                        <div class="regional-head"><span class="region-code">APAC // Asia-Pacific</span><span
+                                class="score-value">Embodied Scale</span></div>
+                        <p>Manufacturing, robotics, and edge inference continue to push real-world deployment faster
+                            than purely chat-centric interfaces.</p>
+                    </div>
+                    <div class="regional-node" data-categories="education,healthcare,core">
+                        <div class="regional-head"><span class="region-code">AF // Africa</span><span
+                                class="score-value">Leap Opportunity</span></div>
+                        <p>AI adoption is strongest where local models, low-latency tooling, and
+                            infrastructure-efficient systems can unlock services at lower cost.</p>
+                    </div>
+                </div>
+                <div class="mini-chart" aria-label="Agent adoption trend chart">
+                    <svg viewBox="0 0 320 130" role="img" aria-hidden="true">
+                        <line class="chart-axis" x1="24" y1="110" x2="302" y2="110"></line>
+                        <line class="chart-axis" x1="24" y1="18" x2="24" y2="110"></line>
+                        <path class="chart-line" d="M24 96 L94 82 L164 60 L234 38 L302 24"></path>
+                        <circle class="chart-point" cx="24" cy="96" r="4"></circle>
+                        <circle class="chart-point" cx="94" cy="82" r="4"></circle>
+                        <circle class="chart-point" cx="164" cy="60" r="4"></circle>
+                        <circle class="chart-point" cx="234" cy="38" r="4"></circle>
+                        <circle class="chart-point" cx="302" cy="24" r="4"></circle>
+                        <text class="chart-label" x="20" y="124">2022</text>
+                        <text class="chart-label" x="90" y="124">2023</text>
+                        <text class="chart-label" x="160" y="124">2024</text>
+                        <text class="chart-label" x="230" y="124">2025</text>
+                        <text class="chart-label" x="286" y="124">2026</text>
+                    </svg>
+                </div>
+            </section>
+
+            <section class="dashboard-card">
+                <h2>Recommended Consoles By Use Case</h2>
+                <div class="tool-path-grid">
+                    <div class="tool-path-card">
+                        <span>Local Operator</span>
+                        <strong>Jan + LM Studio</strong>
+                        <p>Best when the signal points toward privacy, experimentation, and low-friction local
+                            interaction.</p>
+                        <a href="tools.html#local-apps">Open Local Apps</a>
+                    </div>
+                    <div class="tool-path-card">
+                        <span>Team Workspace</span>
+                        <strong>Open WebUI + AnythingLLM</strong>
+                        <p>Best when the trend is about shared intelligence surfaces, documents, retrieval, and managed
+                            workflows.</p>
+                        <a href="tools.html#self-hosted">Open Workspace Consoles</a>
+                    </div>
+                    <div class="tool-path-card">
+                        <span>Builder Stack</span>
+                        <strong>Ollama + Continue</strong>
+                        <p>Best when the priority is coding, local APIs, and editor-native assistance attached to real
+                            development loops.</p>
+                        <a href="tools.html#developer-stack">Open Developer Stack</a>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <section class="feed-layout">
+            <div class="intelligence-log">
+                <div class="feed-controls" aria-label="Trend filters">
+                    <button class="filter-chip is-active" type="button" data-filter="all">All Signals</button>
+                    <button class="filter-chip" type="button" data-filter="core">Core AI</button>
+                    <button class="filter-chip" type="button" data-filter="robotics">Robotics</button>
+                    <button class="filter-chip" type="button" data-filter="defense">Defense</button>
+                    <button class="filter-chip" type="button" data-filter="healthcare">Healthcare</button>
+                    <button class="filter-chip" type="button" data-filter="education">Education</button>
+                </div>
+                <div class="feed-empty">NO MATCHING SIGNALS IN CURRENT FILTER WINDOW</div>
+
+                <article class="trend-entry" data-category="core" data-image="assets/trends/agentic-ai.jpg"
+                    data-brief="AGENTIC SYSTEMS NOW COMBINE MEMORY, TOOL USE, AND SELF-CORRECTION INTO ONE OPERATIONAL LOOP."
+                    data-source="Vanguard Systems Desk" data-updated="Verified Apr 09 2026" data-confidence="96%"
+                    tabindex="0" role="button" aria-haspopup="dialog">
+                    <img class="trend-media" src="assets/trends/agentic-ai.jpg"
+                        alt="Humanoid robot representing agentic AI systems" loading="lazy">
+                    <div class="trend-content">
+                        <span class="timestamp">[STREAM_ID: 9901 // APR 08 2026]</span>
+                        <div class="trend-meta-row"><span class="meta-pill"><strong>Source</strong>Vanguard Systems
+                                Desk</span><span class="meta-pill"><strong>Status</strong>Verified Apr 09
+                                2026</span><span class="meta-pill confidence-pill"><strong>Confidence</strong>96%</span>
+                        </div>
+                        <h2 class="trend-title">Agentic AI & Task Orchestration</h2>
+                        <p class="trend-desc">The dominant shift in 2026 is the move from passive chatbot interfaces to
+                            agentic systems. Modern AI stacks now break objectives into sub-tasks, invoke tools, execute
+                            code in guarded environments, and verify outcomes before surfacing a result. For serious
+                            teams, this is no longer experimental UX. It is becoming the baseline productivity layer.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="trend-entry" data-category="core" data-image="assets/trends/hyper-niche-llms.jpg"
+                    data-brief="MODEL ORCHESTRATION IS BECOMING MORE IMPORTANT THAN RAW MODEL SIZE IN PRODUCTION SYSTEMS."
+                    data-source="Model Ops Briefing" data-updated="Verified Apr 09 2026" data-confidence="91%"
+                    tabindex="0" role="button" aria-haspopup="dialog">
+                    <img class="trend-media" src="assets/trends/hyper-niche-llms.jpg"
+                        alt="Abstract futuristic circuitry representing specialized model orchestration" loading="lazy">
+                    <div class="trend-content">
+                        <span class="timestamp">[STREAM_ID: 9905 // APR 08 2026]</span>
+                        <div class="trend-meta-row"><span class="meta-pill"><strong>Source</strong>Model Ops
+                                Briefing</span><span class="meta-pill"><strong>Status</strong>Verified Apr 09
+                                2026</span><span class="meta-pill confidence-pill"><strong>Confidence</strong>91%</span>
+                        </div>
+                        <h2 class="trend-title">Hyper-Niche LLMs</h2>
+                        <p class="trend-desc">General-purpose frontier models remain powerful, but the operational
+                            advantage is shifting toward smaller domain-tuned systems trained on clean proprietary data.
+                            The architectural challenge is now orchestration: making multiple narrow models cooperate
+                            like one cohesive intelligence surface without introducing latency or governance gaps.</p>
+                    </div>
+                </article>
+
+                <article class="trend-entry" data-category="core" data-image="assets/trends/edge-execution.jpg"
+                    data-brief="LOCAL INFERENCE IS SHIFTING DESIGN PRIORITIES TOWARD LOW-LATENCY, PRIVACY-FIRST DEPLOYMENT."
+                    data-source="Edge Runtime Watch" data-updated="Verified Apr 09 2026" data-confidence="89%"
+                    tabindex="0" role="button" aria-haspopup="dialog">
+                    <img class="trend-media" src="assets/trends/edge-execution.jpg"
+                        alt="Futuristic technology display representing edge execution" loading="lazy">
+                    <div class="trend-content">
+                        <span class="timestamp">[STREAM_ID: 9912 // APR 08 2026]</span>
+                        <div class="trend-meta-row"><span class="meta-pill"><strong>Source</strong>Edge Runtime
+                                Watch</span><span class="meta-pill"><strong>Status</strong>Verified Apr 09
+                                2026</span><span class="meta-pill confidence-pill"><strong>Confidence</strong>89%</span>
+                        </div>
+                        <h2 class="trend-title">Local SLMs & Edge Execution</h2>
+                        <p class="trend-desc">Small language models running locally are good enough for many internal
+                            workflows, especially triage, classification, summarization, and device-side automation.
+                            This is changing system design decisions: privacy-sensitive and latency-critical features
+                            increasingly stay close to the user rather than round-tripping through cloud-only inference.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="trend-entry" data-category="core" data-image="assets/trends/quantum-ready.jpg"
+                    data-brief="LONG-HORIZON SECURITY PLANNING IS ENTERING TODAY'S PROCUREMENT AND GOVERNANCE DECISIONS."
+                    data-source="Quantum Readiness Desk" data-updated="Verified Apr 09 2026" data-confidence="84%"
+                    tabindex="0" role="button" aria-haspopup="dialog">
+                    <img class="trend-media" src="assets/trends/quantum-ready.jpg"
+                        alt="Large scientific machine representing quantum-ready data infrastructure" loading="lazy">
+                    <div class="trend-content">
+                        <span class="timestamp">[STREAM_ID: 9917 // APR 08 2026]</span>
+                        <div class="trend-meta-row"><span class="meta-pill"><strong>Source</strong>Quantum Readiness
+                                Desk</span><span class="meta-pill"><strong>Status</strong>Verified Apr 09
+                                2026</span><span class="meta-pill confidence-pill"><strong>Confidence</strong>84%</span>
+                        </div>
+                        <h2 class="trend-title">Quantum-Ready Data Protocols</h2>
+                        <p class="trend-desc">Security teams are being pushed to prepare for a longer horizon. Even
+                            where usable quantum advantage is not yet widely deployed, institutions handling financial
+                            and regulated data are already hardening their cryptographic posture and lifecycle planning.
+                            The signal here is architectural: future-readiness is now part of present procurement.</p>
+                    </div>
+                </article>
+
+                <article class="trend-entry" data-category="core" data-image="assets/trends/ai-product-architecture.jpg"
+                    data-brief="AI-NATIVE PRODUCTS DIFFER FROM AI-FEATURED APPS BY EMBEDDING MEMORY, AUDIT, AND ESCALATION INTO THE CORE FLOW."
+                    data-source="Product Architecture Desk" data-updated="Verified Apr 09 2026" data-confidence="93%"
+                    tabindex="0" role="button" aria-haspopup="dialog">
+                    <img class="trend-media" src="assets/trends/ai-product-architecture.jpg"
+                        alt="Robotic arm playing chess to represent strategic AI product architecture" loading="lazy">
+                    <div class="trend-content">
+                        <span class="timestamp">[STREAM_ID: 9924 // APR 08 2026]</span>
+                        <div class="trend-meta-row"><span class="meta-pill"><strong>Source</strong>Product Architecture
+                                Desk</span><span class="meta-pill"><strong>Status</strong>Verified Apr 09
+                                2026</span><span class="meta-pill confidence-pill"><strong>Confidence</strong>93%</span>
+                        </div>
+                        <h2 class="trend-title">AI-Native Product Architecture</h2>
+                        <p class="trend-desc">The strongest products in 2026 are not simply apps with AI features. They
+                            are systems designed around intelligence from the start, with memory, retrieval, automation
+                            boundaries, audit trails, and escalation logic embedded into the product flow. This is why
+                            the demand for technical architects is rising faster than the demand for prompt-only
+                            operators.</p>
+                    </div>
+                </article>
+
+                <article class="trend-entry" data-category="robotics" data-image="assets/trends/robotics-agent-era.jpg"
+                    data-brief="EMBODIED AGENTS ARE MOVING FROM SCRIPTED AUTOMATION TO CONTEXT-AWARE PHYSICAL REASONING."
+                    data-source="Embodied Systems Watch" data-updated="Verified Apr 09 2026" data-confidence="94%"
+                    tabindex="0" role="button" aria-haspopup="dialog">
+                    <img class="trend-media" src="assets/trends/robotics-agent-era.jpg"
+                        alt="Advanced robotics arm display representing embodied agent systems" loading="lazy">
+                    <div class="trend-content">
+                        <span class="timestamp">[STREAM_ID: 9931 // APR 09 2026]</span>
+                        <div class="trend-meta-row"><span class="meta-pill"><strong>Source</strong>Embodied Systems
+                                Watch</span><span class="meta-pill"><strong>Status</strong>Verified Apr 09
+                                2026</span><span class="meta-pill confidence-pill"><strong>Confidence</strong>94%</span>
+                        </div>
+                        <h2 class="trend-title">Robotics Enters The Agent Era</h2>
+                        <p class="trend-desc">Robotics is moving beyond fixed scripted automations.
+                            Vision-language-action systems are now interpreting context, recovering from unexpected
+                            states, and re-planning tasks in physical environments such as warehouses, inspection sites,
+                            and manufacturing lines. The practical implication is that robotics stacks increasingly look
+                            like embodied agent platforms rather than isolated control systems.</p>
+                    </div>
+                </article>
+
+                <article class="trend-entry" data-category="defense" data-image="assets/trends/defense-oversight.jpg"
+                    data-brief="TRUST ARCHITECTURE, OVERSIGHT CHAINS, AND AUDITABILITY ARE NOW CENTRAL TO DEFENSE AI DESIGN."
+                    data-source="Defense Controls Monitor" data-updated="Verified Apr 09 2026" data-confidence="88%"
+                    tabindex="0" role="button" aria-haspopup="dialog">
+                    <img class="trend-media" src="assets/trends/defense-oversight.jpg"
+                        alt="Military operator using advanced equipment representing defense AI oversight"
+                        loading="lazy">
+                    <div class="trend-content">
+                        <span class="timestamp">[STREAM_ID: 9938 // APR 09 2026]</span>
+                        <div class="trend-meta-row"><span class="meta-pill"><strong>Source</strong>Defense Controls
+                                Monitor</span><span class="meta-pill"><strong>Status</strong>Verified Apr 09
+                                2026</span><span class="meta-pill confidence-pill"><strong>Confidence</strong>88%</span>
+                        </div>
+                        <h2 class="trend-title">Defense AI & Human Oversight</h2>
+                        <p class="trend-desc">Defense modernization is accelerating around sensor fusion, rapid
+                            intelligence triage, and autonomous support tooling, but the strongest movement is toward
+                            layered control. Systems are being designed with tighter human-approval thresholds, audit
+                            trails, and constrained operational boundaries. In practice, trust architecture is becoming
+                            as important as model performance.</p>
+                    </div>
+                </article>
+
+                <article class="trend-entry" data-category="healthcare"
+                    data-image="assets/trends/healthcare-careflow.jpg"
+                    data-brief="CLINICAL COPILOTS ARE EVOLVING FROM NOTE ASSISTANTS INTO COORDINATED CAREFLOW SYSTEMS."
+                    data-source="Clinical Workflow Desk" data-updated="Verified Apr 09 2026" data-confidence="90%"
+                    tabindex="0" role="button" aria-haspopup="dialog">
+                    <img class="trend-media" src="assets/trends/healthcare-careflow.jpg"
+                        alt="Medical scanner room representing healthcare AI workflow orchestration" loading="lazy">
+                    <div class="trend-content">
+                        <span class="timestamp">[STREAM_ID: 9944 // APR 09 2026]</span>
+                        <div class="trend-meta-row"><span class="meta-pill"><strong>Source</strong>Clinical Workflow
+                                Desk</span><span class="meta-pill"><strong>Status</strong>Verified Apr 09
+                                2026</span><span class="meta-pill confidence-pill"><strong>Confidence</strong>90%</span>
+                        </div>
+                        <h2 class="trend-title">Healthcare Copilots Become Careflow Engines</h2>
+                        <p class="trend-desc">Healthcare AI is shifting from isolated documentation support toward
+                            broader workflow orchestration. Clinical copilots are now helping with intake summarization,
+                            prioritization, monitoring escalations, and follow-up coordination. The value is not only
+                            speed. It is reducing fragmentation across the patient journey while keeping clinicians in
+                            decisive control.</p>
+                    </div>
+                </article>
+
+                <article class="trend-entry" data-category="education" data-image="assets/trends/education-adaptive.jpg"
+                    data-brief="ADAPTIVE TUTORS ARE SCALING PERSONALIZATION WITHOUT REMOVING THE HUMAN INSTRUCTOR FROM THE LOOP."
+                    data-source="Learning Systems Watch" data-updated="Verified Apr 09 2026" data-confidence="87%"
+                    tabindex="0" role="button" aria-haspopup="dialog">
+                    <img class="trend-media" src="assets/trends/education-adaptive.jpg"
+                        alt="Students using VR in a classroom to represent adaptive education technology"
+                        loading="lazy">
+                    <div class="trend-content">
+                        <span class="timestamp">[STREAM_ID: 9952 // APR 09 2026]</span>
+                        <div class="trend-meta-row"><span class="meta-pill"><strong>Source</strong>Learning Systems
+                                Watch</span><span class="meta-pill"><strong>Status</strong>Verified Apr 09
+                                2026</span><span class="meta-pill confidence-pill"><strong>Confidence</strong>87%</span>
+                        </div>
+                        <h2 class="trend-title">Education Moves To Adaptive Intelligence</h2>
+                        <p class="trend-desc">Education platforms are adopting agentic tutoring systems that adapt
+                            pacing, content difficulty, and practice loops in real time. The strongest products are not
+                            replacing teachers. They are acting as precision support layers that identify learning gaps
+                            early, personalize reinforcement, and free human instructors to focus on mentorship,
+                            judgment, and motivation.</p>
+                    </div>
+                </article>
+            </div>
+
+            <aside class="summary-column">
+                <section class="summary-card mission-control">
+                    <h3>Mission Control</h3>
+                    <div class="mission-grid">
+                        <div class="mission-cell">
+                            <span class="mission-label">Active Filter</span>
+                            <div class="mission-value" id="missionFilter">All Signals</div>
+                        </div>
+                        <div class="mission-cell">
+                            <span class="mission-label">Visible Signals</span>
+                            <div class="mission-value" id="missionVisible">09</div>
+                        </div>
+                        <div class="mission-cell">
+                            <span class="mission-label">Last Sync</span>
+                            <div class="mission-value" id="missionSync">APR 09 2026 // 00:00:00</div>
+                        </div>
+                        <div class="mission-cell">
+                            <span class="mission-label">Alert Level</span>
+                            <div class="mission-value" id="missionAlert">Elevated</div>
+                        </div>
+                    </div>
+                    <div class="mission-health">
+                        <span class="mission-label">Signal Health</span>
+                        <div class="mission-value" id="missionHealthValue">91%</div>
+                        <div class="mission-health-bar">
+                            <div class="mission-health-fill" id="missionHealthFill"></div>
+                        </div>
+                    </div>
+                    <div class="mission-actions">
+                        <button class="mission-action" type="button" id="copySnapshotBtn">Copy Snapshot</button>
+                        <button class="mission-action" type="button" id="exportSnapshotBtn">Export Snapshot</button>
+                        <button class="mission-action" type="button" id="shareSnapshotBtn">Share Snapshot</button>
+                        <button class="mission-action" type="button" id="printBriefBtn">Print Brief</button>
+                    </div>
+                </section>
+
+                <section class="summary-card alert-queue">
+                    <h3>Alert Queue</h3>
+                    <div class="alert-stack" id="alertQueue"></div>
+                </section>
+
+                <section class="summary-card briefing-panel is-open">
+                    <button class="briefing-toggle" type="button" aria-expanded="true">
+                        <div class="briefing-head">
+                            <span class="briefing-status" id="architectStatus">Live</span>
+                            <h3 id="architectTitle">Architect Brief</h3>
+                        </div>
+                        <span class="briefing-chevron">&gt;</span>
+                    </button>
+                    <div class="briefing-body">
+                        <div class="briefing-body-inner">
+                            <div class="briefing-content">
+                                <span class="briefing-kicker" id="architectKicker">Design directive</span>
+                                <p id="architectCopy">If you are building now, optimize for systems that can delegate,
+                                    verify, and recover. The differentiator is not raw model size. It is how well your
+                                    stack coordinates memory, tools, constraints, and execution context.</p>
+                                <div class="insight-rotator">
+                                    <span class="insight-rotator-label">Rotating Insight</span>
+                                    <p class="insight-line" id="architectInsight">Execution context is becoming a
+                                        product surface, not just an implementation detail.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="summary-card briefing-panel">
+                    <button class="briefing-toggle" type="button" aria-expanded="false">
+                        <div class="briefing-head">
+                            <span class="briefing-status status-priority" id="priorityStatus">Priority</span>
+                            <h3 id="priorityTitle">Operational Priorities</h3>
+                        </div>
+                        <span class="briefing-chevron">&gt;</span>
+                    </button>
+                    <div class="briefing-body">
+                        <div class="briefing-body-inner">
+                            <div class="briefing-content">
+                                <span class="briefing-kicker" id="priorityKicker">Execution queue</span>
+                                <ul id="priorityList">
+                                    <li>Design multi-step workflows instead of single-turn interactions.</li>
+                                    <li>Use smaller specialized models where latency and control matter.</li>
+                                    <li>Keep auditability and fallback paths visible in the product architecture.</li>
+                                    <li>Treat privacy, security, and deployment topology as core design choices.</li>
+                                    <li>Plan for sector-specific constraints before deploying agentic workflows.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="summary-card briefing-panel">
+                    <button class="briefing-toggle" type="button" aria-expanded="false">
+                        <div class="briefing-head">
+                            <span class="briefing-status status-watch" id="sectorStatus">Watch</span>
+                            <h3 id="sectorTitle">Sector Watch</h3>
+                        </div>
+                        <span class="briefing-chevron">&gt;</span>
+                    </button>
+                    <div class="briefing-body">
+                        <div class="briefing-body-inner">
+                            <div class="briefing-content">
+                                <span class="briefing-kicker" id="sectorKicker">Field pressure</span>
+                                <ul id="sectorList">
+                                    <li>Robotics is converging with agent orchestration and embodied planning.</li>
+                                    <li>Defense systems are tightening control, traceability, and approval layers.</li>
+                                    <li>Healthcare is rewarding workflow continuity over isolated AI features.</li>
+                                    <li>Education is favoring adaptive tutors that personalize at session level.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="summary-card briefing-panel">
+                    <button class="briefing-toggle" type="button" aria-expanded="false">
+                        <div class="briefing-head">
+                            <span class="briefing-status" id="terminalStatus">Stable</span>
+                            <h3 id="terminalTitle">Terminal Note</h3>
+                        </div>
+                        <span class="briefing-chevron">&gt;</span>
+                    </button>
+                    <div class="briefing-body">
+                        <div class="briefing-body-inner">
+                            <div class="briefing-content">
+                                <span class="briefing-kicker" id="terminalKicker">System state</span>
+                                <div class="terminal-note" id="terminalNote">STATUS: INTELLIGENCE PIPELINE
+                                    STABLE<br>FOCUS: AGENTIC SYSTEM DESIGN<br>NEXT MOVE: BUILD PRODUCTS THAT ACT, NOT
+                                    JUST RESPOND</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="summary-card activity-log">
+                    <h3>Activity Log</h3>
+                    <div class="activity-list" id="activityLog">
+                        <p class="empty-rail-note">Awaiting operator activity</p>
+                    </div>
+                </section>
+
+                <section class="summary-card activity-log">
+                    <h3>Recent Snapshots</h3>
+                    <div class="snapshot-history-list" id="snapshotHistoryList">
+                        <p class="empty-rail-note">No saved snapshots yet</p>
+                    </div>
+                </section>
+
+                <section class="summary-card activity-log">
+                    <h3>Snapshot Compare</h3>
+                    <div class="snapshot-compare-list" id="snapshotCompareConsole">
+                        <div class="snapshot-compare-empty">Copy, export, share, or print a snapshot, then compare two
+                            saved intelligence views to inspect filter, alert, health, and visible-signal changes.</div>
+                    </div>
+                </section>
+            </aside>
+        </section>
+
+        <details class="credits-panel">
+            <summary>Image Source Credits</summary>
+            <div class="credits-list">
+                <div class="credit-item"><strong>Agentic AI</strong><a
+                        href="https://www.pexels.com/photo/portrait-of-a-humanoid-robot-18799044/" target="_blank"
+                        rel="noopener">Pexels Photo 18799044</a></div>
+                <div class="credit-item"><strong>Hyper-Niche LLMs</strong><a
+                        href="https://www.pexels.com/photo/futuristic-abstract-technology-circuitry-30547573/"
+                        target="_blank" rel="noopener">Pexels Photo 30547573</a></div>
+                <div class="credit-item"><strong>Edge Execution</strong><a
+                        href="https://www.pexels.com/photo/technology-9784238/" target="_blank" rel="noopener">Pexels
+                        Photo 9784238</a></div>
+                <div class="credit-item"><strong>Quantum-Ready Data</strong><a
+                        href="https://www.pexels.com/photo/close-up-view-inside-cerns-large-hadron-collider-6855582/"
+                        target="_blank" rel="noopener">Pexels Photo 6855582</a></div>
+                <div class="credit-item"><strong>AI Product Architecture</strong><a
+                        href="https://www.pexels.com/photo/a-robotic-arm-strategically-playing-chess-8438874/"
+                        target="_blank" rel="noopener">Pexels Photo 8438874</a></div>
+                <div class="credit-item"><strong>Robotics</strong><a
+                        href="https://www.pexels.com/photo/advanced-robotics-arm-display-at-tech-expo-36522032/"
+                        target="_blank" rel="noopener">Pexels Photo 36522032</a></div>
+                <div class="credit-item"><strong>Defense Oversight</strong><a
+                        href="https://www.pexels.com/photo/a-soldier-in-uniform-operates-military-equipment-inside-a-vehicle-10853852/"
+                        target="_blank" rel="noopener">Pexels Photo 10853852</a></div>
+                <div class="credit-item"><strong>Healthcare Careflow</strong><a
+                        href="https://www.pexels.com/photo/close-up-view-of-a-modern-ct-scanner-in-a-healthcare-facility-7089024/"
+                        target="_blank" rel="noopener">Pexels Photo 7089024</a></div>
+                <div class="credit-item"><strong>Adaptive Education</strong><a
+                        href="https://www.pexels.com/photo/diverse-group-of-kids-interacting-with-vr-headset-in-a-classroom-setting-8457428/"
+                        target="_blank" rel="noopener">Pexels Photo 8457428</a></div>
+            </div>
+        </details>
+    </main>
+
+    <footer>Floscar Vanguard • Trends • Intelligence Feed • Futuristic Interface Layer</footer>
+
+    <section id="printBrief" class="print-brief" aria-hidden="true">
+        <div class="print-brief-inner">
+            <p>Floscar Vanguard // Printable Intelligence Brief</p>
+            <h1 id="printBriefTitle">Intelligence Snapshot</h1>
+            <p id="printBriefIntro">Generated from the active Floscar Vanguard trends console.</p>
+
+            <div class="print-brief-section">
+                <h2>Mission Control</h2>
+                <div class="print-meta-grid">
+                    <div class="print-meta-item"><strong>Active Filter</strong><span id="printMetaFilter"></span></div>
+                    <div class="print-meta-item"><strong>Alert Level</strong><span id="printMetaAlert"></span></div>
+                    <div class="print-meta-item"><strong>Signal Health</strong><span id="printMetaHealth"></span></div>
+                    <div class="print-meta-item"><strong>Last Sync</strong><span id="printMetaSync"></span></div>
+                </div>
+            </div>
+
+            <div class="print-brief-section">
+                <h2>Visible Signals</h2>
+                <ol id="printSignalList"></ol>
+            </div>
+
+            <div class="print-brief-section">
+                <h2 id="printArchitectHeading">Architect Brief</h2>
+                <p id="printArchitectCopy"></p>
+            </div>
+
+            <div class="print-brief-section">
+                <h2 id="printPriorityHeading">Operational Priorities</h2>
+                <ul id="printPriorityList"></ul>
+            </div>
+
+            <div class="print-brief-section">
+                <h2 id="printSectorHeading">Sector Watch</h2>
+                <ul id="printSectorList"></ul>
+            </div>
+
+            <div class="print-brief-section">
+                <h2 id="printTerminalHeading">Terminal State</h2>
+                <p id="printTerminalNote"></p>
+            </div>
+        </div>
+    </section>
+
+    <div id="trendDetailModal" class="detail-overlay" aria-hidden="true">
+        <div class="detail-card">
+            <button class="detail-close" type="button" aria-label="Close intelligence detail"
+                onclick="closeTrendDetail()">&times;</button>
+            <img id="detailImage" class="detail-image" src="" alt="Trend detail image">
+            <div class="detail-body">
+                <span id="detailTimestamp" class="timestamp"></span>
+                <h3 id="detailTitle"></h3>
+                <div class="detail-grid">
+                    <p id="detailDescription"></p>
+                    <div class="detail-meta">
+                        <div class="detail-chip">
+                            <span>Signal Class</span>
+                            <strong id="detailCategory"></strong>
+                        </div>
+                        <div class="detail-chip">
+                            <span>Signal Source</span>
+                            <strong id="detailSource"></strong>
+                        </div>
+                        <div class="detail-chip">
+                            <span>Confidence Index</span>
+                            <strong id="detailConfidence"></strong>
+                        </div>
+                        <div class="detail-note">
+                            <span>Briefing Note</span>
+                            <div id="detailBrief"></div>
+                            <div id="detailUpdated"
+                                style="margin-top: 0.85rem; color: #9dcb9d; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="contactModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="terminal-header">
+                <span class="status-dot"></span>
+                <span class="terminal-title">ENCRYPTED_COMMS_HUB_ESTABLISHED</span>
+                <span class="close-btn" onclick="closeContactModal()">&times;</span>
+            </div>
+            <div class="contact-grid">
+                <a href="javascript:void(0)" onclick="openWhatsAppContact()" class="contact-item wa">
+                    <div class="icon-box"><i class="fab fa-whatsapp"></i></div>
+                    <div class="label-box"><span class="main-label">WhatsApp</span><span class="sub-label">Instant App
+                            Redirection</span></div>
+                </a>
+                <a href="javascript:void(0)" onclick="openPhoneContact()" class="contact-item phone">
+                    <div class="icon-box"><i class="fas fa-phone-alt"></i></div>
+                    <div class="label-box"><span class="main-label">Direct Line</span><span class="sub-label">Voice
+                            Comms Protocol</span></div>
+                </a>
+                <a href="javascript:void(0)" onclick="openEmailContact()" class="contact-item email">
+                    <div class="icon-box"><i class="fas fa-envelope"></i></div>
+                    <div class="label-box"><span class="main-label">Secure Mail</span><span
+                            class="sub-label">vordzorgbeoscar02@gmail.com</span></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="commandPalette" class="command-palette" aria-hidden="true">
+        <div class="command-palette-card" role="dialog" aria-modal="true" aria-label="Command palette">
+            <div class="command-palette-head">
+                <input id="commandPaletteInput" class="command-palette-input" type="text"
+                    placeholder="Type a command, filter, or action" autocomplete="off">
+            </div>
+            <div id="commandPaletteList" class="command-palette-list"></div>
+        </div>
+    </div>
+
+    <div id="toastStack" class="toast-stack" aria-live="polite" aria-atomic="true"></div>
+
+    <script>
+        const briefingContent = {
+            all: {
+                mission: { label: 'All Signals', alert: 'Elevated', health: 91 },
+                architect: {
+                    status: 'Live',
+                    title: 'Architect Brief',
+                    kicker: 'Design directive',
+                    copy: 'If you are building now, optimize for systems that can delegate, verify, and recover. The differentiator is not raw model size. It is how well your stack coordinates memory, tools, constraints, and execution context.',
+                    insights: [
+                        'Execution context is becoming a product surface, not just an implementation detail.',
+                        'Trust boundaries now need as much design attention as prompts and model selection.',
+                        'The strongest AI products feel orchestrated, not merely generated.',
+                        'Teams win when delegation, recovery, and audit paths are visible to users and operators.'
+                    ]
+                },
+                priorities: {
+                    status: 'Priority',
+                    title: 'Operational Priorities',
+                    kicker: 'Execution queue',
+                    items: [
+                        'Design multi-step workflows instead of single-turn interactions.',
+                        'Use smaller specialized models where latency and control matter.',
+                        'Keep auditability and fallback paths visible in the product architecture.',
+                        'Treat privacy, security, and deployment topology as core design choices.',
+                        'Plan for sector-specific constraints before deploying agentic workflows.'
+                    ]
+                },
+                sector: {
+                    status: 'Watch',
+                    title: 'Sector Watch',
+                    kicker: 'Field pressure',
+                    items: [
+                        'Robotics is converging with agent orchestration and embodied planning.',
+                        'Defense systems are tightening control, traceability, and approval layers.',
+                        'Healthcare is rewarding workflow continuity over isolated AI features.',
+                        'Education is favoring adaptive tutors that personalize at session level.'
+                    ]
+                },
+                terminal: {
+                    status: 'Stable',
+                    title: 'Terminal Note',
+                    kicker: 'System state',
+                    note: 'STATUS: INTELLIGENCE PIPELINE STABLE<br>FOCUS: AGENTIC SYSTEM DESIGN<br>NEXT MOVE: BUILD PRODUCTS THAT ACT, NOT JUST RESPOND'
+                }
+            },
+            core: {
+                mission: { label: 'Core AI', alert: 'High', health: 94 },
+                architect: {
+                    status: 'Live',
+                    title: 'Core AI Brief',
+                    kicker: 'Model strategy',
+                    copy: 'Core AI systems are shifting toward orchestrated stacks where retrieval, memory, execution, and verification are designed as one operating surface.',
+                    insights: [
+                        'Agent loops outperform chat loops when execution and verification are first-class.',
+                        'Smaller domain-tuned models are changing cost and latency assumptions.',
+                        'Product architecture now matters more than prompt craft alone.'
+                    ]
+                },
+                priorities: {
+                    status: 'Priority',
+                    title: 'Core Priorities',
+                    kicker: 'Deployment queue',
+                    items: [
+                        'Design tool-enabled flows with recovery paths and audit logs.',
+                        'Use retrieval and memory intentionally rather than by default.',
+                        'Separate orchestration policy from model selection.',
+                        'Minimize cloud-only dependence where privacy and latency matter.'
+                    ]
+                },
+                sector: {
+                    status: 'Watch',
+                    title: 'Core Pressure',
+                    kicker: 'Market signal',
+                    items: [
+                        'Demand is strongest for AI-native product and systems architects.',
+                        'Quantum-readiness is entering present procurement conversations.',
+                        'Local inference is reshaping deployment topology for sensitive workflows.'
+                    ]
+                },
+                terminal: {
+                    status: 'Stable',
+                    title: 'Core Status',
+                    kicker: 'Runtime state',
+                    note: 'STATUS: CORE AI SIGNALS HOLDING<br>FOCUS: ORCHESTRATION + LOW-LATENCY DEPLOYMENT<br>NEXT MOVE: SHIP EXECUTION-FIRST PRODUCT FLOWS'
+                }
+            },
+            robotics: {
+                mission: { label: 'Robotics', alert: 'High', health: 93 },
+                architect: {
+                    status: 'Live',
+                    title: 'Robotics Brief',
+                    kicker: 'Embodied systems',
+                    copy: 'Robotics stacks are evolving into embodied agent platforms, where perception, action planning, and failure recovery are coordinated in real time.',
+                    insights: [
+                        'Embodied AI now depends on re-planning, not just scripted repeatability.',
+                        'Warehouse and manufacturing environments reward context-aware autonomy.',
+                        'The boundary between robot control and agent orchestration is collapsing.'
+                    ]
+                },
+                priorities: {
+                    status: 'Priority',
+                    title: 'Robotics Priorities',
+                    kicker: 'Field ops',
+                    items: [
+                        'Design for unexpected states and recovery loops.',
+                        'Keep sensor fusion and action traces inspectable.',
+                        'Treat latency as a safety and performance constraint.',
+                        'Align planning loops with physical environment feedback.'
+                    ]
+                },
+                sector: {
+                    status: 'Watch',
+                    title: 'Robotics Watch',
+                    kicker: 'Deployment front',
+                    items: [
+                        'APAC continues to push embodied deployment faster than chat-first markets.',
+                        'Warehouse automation is the most visible proving ground for embodied agents.',
+                        'Inspection and manufacturing are rewarding adaptive planning over fixed sequencing.'
+                    ]
+                },
+                terminal: {
+                    status: 'Stable',
+                    title: 'Robotics State',
+                    kicker: 'System state',
+                    note: 'STATUS: EMBODIED SIGNALS RISING<br>FOCUS: CONTEXT-AWARE PHYSICAL REASONING<br>NEXT MOVE: DESIGN ROBOTS THAT RECOVER, NOT JUST REPEAT'
+                }
+            },
+            defense: {
+                mission: { label: 'Defense', alert: 'Elevated', health: 86 },
+                architect: {
+                    status: 'Live',
+                    title: 'Defense Brief',
+                    kicker: 'Trust architecture',
+                    copy: 'Defense AI design is being shaped by approval chains, auditability, and constrained autonomy as much as model capability.',
+                    insights: [
+                        'Oversight design is now a core performance dimension in defense AI.',
+                        'Sensor fusion value depends on human approval thresholds and traceability.',
+                        'Autonomy without constrained operating boundaries is losing institutional support.'
+                    ]
+                },
+                priorities: {
+                    status: 'Priority',
+                    title: 'Defense Priorities',
+                    kicker: 'Control layer',
+                    items: [
+                        'Expose approval thresholds and operator handoff paths.',
+                        'Record evidence trails for decisions and escalations.',
+                        'Constrain automated actions to explicit operating envelopes.',
+                        'Design trust architecture alongside model performance targets.'
+                    ]
+                },
+                sector: {
+                    status: 'Watch',
+                    title: 'Defense Watch',
+                    kicker: 'Oversight pressure',
+                    items: [
+                        'Human-in-the-loop requirements are increasing around autonomous support tooling.',
+                        'Procurement is favoring systems with explainable control boundaries.',
+                        'Trust and audit architecture are becoming competitive differentiators.'
+                    ]
+                },
+                terminal: {
+                    status: 'Stable',
+                    title: 'Defense State',
+                    kicker: 'Control state',
+                    note: 'STATUS: OVERSIGHT STACK ACTIVE<br>FOCUS: TRACEABILITY + HUMAN APPROVAL CHAINS<br>NEXT MOVE: DESIGN FOR TRUST BEFORE SCALE'
+                }
+            },
+            healthcare: {
+                mission: { label: 'Healthcare', alert: 'Monitored', health: 89 },
+                architect: {
+                    status: 'Live',
+                    title: 'Healthcare Brief',
+                    kicker: 'Careflow orchestration',
+                    copy: 'Healthcare AI is creating the most value where copilots coordinate intake, prioritization, escalations, and follow-up rather than acting as isolated assistants.',
+                    insights: [
+                        'Workflow continuity now matters more than isolated feature intelligence.',
+                        'Clinical trust depends on keeping humans decisively in control.',
+                        'The patient journey is becoming the orchestration surface for healthcare AI.'
+                    ]
+                },
+                priorities: {
+                    status: 'Priority',
+                    title: 'Healthcare Priorities',
+                    kicker: 'Clinical queue',
+                    items: [
+                        'Reduce fragmentation across intake, triage, and follow-up.',
+                        'Keep clinician override paths explicit and immediate.',
+                        'Surface careflow state, not just isolated recommendations.',
+                        'Build around compliance and patient-context continuity from the start.'
+                    ]
+                },
+                sector: {
+                    status: 'Watch',
+                    title: 'Healthcare Watch',
+                    kicker: 'Clinical pressure',
+                    items: [
+                        'North America is accelerating in workflow tooling and clinical copilots.',
+                        'Governance pressure continues to shape healthcare procurement globally.',
+                        'Care coordination is becoming a stronger value signal than note automation.'
+                    ]
+                },
+                terminal: {
+                    status: 'Stable',
+                    title: 'Healthcare State',
+                    kicker: 'Clinical state',
+                    note: 'STATUS: CAREFLOW SIGNALS STABLE<br>FOCUS: ORCHESTRATION ACROSS THE PATIENT JOURNEY<br>NEXT MOVE: REDUCE HANDOFF FRICTION WITHOUT LOSING CLINICIAN CONTROL'
+                }
+            },
+            education: {
+                mission: { label: 'Education', alert: 'Tracked', health: 88 },
+                architect: {
+                    status: 'Live',
+                    title: 'Education Brief',
+                    kicker: 'Adaptive tutoring',
+                    copy: 'Education systems are winning by personalizing pacing, practice, and reinforcement while preserving the teacher as the core source of judgment and mentorship.',
+                    insights: [
+                        'Adaptive tutors are strongest when they amplify teachers instead of replacing them.',
+                        'Session-level personalization is becoming the default expectation in edtech.',
+                        'Learning gap detection is more valuable when tied directly to intervention loops.'
+                    ]
+                },
+                priorities: {
+                    status: 'Priority',
+                    title: 'Education Priorities',
+                    kicker: 'Learning queue',
+                    items: [
+                        'Adapt pacing and difficulty in real time.',
+                        'Surface learning gaps early enough to change interventions.',
+                        'Keep instructors visible in motivation, judgment, and escalation paths.',
+                        'Make reinforcement loops session-aware and measurable.'
+                    ]
+                },
+                sector: {
+                    status: 'Watch',
+                    title: 'Education Watch',
+                    kicker: 'Adoption pressure',
+                    items: [
+                        'Adaptive tutoring is moving from premium feature to expected baseline.',
+                        'Schools are rewarding tools that preserve teacher control and visibility.',
+                        'Personalization is strongest where practice loops update in real time.'
+                    ]
+                },
+                terminal: {
+                    status: 'Stable',
+                    title: 'Education State',
+                    kicker: 'Learning state',
+                    note: 'STATUS: ADAPTIVE SYSTEMS TRACKED<br>FOCUS: PERSONALIZATION WITH HUMAN MENTORSHIP<br>NEXT MOVE: BUILD SESSION-AWARE LEARNING LOOPS'
+                }
+            }
+        };
+
+        const insightRotatorState = {
+            insights: [],
+            index: 0,
+            intervalId: null
+        };
+
+        const alertQueueContent = {
+            all: [
+                { id: 'all-1', level: 'Priority', title: 'Agentic deployment velocity rising', copy: 'Enterprise rollout signals remain elevated across orchestration-heavy product teams.' },
+                { id: 'all-2', level: 'Watch', title: 'Quantum-ready procurement flagged', copy: 'Long-horizon security posture is now affecting present-day architecture choices.' }
+            ],
+            core: [
+                { id: 'core-1', level: 'Priority', title: 'Model orchestration pressure increasing', copy: 'Teams are shifting from single-model UX toward coordinated narrow-model stacks.' },
+                { id: 'core-2', level: 'Watch', title: 'Local inference adoption detected', copy: 'Latency-sensitive workflows continue moving closer to the user edge.' }
+            ],
+            robotics: [
+                { id: 'robotics-1', level: 'Priority', title: 'Embodied agent recovery loops required', copy: 'Operational success now depends on adaptive re-planning in physical environments.' },
+                { id: 'robotics-2', level: 'Watch', title: 'Warehouse deployment acceleration', copy: 'Warehouse and inspection sites remain the clearest proving grounds for embodied AI.' }
+            ],
+            defense: [
+                { id: 'defense-1', level: 'Priority', title: 'Oversight chain hardening active', copy: 'Approval layers and traceability requirements are intensifying across defense AI programs.' },
+                { id: 'defense-2', level: 'Watch', title: 'Trust architecture under review', copy: 'Systems with constrained autonomy are favored over unconstrained automation claims.' }
+            ],
+            healthcare: [
+                { id: 'healthcare-1', level: 'Priority', title: 'Careflow coordination demand rising', copy: 'Workflow orchestration is outpacing note-only assistant use cases in clinical settings.' },
+                { id: 'healthcare-2', level: 'Watch', title: 'Clinician control thresholds monitored', copy: 'Human override and escalation visibility remain essential for adoption.' }
+            ],
+            education: [
+                { id: 'education-1', level: 'Priority', title: 'Adaptive pacing adoption detected', copy: 'Real-time personalization is moving toward baseline expectation in tutoring products.' },
+                { id: 'education-2', level: 'Watch', title: 'Teacher-in-loop systems favored', copy: 'Products preserving instructor control are sustaining stronger trust signals.' }
+            ]
+        };
+
+        const dismissedAlerts = new Set();
+        const activityLogState = [];
+        const STORAGE_KEYS = {
+            dismissedAlerts: 'floscar-trends-dismissed-alerts',
+            activityLog: 'floscar-trends-activity-log',
+            activeFilter: 'floscar-trends-active-filter',
+            expandedPanels: 'floscar-trends-expanded-panels',
+            snapshotHistory: 'floscar-trends-snapshot-history'
+        };
+
+        const uiState = {
+            activeFilter: 'all',
+            snapshotCompareSelection: [],
+            applyFilter: null,
+            csrfToken: '',
+            isAuthenticated: false
+        };
+
+        const commandPaletteState = {
+            items: [],
+            filteredItems: [],
+            activeIndex: 0
+        };
+
+        const toastTimers = new Set();
+
+        function loadStoredJson(key, fallback) {
+            try {
+                const raw = window.localStorage.getItem(key);
+                return raw ? JSON.parse(raw) : fallback;
+            } catch {
+                return fallback;
+            }
+        }
+
+        function escapeHtml(text) {
+            return String(text || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function saveStoredJson(key, value) {
+            try {
+                window.localStorage.setItem(key, JSON.stringify(value));
+            } catch {
+                // Ignore storage failures and keep runtime behavior intact.
+            }
+        }
+
+        function mergeSnapshotHistory(...collections) {
+            const seenIds = new Set();
+            return collections
+                .flat()
+                .filter(entry => entry && typeof entry === 'object')
+                .filter(entry => {
+                    const entryId = String(entry.id || '');
+                    if (!entryId || seenIds.has(entryId)) {
+                        return false;
+                    }
+                    seenIds.add(entryId);
+                    return true;
+                })
+                .sort((left, right) => new Date(right.createdAt).getTime() - new Date(left.createdAt).getTime())
+                .slice(0, 8);
+        }
+
+        async function apiRequest(url, options = {}) {
+            const method = (options.method || 'GET').toUpperCase();
+            const response = await fetch(url, {
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(method !== 'GET' && uiState.csrfToken ? { 'X-CSRF-Token': uiState.csrfToken } : {}),
+                    ...(options.headers || {})
+                },
+                ...options
+            });
+
+            const isJson = response.headers.get('content-type')?.includes('application/json');
+            const data = isJson ? await response.json() : null;
+
+            if (data?.csrfToken) {
+                uiState.csrfToken = data.csrfToken;
+            }
+
+            if (!response.ok) {
+                const error = new Error(data?.error || 'Request failed.');
+                error.status = response.status;
+                throw error;
+            }
+
+            return data;
+        }
+
+        function syncLocalSnapshotState(latest, history) {
+            const normalizedHistory = mergeSnapshotHistory(history || [], latest ? [latest] : []);
+            saveSnapshotHistory(normalizedHistory);
+            return {
+                latest: normalizedHistory[0] || latest || null,
+                history: normalizedHistory
+            };
+        }
+
+        async function hydrateTrendHistoryFromServer(profile = null) {
+            if (!uiState.isAuthenticated && !profile) {
+                return;
+            }
+
+            try {
+                const remoteLatest = profile?.trendLatest || null;
+                const remoteHistory = Array.isArray(profile?.trendHistory) ? profile.trendHistory : [];
+                const localHistory = getStoredSnapshotHistory();
+                syncLocalSnapshotState(remoteLatest, mergeSnapshotHistory(remoteHistory, localHistory));
+                renderSnapshotHistory();
+                loadSnapshotFromUrl();
+            } catch {
+                // Keep local state as fallback.
+            }
+        }
+
+        async function persistSnapshotToServer(snapshot) {
+            if (!uiState.isAuthenticated) {
+                return null;
+            }
+
+            try {
+                const response = await apiRequest('/api/trends/history', {
+                    method: 'POST',
+                    body: JSON.stringify({ snapshot })
+                });
+                return syncLocalSnapshotState(response.latest, response.history);
+            } catch (error) {
+                if (error.status === 401) {
+                    uiState.isAuthenticated = false;
+                    return null;
+                }
+
+                throw error;
+            }
+        }
+
+        function showToast(title, message, tone = 'success') {
+            const stack = document.getElementById('toastStack');
+            if (!stack) {
+                return;
+            }
+
+            const toast = document.createElement('div');
+            toast.className = `toast-item is-${tone}`;
+            toast.innerHTML = `<strong>${title}</strong><span>${message}</span>`;
+            stack.appendChild(toast);
+
+            const timerId = window.setTimeout(() => {
+                toast.remove();
+                toastTimers.delete(timerId);
+            }, 2600);
+
+            toastTimers.add(timerId);
+        }
+
+        function getPanelState() {
+            return Array.from(document.querySelectorAll('.briefing-panel')).map(panel => panel.classList.contains('is-open'));
+        }
+
+        function applyUrlState() {
+            const url = new URL(window.location.href);
+            const params = url.searchParams;
+            if (uiState.activeFilter && uiState.activeFilter !== 'all') {
+                params.set('filter', uiState.activeFilter);
+            } else {
+                params.delete('filter');
+            }
+
+            const panelState = getPanelState();
+            const serializedPanels = panelState.map(isOpen => (isOpen ? '1' : '0')).join('');
+            if (serializedPanels && serializedPanels !== '1000') {
+                params.set('panels', serializedPanels);
+            } else {
+                params.delete('panels');
+            }
+
+            const nextSearch = params.toString();
+            const nextUrl = `${url.pathname}${nextSearch ? `?${nextSearch}` : ''}${url.hash}`;
+            window.history.replaceState({}, '', nextUrl);
+        }
+
+        function readUrlState() {
+            const params = new URLSearchParams(window.location.search);
+            const filter = params.get('filter');
+            const panels = params.get('panels');
+            const snapshot = params.get('snapshot');
+            return { filter, panels, snapshot };
+        }
+
+        function loadSnapshotFromUrl() {
+            const snapshotId = readUrlState().snapshot;
+            if (!snapshotId) {
+                return false;
+            }
+
+            const target = getStoredSnapshotHistory().find(entry => entry.id === snapshotId);
+            if (!target) {
+                return false;
+            }
+
+            uiState.applyFilter?.(target.filterKey || 'all');
+            return true;
+        }
+
+        function updatePrintBrief() {
+            const filterLabel = document.getElementById('missionFilter')?.textContent || 'All Signals';
+            const alertLevel = document.getElementById('missionAlert')?.textContent || 'Elevated';
+            const health = document.getElementById('missionHealthValue')?.textContent || '91%';
+            const sync = document.getElementById('missionSync')?.textContent || '';
+            const content = briefingContent[uiState.activeFilter] || briefingContent.all;
+            const visibleEntries = Array.from(document.querySelectorAll('.trend-entry:not(.is-hidden)'));
+
+            document.getElementById('printBriefTitle').textContent = `${filterLabel} Intelligence Snapshot`;
+            document.getElementById('printBriefIntro').textContent = `Generated from the active Floscar Vanguard console view for ${filterLabel.toLowerCase()}.`;
+            document.getElementById('printMetaFilter').textContent = filterLabel;
+            document.getElementById('printMetaAlert').textContent = alertLevel;
+            document.getElementById('printMetaHealth').textContent = health;
+            document.getElementById('printMetaSync').textContent = sync;
+
+            document.getElementById('printSignalList').innerHTML = visibleEntries.map(entry => {
+                const timestamp = entry.querySelector('.timestamp')?.textContent || '';
+                const title = entry.querySelector('.trend-title')?.textContent || 'Untitled Signal';
+                const confidence = entry.dataset.confidence || 'N/A';
+                const description = entry.querySelector('.trend-desc')?.textContent || '';
+                return `<li><strong>${title}</strong><br>${timestamp} // Confidence ${confidence}<br>${description}</li>`;
+            }).join('');
+
+            document.getElementById('printArchitectHeading').textContent = content.architect.title;
+            document.getElementById('printArchitectCopy').textContent = content.architect.copy;
+            document.getElementById('printPriorityHeading').textContent = content.priorities.title;
+            document.getElementById('printPriorityList').innerHTML = content.priorities.items.map(item => `<li>${item}</li>`).join('');
+            document.getElementById('printSectorHeading').textContent = content.sector.title;
+            document.getElementById('printSectorList').innerHTML = content.sector.items.map(item => `<li>${item}</li>`).join('');
+            document.getElementById('printTerminalHeading').textContent = content.terminal.title;
+            document.getElementById('printTerminalNote').innerHTML = content.terminal.note;
+        }
+
+        function printCurrentBrief() {
+            updatePrintBrief();
+            document.body.classList.add('is-printing');
+            window.print();
+        }
+
+        function buildIntelligenceSnapshot() {
+            const visibleEntries = Array.from(document.querySelectorAll('.trend-entry:not(.is-hidden)')).map(entry => {
+                const title = entry.querySelector('.trend-title')?.textContent || 'Untitled Signal';
+                const timestamp = entry.querySelector('.timestamp')?.textContent || '';
+                const confidence = entry.dataset.confidence || 'N/A';
+                return `${timestamp} ${title} [Confidence ${confidence}]`;
+            });
+
+            const filterLabel = document.getElementById('missionFilter')?.textContent || 'All Signals';
+            const alertLevel = document.getElementById('missionAlert')?.textContent || 'Elevated';
+            const health = document.getElementById('missionHealthValue')?.textContent || '91%';
+            const sync = document.getElementById('missionSync')?.textContent || '';
+
+            return [
+                'FLOSCAR VANGUARD // INTELLIGENCE SNAPSHOT',
+                `FILTER: ${filterLabel}`,
+                `ALERT LEVEL: ${alertLevel}`,
+                `SIGNAL HEALTH: ${health}`,
+                `LAST SYNC: ${sync}`,
+                '',
+                'VISIBLE SIGNALS:',
+                ...visibleEntries
+            ].join('\n');
+        }
+
+        function buildSnapshotRecord(action) {
+            const visibleEntries = Array.from(document.querySelectorAll('.trend-entry:not(.is-hidden)')).map(entry => entry.querySelector('.trend-title')?.textContent || 'Untitled Signal');
+            return {
+                id: `snapshot-${Date.now()}`,
+                action,
+                createdAt: new Date().toISOString(),
+                filterKey: uiState.activeFilter,
+                filterLabel: document.getElementById('missionFilter')?.textContent || 'All Signals',
+                alertLevel: document.getElementById('missionAlert')?.textContent || 'Elevated',
+                signalHealth: document.getElementById('missionHealthValue')?.textContent || '91%',
+                lastSync: document.getElementById('missionSync')?.textContent || '',
+                visibleCount: visibleEntries.length,
+                visibleSignals: visibleEntries,
+                snapshotText: buildIntelligenceSnapshot()
+            };
+        }
+
+        function getStoredSnapshotHistory() {
+            return loadStoredJson(STORAGE_KEYS.snapshotHistory, []).filter(entry => entry && typeof entry === 'object');
+        }
+
+        function saveSnapshotHistory(entries) {
+            saveStoredJson(STORAGE_KEYS.snapshotHistory, entries);
+        }
+
+        function saveSnapshotRecord(action) {
+            const record = buildSnapshotRecord(action);
+            const history = [record, ...getStoredSnapshotHistory().filter(entry => !(entry.filterKey === record.filterKey && entry.action === record.action && entry.snapshotText === record.snapshotText))].slice(0, 8);
+            saveSnapshotHistory(history);
+            renderSnapshotHistory();
+
+            persistSnapshotToServer(record).then(serverState => {
+                if (serverState?.history) {
+                    renderSnapshotHistory();
+                }
+            }).catch(error => {
+                showToast('Saved Locally', error.message || 'Trend snapshot sync failed, but the snapshot is still stored on this device.', 'info');
+            });
+
+            return record;
+        }
+
+        function renderSnapshotHistory() {
+            const historyList = document.getElementById('snapshotHistoryList');
+            if (!historyList) {
+                return;
+            }
+
+            const history = getStoredSnapshotHistory();
+            if (!history.length) {
+                historyList.innerHTML = '<p class="empty-rail-note">No saved snapshots yet</p>';
+                renderSnapshotCompareConsole();
+                return;
+            }
+
+            historyList.innerHTML = history.map(entry => {
+                const isPrimary = uiState.snapshotCompareSelection[0] === entry.id;
+                const isSecondary = uiState.snapshotCompareSelection[1] === entry.id;
+                return `
+                    <div class="snapshot-history-card ${isPrimary ? 'is-selected' : ''} ${isSecondary ? 'is-secondary' : ''}">
+                        <strong>${escapeHtml(entry.filterLabel)} Snapshot</strong>
+                        <div>${escapeHtml(String(entry.visibleCount))} visible signal${entry.visibleCount === 1 ? '' : 's'} // alert ${escapeHtml(String(entry.alertLevel).toLowerCase())} // action ${escapeHtml(entry.action)}</div>
+                        <span>${new Date(entry.createdAt).toLocaleString([], { month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
+                        <div class="snapshot-history-actions">
+                            <button class="snapshot-history-action" type="button" data-action="load" data-id="${entry.id}">Load</button>
+                            <button class="snapshot-history-action" type="button" data-action="compare" data-id="${entry.id}">${isPrimary || isSecondary ? 'Selected' : 'Compare'}</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            historyList.querySelectorAll('.snapshot-history-action').forEach(button => {
+                button.addEventListener('click', () => {
+                    const entry = history.find(item => item.id === button.dataset.id);
+                    if (!entry) {
+                        return;
+                    }
+
+                    if (button.dataset.action === 'load') {
+                        uiState.applyFilter?.(entry.filterKey || 'all');
+                        pushActivity(`Snapshot loaded: ${entry.filterLabel}`);
+                        showToast('Snapshot Loaded', `${entry.filterLabel} intelligence view was restored.`, 'info');
+                    }
+
+                    if (button.dataset.action === 'compare') {
+                        const nextSelection = [...uiState.snapshotCompareSelection];
+                        const existingIndex = nextSelection.indexOf(entry.id);
+                        if (existingIndex >= 0) {
+                            nextSelection.splice(existingIndex, 1);
+                        } else if (nextSelection.length < 2) {
+                            nextSelection.push(entry.id);
+                        } else {
+                            nextSelection.shift();
+                            nextSelection.push(entry.id);
+                        }
+                        uiState.snapshotCompareSelection = nextSelection;
+                        renderSnapshotHistory();
+                        showToast('Snapshot Compare Updated', nextSelection.length ? 'Snapshot compare console updated.' : 'Snapshot compare selection cleared.', 'info');
+                    }
+                });
+            });
+
+            renderSnapshotCompareConsole();
+        }
+
+        function renderSnapshotCompareConsole() {
+            const compareConsole = document.getElementById('snapshotCompareConsole');
+            if (!compareConsole) {
+                return;
+            }
+
+            const history = getStoredSnapshotHistory();
+            const selectedEntries = uiState.snapshotCompareSelection.map(id => history.find(entry => entry.id === id)).filter(Boolean);
+
+            if (!selectedEntries.length) {
+                compareConsole.innerHTML = '<div class="snapshot-compare-empty">Copy, export, share, or print a snapshot, then compare two saved intelligence views to inspect filter, alert, health, and visible-signal changes.</div>';
+                return;
+            }
+
+            if (selectedEntries.length === 1) {
+                compareConsole.innerHTML = `<div class="snapshot-compare-empty">${escapeHtml(selectedEntries[0].filterLabel)} snapshot is primed. Select one more saved snapshot to compare the intelligence view across filters and signal composition.</div>`;
+                return;
+            }
+
+            const orderedEntries = [...selectedEntries].sort((left, right) => new Date(left.createdAt).getTime() - new Date(right.createdAt).getTime());
+            const rows = [
+                { label: 'Filter', earlier: orderedEntries[0].filterLabel, later: orderedEntries[1].filterLabel },
+                { label: 'Alert Level', earlier: orderedEntries[0].alertLevel, later: orderedEntries[1].alertLevel },
+                { label: 'Signal Health', earlier: orderedEntries[0].signalHealth, later: orderedEntries[1].signalHealth },
+                { label: 'Visible Count', earlier: String(orderedEntries[0].visibleCount), later: String(orderedEntries[1].visibleCount) },
+                { label: 'Visible Signals', earlier: orderedEntries[0].visibleSignals.join(', '), later: orderedEntries[1].visibleSignals.join(', ') }
+            ].map(row => ({ ...row, changed: row.earlier !== row.later }));
+
+            const changedCount = rows.filter(row => row.changed).length;
+            compareConsole.innerHTML = `
+                <div class="snapshot-compare-row ${changedCount ? 'is-changed' : ''}">
+                    <div class="snapshot-compare-label">Change Summary</div>
+                    <div>${changedCount} of ${rows.length} tracked snapshot signals changed between these two saved intelligence views.</div>
+                </div>
+                ${rows.map(row => `
+                    <div class="snapshot-compare-row ${row.changed ? 'is-changed' : ''}">
+                        <div class="snapshot-compare-label">${escapeHtml(row.label)}</div>
+                        <div class="snapshot-compare-values">
+                            <div class="snapshot-compare-panel"><small>Earlier</small><strong>${escapeHtml(row.earlier)}</strong></div>
+                            <div class="snapshot-compare-panel"><small>Later</small><strong>${escapeHtml(row.later)}</strong></div>
+                        </div>
+                    </div>
+                `).join('')}
+            `;
+        }
+
+        async function copySnapshotToClipboard() {
+            const snapshot = buildIntelligenceSnapshot();
+            await navigator.clipboard.writeText(snapshot);
+            saveSnapshotRecord('copy');
+            pushActivity('Snapshot copied to clipboard');
+            showToast('Snapshot Ready', 'The current intelligence snapshot was copied.', 'success');
+        }
+
+        function exportSnapshotToFile() {
+            const snapshot = buildIntelligenceSnapshot();
+            const blob = new Blob([snapshot], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            const filterName = (uiState.activeFilter || 'all').replace(/\s+/g, '-');
+            link.href = url;
+            link.download = `floscar-vanguard-${filterName}-snapshot.txt`;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            URL.revokeObjectURL(url);
+            saveSnapshotRecord('export');
+            pushActivity('Snapshot exported to file');
+            showToast('Export Complete', 'The snapshot file download was started.', 'success');
+        }
+
+        async function shareSnapshot() {
+            const snapshot = buildIntelligenceSnapshot();
+            const shareUrl = window.location.href;
+            if (navigator.share) {
+                await navigator.share({
+                    title: 'Floscar Vanguard Intelligence Snapshot',
+                    text: `${snapshot}\n\nSHARE LINK: ${shareUrl}`,
+                    url: shareUrl
+                });
+                saveSnapshotRecord('share');
+                pushActivity('Snapshot shared via system share');
+                showToast('Share Sent', 'The intelligence snapshot was sent to the system share sheet.', 'success');
+                return;
+            }
+
+            await navigator.clipboard.writeText(`${snapshot}\n\nSHARE LINK: ${shareUrl}`);
+            saveSnapshotRecord('share');
+            pushActivity('Share fallback used: snapshot copied');
+            showToast('Share Link Copied', 'The snapshot and shareable URL were copied to clipboard.', 'info');
+        }
+
+        function formatCategory(category) {
+            return category.split('-').map(part => part.charAt(0).toUpperCase() + part.slice(1)).join(' ');
+        }
+
+        function setupMobileMenu() {
+            const toggle = document.querySelector('.nav-toggle');
+            const nav = document.querySelector('.nav-links');
+            if (!toggle || !nav) return;
+
+            const closeMenu = () => {
+                nav.classList.remove('is-open');
+                toggle.classList.remove('is-open');
+                toggle.setAttribute('aria-expanded', 'false');
+            };
+
+            toggle.addEventListener('click', () => {
+                const willOpen = !nav.classList.contains('is-open');
+                nav.classList.toggle('is-open', willOpen);
+                toggle.classList.toggle('is-open', willOpen);
+                toggle.setAttribute('aria-expanded', String(willOpen));
+            });
+
+            nav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            window.addEventListener('resize', () => {
+                if (window.getComputedStyle(toggle).display === 'none') {
+                    closeMenu();
+                }
+            });
+        }
+
+        function openContactModal() { document.getElementById('contactModal').style.display = 'block'; }
+        function closeContactModal() { document.getElementById('contactModal').style.display = 'none'; }
+        function openTrendDetail(entry) {
+            const modal = document.getElementById('trendDetailModal');
+            const image = entry.dataset.image || '';
+            const timestamp = entry.querySelector('.timestamp')?.textContent || '';
+            const title = entry.querySelector('.trend-title')?.textContent || '';
+            const description = entry.querySelector('.trend-desc')?.textContent || '';
+            const brief = entry.dataset.brief || '';
+            const category = entry.dataset.category || 'core';
+            const source = entry.dataset.source || 'Vanguard Desk';
+            const updated = entry.dataset.updated || 'Verified Apr 09 2026';
+            const confidence = entry.dataset.confidence || 'N/A';
+
+            document.getElementById('detailImage').src = image;
+            document.getElementById('detailImage').alt = title;
+            document.getElementById('detailTimestamp').textContent = timestamp;
+            document.getElementById('detailTitle').textContent = title;
+            document.getElementById('detailDescription').textContent = description;
+            document.getElementById('detailCategory').textContent = formatCategory(category);
+            document.getElementById('detailSource').textContent = source;
+            document.getElementById('detailConfidence').textContent = confidence;
+            document.getElementById('detailBrief').textContent = brief;
+            document.getElementById('detailUpdated').textContent = updated;
+            modal.style.display = 'block';
+            modal.setAttribute('aria-hidden', 'false');
+            pushActivity(`Opened briefing: ${title}`);
+        }
+
+        function animateNumericValue(element, target, options = {}) {
+            const prefix = options.prefix || '';
+            const suffix = options.suffix || '';
+            const duration = options.duration || 1100;
+            const startAt = performance.now();
+
+            element.classList.add('is-counting');
+
+            const tick = currentTime => {
+                const progress = Math.min((currentTime - startAt) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const currentValue = Math.round(target * eased);
+                element.textContent = `${prefix}${currentValue}${suffix}`;
+
+                if (progress < 1) {
+                    window.requestAnimationFrame(tick);
+                    return;
+                }
+
+                element.classList.remove('is-counting');
+            };
+
+            window.requestAnimationFrame(tick);
+        }
+
+        function setupMetricAnimations() {
+            const numericValues = Array.from(document.querySelectorAll('[data-count-to]'));
+            const scoreFills = Array.from(document.querySelectorAll('[data-width-to]'));
+
+            scoreFills.forEach(fill => {
+                fill.style.width = '0%';
+            });
+
+            const runAnimations = () => {
+                numericValues.forEach((value, index) => {
+                    const target = Number(value.dataset.countTo || 0);
+                    const prefix = value.dataset.prefix || '';
+                    const suffix = value.dataset.suffix || '';
+                    window.setTimeout(() => {
+                        animateNumericValue(value, target, { prefix, suffix, duration: 900 + index * 70 });
+                    }, index * 80);
+                });
+
+                scoreFills.forEach((fill, index) => {
+                    const width = Number(fill.dataset.widthTo || 0);
+                    window.setTimeout(() => {
+                        fill.style.transition = 'width 1s cubic-bezier(0.22, 1, 0.36, 1)';
+                        fill.style.width = `${width}%`;
+                    }, 140 + index * 90);
+                });
+            };
+
+            if (!('IntersectionObserver' in window)) {
+                runAnimations();
+                return;
+            }
+
+            const dashboard = document.querySelector('.intel-dashboard');
+            if (!dashboard) {
+                runAnimations();
+                return;
+            }
+
+            const observer = new IntersectionObserver(entries => {
+                if (!entries.some(entry => entry.isIntersecting)) {
+                    return;
+                }
+
+                runAnimations();
+                observer.disconnect();
+            }, {
+                threshold: 0.3
+            });
+
+            observer.observe(dashboard);
+        }
+
+        function setupBriefingPanels() {
+            const panels = Array.from(document.querySelectorAll('.briefing-panel'));
+            panels.forEach(panel => {
+                const toggle = panel.querySelector('.briefing-toggle');
+                if (!toggle) {
+                    return;
+                }
+
+                toggle.addEventListener('click', () => {
+                    const willOpen = !panel.classList.contains('is-open');
+                    panel.classList.toggle('is-open', willOpen);
+                    toggle.setAttribute('aria-expanded', String(willOpen));
+                    saveStoredJson(STORAGE_KEYS.expandedPanels, panels.map(item => item.classList.contains('is-open')));
+                    applyUrlState();
+                    const title = toggle.querySelector('h3')?.textContent || 'Briefing Panel';
+                    pushActivity(`${title} ${willOpen ? 'expanded' : 'collapsed'}`);
+                });
+            });
+        }
+
+        function restoreBriefingPanels() {
+            const panels = Array.from(document.querySelectorAll('.briefing-panel'));
+            const storedPanels = loadStoredJson(STORAGE_KEYS.expandedPanels, null);
+            if (!Array.isArray(storedPanels)) {
+                return;
+            }
+
+            panels.forEach((panel, index) => {
+                const isOpen = Boolean(storedPanels[index]);
+                const toggle = panel.querySelector('.briefing-toggle');
+                panel.classList.toggle('is-open', isOpen);
+                if (toggle) {
+                    toggle.setAttribute('aria-expanded', String(isOpen));
+                }
+            });
+        }
+
+        function toggleBriefingPanelByIndex(index) {
+            const toggles = Array.from(document.querySelectorAll('.briefing-panel .briefing-toggle'));
+            const toggle = toggles[index];
+            if (toggle) {
+                toggle.click();
+            }
+        }
+
+        function pushActivity(message) {
+            const list = document.getElementById('activityLog');
+            if (!list) {
+                return;
+            }
+
+            const timestamp = new Intl.DateTimeFormat('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            }).format(new Date());
+
+            activityLogState.unshift({ timestamp, message });
+            activityLogState.splice(8);
+            saveStoredJson(STORAGE_KEYS.activityLog, activityLogState);
+
+            list.innerHTML = activityLogState.map(item => `
+                <div class="activity-item">
+                    <span class="activity-meta">${item.timestamp}</span>
+                    <strong>Operator Event</strong>
+                    <p>${item.message}</p>
+                </div>
+            `).join('');
+        }
+
+        function renderAlertQueue(filter) {
+            const queue = document.getElementById('alertQueue');
+            if (!queue) {
+                return;
+            }
+
+            const alerts = (alertQueueContent[filter] || alertQueueContent.all)
+                .filter(alert => !dismissedAlerts.has(alert.id));
+
+            if (!alerts.length) {
+                queue.innerHTML = '<p class="empty-rail-note">No active alerts in current window</p>';
+                return;
+            }
+
+            queue.innerHTML = alerts.map(alert => `
+                <div class="alert-item">
+                    <div>
+                        <span class="alert-meta">${alert.level}</span>
+                        <strong>${alert.title}</strong>
+                        <p>${alert.copy}</p>
+                    </div>
+                    <button class="alert-dismiss" type="button" data-alert-id="${alert.id}" aria-label="Dismiss alert">×</button>
+                </div>
+            `).join('');
+        }
+
+        function setupAlertQueue() {
+            const queue = document.getElementById('alertQueue');
+            if (!queue) {
+                return;
+            }
+
+            queue.addEventListener('click', event => {
+                const dismissButton = event.target.closest('.alert-dismiss');
+                if (!dismissButton) {
+                    return;
+                }
+
+                const alertId = dismissButton.dataset.alertId;
+                if (!alertId) {
+                    return;
+                }
+
+                dismissedAlerts.add(alertId);
+                saveStoredJson(STORAGE_KEYS.dismissedAlerts, Array.from(dismissedAlerts));
+                const activeFilter = document.querySelector('.filter-chip.is-active')?.dataset.filter || 'all';
+                renderAlertQueue(activeFilter);
+                pushActivity(`Alert dismissed: ${alertId}`);
+            });
+        }
+
+        function restorePersistentRailState() {
+            const storedAlerts = loadStoredJson(STORAGE_KEYS.dismissedAlerts, []);
+            storedAlerts.forEach(alertId => dismissedAlerts.add(alertId));
+
+            const storedActivity = loadStoredJson(STORAGE_KEYS.activityLog, []);
+            activityLogState.length = 0;
+            storedActivity.slice(0, 8).forEach(item => activityLogState.push(item));
+
+            const list = document.getElementById('activityLog');
+            if (list && activityLogState.length) {
+                list.innerHTML = activityLogState.map(item => `
+                    <div class="activity-item">
+                        <span class="activity-meta">${item.timestamp}</span>
+                        <strong>Operator Event</strong>
+                        <p>${item.message}</p>
+                    </div>
+                `).join('');
+            }
+
+            const storedFilter = loadStoredJson(STORAGE_KEYS.activeFilter, 'all');
+            if (typeof storedFilter === 'string') {
+                uiState.activeFilter = storedFilter;
+            }
+
+            const urlState = readUrlState();
+            if (urlState.filter && briefingContent[urlState.filter]) {
+                uiState.activeFilter = urlState.filter;
+            }
+        }
+
+        function setupMissionActions() {
+            document.getElementById('copySnapshotBtn')?.addEventListener('click', () => {
+                copySnapshotToClipboard().catch(() => pushActivity('Clipboard copy failed'));
+            });
+
+            document.getElementById('exportSnapshotBtn')?.addEventListener('click', () => {
+                exportSnapshotToFile();
+            });
+
+            document.getElementById('shareSnapshotBtn')?.addEventListener('click', () => {
+                shareSnapshot().catch(() => pushActivity('Share action failed'));
+            });
+
+            document.getElementById('printBriefBtn')?.addEventListener('click', () => {
+                printCurrentBrief();
+                saveSnapshotRecord('print');
+                pushActivity('Print brief prepared');
+                showToast('Print Brief', 'A print-ready intelligence brief was generated.', 'info');
+            });
+        }
+
+        function setupCommandPalette(setFilter) {
+            const palette = document.getElementById('commandPalette');
+            const input = document.getElementById('commandPaletteInput');
+            const list = document.getElementById('commandPaletteList');
+            if (!palette || !input || !list) {
+                return;
+            }
+
+            const panelActions = [
+                { title: 'Toggle Architect Panel', description: 'Expand or collapse the architect brief', run: () => toggleBriefingPanelByIndex(0) },
+                { title: 'Toggle Priorities Panel', description: 'Expand or collapse operational priorities', run: () => toggleBriefingPanelByIndex(1) },
+                { title: 'Toggle Sector Panel', description: 'Expand or collapse sector watch', run: () => toggleBriefingPanelByIndex(2) },
+                { title: 'Toggle Terminal Panel', description: 'Expand or collapse terminal note', run: () => toggleBriefingPanelByIndex(3) }
+            ];
+
+            const filterActions = [
+                ['All Signals', 'all'],
+                ['Core AI', 'core'],
+                ['Robotics', 'robotics'],
+                ['Defense', 'defense'],
+                ['Healthcare', 'healthcare'],
+                ['Education', 'education']
+            ].map(([title, filter]) => ({
+                title: `Filter: ${title}`,
+                description: `Switch the console to ${title.toLowerCase()}`,
+                run: () => setFilter(filter)
+            }));
+
+            commandPaletteState.items = [
+                ...filterActions,
+                ...panelActions,
+                { title: 'Copy Snapshot', description: 'Copy the current intelligence snapshot to clipboard', run: () => copySnapshotToClipboard().catch(() => pushActivity('Clipboard copy failed')) },
+                { title: 'Export Snapshot', description: 'Download the current intelligence snapshot as text', run: () => exportSnapshotToFile() },
+                { title: 'Share Snapshot', description: 'Share or copy the current intelligence snapshot', run: () => shareSnapshot().catch(() => pushActivity('Share action failed')) },
+                {
+                    title: 'Print Brief', description: 'Generate a print-ready intelligence brief', run: () => {
+                        printCurrentBrief();
+                        saveSnapshotRecord('print');
+                    }
+                },
+                {
+                    title: 'Load Latest Snapshot', description: 'Restore the most recently saved intelligence snapshot filter view', run: () => {
+                        const latestSnapshot = getStoredSnapshotHistory()[0];
+                        if (latestSnapshot) {
+                            uiState.applyFilter?.(latestSnapshot.filterKey || 'all');
+                        }
+                    }
+                }
+            ];
+
+            const renderPalette = query => {
+                const normalized = query.trim().toLowerCase();
+                commandPaletteState.filteredItems = commandPaletteState.items.filter(item => {
+                    if (!normalized) {
+                        return true;
+                    }
+
+                    return `${item.title} ${item.description}`.toLowerCase().includes(normalized);
+                });
+                commandPaletteState.activeIndex = 0;
+
+                if (!commandPaletteState.filteredItems.length) {
+                    list.innerHTML = '<div class="command-palette-empty">No matching commands</div>';
+                    return;
+                }
+
+                list.innerHTML = commandPaletteState.filteredItems.map((item, index) => `
+                    <button class="command-palette-item${index === 0 ? ' is-active' : ''}" type="button" data-index="${index}">
+                        <strong>${item.title}</strong>
+                        <span>${item.description}</span>
+                    </button>
+                `).join('');
+            };
+
+            const closePalette = () => {
+                palette.classList.remove('is-open');
+                palette.setAttribute('aria-hidden', 'true');
+                input.value = '';
+            };
+
+            const openPalette = () => {
+                palette.classList.add('is-open');
+                palette.setAttribute('aria-hidden', 'false');
+                renderPalette('');
+                input.focus();
+                input.select();
+            };
+
+            const activatePaletteItem = index => {
+                const item = commandPaletteState.filteredItems[index];
+                if (!item) {
+                    return;
+                }
+
+                item.run();
+                pushActivity(`Command palette action: ${item.title}`);
+                showToast('Command Executed', item.title, 'info');
+                closePalette();
+            };
+
+            input.addEventListener('input', () => renderPalette(input.value));
+
+            input.addEventListener('keydown', event => {
+                if (event.key === 'Escape') {
+                    event.preventDefault();
+                    closePalette();
+                    return;
+                }
+
+                if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+                    event.preventDefault();
+                    if (!commandPaletteState.filteredItems.length) {
+                        return;
+                    }
+
+                    const direction = event.key === 'ArrowDown' ? 1 : -1;
+                    commandPaletteState.activeIndex = (commandPaletteState.activeIndex + direction + commandPaletteState.filteredItems.length) % commandPaletteState.filteredItems.length;
+                    Array.from(list.querySelectorAll('.command-palette-item')).forEach((item, index) => {
+                        item.classList.toggle('is-active', index === commandPaletteState.activeIndex);
+                    });
+                    return;
+                }
+
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    activatePaletteItem(commandPaletteState.activeIndex);
+                }
+            });
+
+            list.addEventListener('click', event => {
+                const item = event.target.closest('.command-palette-item');
+                if (!item) {
+                    return;
+                }
+
+                activatePaletteItem(Number(item.dataset.index || 0));
+            });
+
+            palette.addEventListener('click', event => {
+                if (event.target === palette) {
+                    closePalette();
+                }
+            });
+
+            document.addEventListener('keydown', event => {
+                const target = event.target;
+                const tagName = target?.tagName;
+                const isEditable = target?.isContentEditable || tagName === 'INPUT' || tagName === 'TEXTAREA' || tagName === 'SELECT';
+                if (event.key === '/' && !palette.classList.contains('is-open') && !isEditable) {
+                    event.preventDefault();
+                    openPalette();
+                    showToast('Command Palette', 'Type a filter, panel, or action.', 'info');
+                }
+            });
+        }
+
+        async function checkSession() {
+            try {
+                const data = await apiRequest('/api/session-status');
+                if (!data.authenticated) {
+                    uiState.isAuthenticated = false;
+                    return;
+                }
+                uiState.isAuthenticated = true;
+                await hydrateTrendHistoryFromServer(data.profile);
+            } catch {
+                uiState.isAuthenticated = false;
+            }
+        }
+
+        function setupKeyboardShortcuts(setFilter) {
+            const filterKeys = {
+                '1': 'all',
+                '2': 'core',
+                '3': 'robotics',
+                '4': 'defense',
+                '5': 'healthcare',
+                '6': 'education'
+            };
+
+            document.addEventListener('keydown', event => {
+                const target = event.target;
+                const tagName = target?.tagName;
+                const isEditable = target?.isContentEditable || tagName === 'INPUT' || tagName === 'TEXTAREA' || tagName === 'SELECT';
+                if (isEditable) {
+                    return;
+                }
+
+                const key = event.key.toLowerCase();
+
+                if (event.key === 'Escape') {
+                    const detailModal = document.getElementById('trendDetailModal');
+                    const contactModal = document.getElementById('contactModal');
+                    if (detailModal?.getAttribute('aria-hidden') === 'false') {
+                        closeTrendDetail();
+                        pushActivity('Detail modal closed via keyboard');
+                        return;
+                    }
+
+                    if (contactModal?.style.display === 'block') {
+                        closeContactModal();
+                        pushActivity('Contact modal closed via keyboard');
+                    }
+                    return;
+                }
+
+                if (filterKeys[event.key]) {
+                    event.preventDefault();
+                    setFilter(filterKeys[event.key]);
+                    return;
+                }
+
+                if (key === 'a') {
+                    event.preventDefault();
+                    toggleBriefingPanelByIndex(0);
+                    return;
+                }
+
+                if (key === 'p') {
+                    event.preventDefault();
+                    toggleBriefingPanelByIndex(1);
+                    return;
+                }
+
+                if (key === 's') {
+                    event.preventDefault();
+                    toggleBriefingPanelByIndex(2);
+                    return;
+                }
+
+                if (key === 't') {
+                    event.preventDefault();
+                    toggleBriefingPanelByIndex(3);
+                }
+            });
+        }
+
+        function renderList(target, items) {
+            if (!target) {
+                return;
+            }
+
+            target.innerHTML = items.map(item => `<li>${item}</li>`).join('');
+        }
+
+        function updateInsightContent(insights) {
+            const target = document.getElementById('architectInsight');
+            if (!target) {
+                return;
+            }
+
+            insightRotatorState.insights = insights.length ? insights : ['Signal feed awaiting update.'];
+            insightRotatorState.index = 0;
+            target.textContent = insightRotatorState.insights[0];
+        }
+
+        function setupInsightRotator() {
+            const target = document.getElementById('architectInsight');
+            if (!target) {
+                return;
+            }
+
+            updateInsightContent(briefingContent.all.architect.insights);
+
+            if (insightRotatorState.intervalId) {
+                window.clearInterval(insightRotatorState.intervalId);
+            }
+
+            insightRotatorState.intervalId = window.setInterval(() => {
+                if (!insightRotatorState.insights.length) {
+                    return;
+                }
+
+                insightRotatorState.index = (insightRotatorState.index + 1) % insightRotatorState.insights.length;
+                target.classList.add('is-transitioning');
+                window.setTimeout(() => {
+                    target.textContent = insightRotatorState.insights[insightRotatorState.index];
+                    target.classList.remove('is-transitioning');
+                }, 180);
+            }, 3200);
+        }
+
+        function updateMissionControl(filter, visibleCount) {
+            const content = briefingContent[filter] || briefingContent.all;
+            const mission = content.mission;
+            const missionFilter = document.getElementById('missionFilter');
+            const missionVisible = document.getElementById('missionVisible');
+            const missionAlert = document.getElementById('missionAlert');
+            const missionHealthValue = document.getElementById('missionHealthValue');
+            const missionHealthFill = document.getElementById('missionHealthFill');
+
+            if (missionFilter) missionFilter.textContent = mission.label;
+            if (missionVisible) missionVisible.textContent = String(visibleCount).padStart(2, '0');
+            if (missionAlert) missionAlert.textContent = mission.alert;
+            if (missionHealthValue) missionHealthValue.textContent = `${mission.health}%`;
+            if (missionHealthFill) missionHealthFill.style.width = `${mission.health}%`;
+        }
+
+        function updateSyncClock() {
+            const target = document.getElementById('missionSync');
+            if (!target) {
+                return;
+            }
+
+            const formatter = new Intl.DateTimeFormat('en-US', {
+                month: 'short',
+                day: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            });
+
+            const parts = formatter.formatToParts(new Date()).reduce((acc, part) => {
+                if (part.type !== 'literal') {
+                    acc[part.type] = part.value;
+                }
+                return acc;
+            }, {});
+
+            target.textContent = `${parts.month.toUpperCase()} ${parts.day} ${parts.year} // ${parts.hour}:${parts.minute}:${parts.second}`;
+        }
+
+        function updateBriefingContent(filter) {
+            const content = briefingContent[filter] || briefingContent.all;
+
+            document.getElementById('architectStatus').textContent = content.architect.status;
+            document.getElementById('architectTitle').textContent = content.architect.title;
+            document.getElementById('architectKicker').textContent = content.architect.kicker;
+            document.getElementById('architectCopy').textContent = content.architect.copy;
+
+            document.getElementById('priorityStatus').textContent = content.priorities.status;
+            document.getElementById('priorityTitle').textContent = content.priorities.title;
+            document.getElementById('priorityKicker').textContent = content.priorities.kicker;
+            renderList(document.getElementById('priorityList'), content.priorities.items);
+
+            document.getElementById('sectorStatus').textContent = content.sector.status;
+            document.getElementById('sectorTitle').textContent = content.sector.title;
+            document.getElementById('sectorKicker').textContent = content.sector.kicker;
+            renderList(document.getElementById('sectorList'), content.sector.items);
+
+            document.getElementById('terminalStatus').textContent = content.terminal.status;
+            document.getElementById('terminalTitle').textContent = content.terminal.title;
+            document.getElementById('terminalKicker').textContent = content.terminal.kicker;
+            document.getElementById('terminalNote').innerHTML = content.terminal.note;
+
+            updateInsightContent(content.architect.insights);
+        }
+
+        function setupFeedReveal(entries) {
+            if (!entries.length) return;
+
+            document.body.classList.add('motion-ready');
+
+            entries.forEach((entry, index) => {
+                entry.classList.add('is-reveal-pending');
+                entry.style.setProperty('--reveal-delay', `${Math.min(index * 70, 360)}ms`);
+            });
+
+            if (!('IntersectionObserver' in window)) {
+                entries.forEach(entry => {
+                    entry.classList.remove('is-reveal-pending');
+                    entry.classList.add('is-visible');
+                });
+                return;
+            }
+
+            const observer = new IntersectionObserver(observedEntries => {
+                observedEntries.forEach(observedEntry => {
+                    if (!observedEntry.isIntersecting) {
+                        return;
+                    }
+
+                    observedEntry.target.classList.remove('is-reveal-pending');
+                    observedEntry.target.classList.add('is-visible');
+                    observer.unobserve(observedEntry.target);
+                });
+            }, {
+                threshold: 0.16,
+                rootMargin: '0px 0px -8% 0px'
+            });
+
+            entries.forEach(entry => observer.observe(entry));
+        }
+
+        function closeTrendDetail() {
+            const modal = document.getElementById('trendDetailModal');
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden', 'true');
+        }
+
+        function openWhatsAppContact() {
+            const appUrl = 'whatsapp://send?phone=233547912435&text=Hello%20Oscar%2C%20I%20would%20like%20to%20discuss%20a%20project.';
+            const webUrl = 'https://wa.me/233547912435?text=Hello%20Oscar%2C%20I%20would%20like%20to%20discuss%20a%20project.';
+            const startedAt = Date.now();
+            window.location.href = appUrl;
+            window.setTimeout(() => {
+                if (document.visibilityState === 'visible' && Date.now() - startedAt < 1600) {
+                    window.open(webUrl, '_blank', 'noopener');
+                }
+            }, 900);
+        }
+        function openPhoneContact() {
+            const dialUrl = 'tel:+233547912435';
+            const startedAt = Date.now();
+            window.location.href = dialUrl;
+            window.setTimeout(() => {
+                if (document.visibilityState === 'visible' && Date.now() - startedAt < 1600) {
+                    window.alert('Call Oscar at +233 54 791 2435');
+                }
+            }, 900);
+        }
+        function openEmailContact() {
+            const mailAppUrl = 'mailto:vordzorgbeoscar02@gmail.com?subject=Project%20Inquiry%20-%20Floscar%20Vanguard';
+            const webMailUrl = 'https://mail.google.com/mail/?view=cm&fs=1&to=vordzorgbeoscar02@gmail.com&su=Project%20Inquiry%20-%20Floscar%20Vanguard';
+            const startedAt = Date.now();
+            window.location.href = mailAppUrl;
+            window.setTimeout(() => {
+                if (document.visibilityState === 'visible' && Date.now() - startedAt < 1600) {
+                    window.open(webMailUrl, '_blank', 'noopener');
+                }
+            }, 900);
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            setupMobileMenu();
+            restorePersistentRailState();
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                const linkPage = new URL(link.href, window.location.origin).pathname.split('/').pop();
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+
+            const chips = Array.from(document.querySelectorAll('.filter-chip'));
+            const entries = Array.from(document.querySelectorAll('.trend-entry'));
+            const emptyState = document.querySelector('.feed-empty');
+            const scoreRows = Array.from(document.querySelectorAll('.score-row'));
+            const regionalNodes = Array.from(document.querySelectorAll('.regional-node'));
+            const signalCards = Array.from(document.querySelectorAll('.signal-card'));
+
+            const matchesFilter = (categories, filter) => {
+                if (filter === 'all') {
+                    return true;
+                }
+
+                return String(categories || '')
+                    .split(',')
+                    .map(value => value.trim())
+                    .filter(Boolean)
+                    .includes(filter);
+            };
+
+            const setFilter = (filter) => {
+                let visibleCount = 0;
+
+                chips.forEach(chip => {
+                    chip.classList.toggle('is-active', chip.dataset.filter === filter);
+                });
+
+                entries.forEach(entry => {
+                    const matches = filter === 'all' || entry.dataset.category === filter;
+                    entry.classList.toggle('is-hidden', !matches);
+                    if (matches) {
+                        visibleCount += 1;
+                    }
+                });
+
+                scoreRows.forEach(row => {
+                    row.classList.toggle('is-muted', !matchesFilter(row.dataset.categories, filter));
+                });
+
+                regionalNodes.forEach(node => {
+                    node.classList.toggle('is-muted', !matchesFilter(node.dataset.categories, filter));
+                });
+
+                signalCards.forEach(card => {
+                    card.classList.toggle('is-muted', !matchesFilter(card.dataset.categories, filter));
+                });
+
+                if (emptyState) {
+                    emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+                }
+
+                uiState.activeFilter = filter;
+                saveStoredJson(STORAGE_KEYS.activeFilter, filter);
+                updateMissionControl(filter, visibleCount);
+                updateBriefingContent(filter);
+                renderAlertQueue(filter);
+                updatePrintBrief();
+                applyUrlState();
+                pushActivity(`Filter changed: ${formatCategory(filter === 'all' ? 'all signals' : filter)}`);
+            };
+
+            uiState.applyFilter = setFilter;
+
+            chips.forEach(chip => {
+                chip.addEventListener('click', () => setFilter(chip.dataset.filter));
+            });
+
+            entries.forEach(entry => {
+                entry.addEventListener('click', () => openTrendDetail(entry));
+                entry.addEventListener('keydown', event => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        openTrendDetail(entry);
+                    }
+                });
+            });
+
+            setupFeedReveal(entries);
+            setupMetricAnimations();
+            setupMissionActions();
+            setupAlertQueue();
+            setupBriefingPanels();
+            restoreBriefingPanels();
+            const initialUrlState = readUrlState();
+            if (initialUrlState.panels && /^[01]+$/.test(initialUrlState.panels)) {
+                Array.from(document.querySelectorAll('.briefing-panel')).forEach((panel, index) => {
+                    const isOpen = initialUrlState.panels[index] === '1';
+                    const toggle = panel.querySelector('.briefing-toggle');
+                    panel.classList.toggle('is-open', isOpen);
+                    if (toggle) {
+                        toggle.setAttribute('aria-expanded', String(isOpen));
+                    }
+                });
+            }
+            setupInsightRotator();
+            setupKeyboardShortcuts(setFilter);
+            setupCommandPalette(setFilter);
+            updateSyncClock();
+            window.setInterval(updateSyncClock, 1000);
+            window.addEventListener('afterprint', () => {
+                document.body.classList.remove('is-printing');
+            });
+            if (!activityLogState.length) {
+                pushActivity('Signal feed initialized');
+            }
+            renderSnapshotHistory();
+            setFilter(uiState.activeFilter || 'all');
+            loadSnapshotFromUrl();
+            applyUrlState();
+            await checkSession();
+        });
+
+        window.onclick = function (event) {
+            const modal = document.getElementById('contactModal');
+            const detailModal = document.getElementById('trendDetailModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+            if (event.target === detailModal) {
+                closeTrendDetail();
+            }
+        };
+    </script>
+    <script src="contact-hub.js"></script>
+</body>
+
+</html>

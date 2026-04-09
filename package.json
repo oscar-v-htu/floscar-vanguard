@@ -1,0 +1,12 @@
+{
+  "name": "a-brighter-future",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "serve": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

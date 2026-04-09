@@ -1,0 +1,2275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Research-driven catalog of real AI consoles, local runtimes, workspace tools, and developer stacks curated by Floscar Vanguard.">
+    <meta name="theme-color" content="#000000">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Floscar Vanguard">
+    <meta property="og:title" content="Tools | Floscar Vanguard">
+    <meta property="og:description"
+        content="Explore real AI tools, local apps, self-hosted consoles, and developer stacks through the Floscar Vanguard tools console.">
+    <meta property="og:url" content="https://www.floscarvanguard.com/tools.html">
+    <meta property="og:image" content="https://www.floscarvanguard.com/AI.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tools | Floscar Vanguard">
+    <meta name="twitter:description"
+        content="A curated intelligence catalog of serious AI tools and developer consoles.">
+    <link rel="canonical" href="https://www.floscarvanguard.com/tools.html">
+    <link rel="icon" href="AI.jpg" type="image/jpeg">
+    <link rel="manifest" href="site.webmanifest">
+    <title>Tools | Floscar Vanguard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/fv-polish.css">
+    <script src="assets/fv-polish.js" defer></script>
+    <style>
+        :root {
+            --neon-green: #33ff33;
+            --text-main: #dfffdc;
+            --text-dim: #b6d9b6;
+            --panel-bg: rgba(0, 10, 0, 0.62);
+            --panel-border: rgba(51, 255, 51, 0.16);
+            --mono: 'Courier New', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+            background: #000;
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        ::selection {
+            background: rgba(51, 255, 51, 0.28);
+            color: #031003;
+        }
+
+        .video-container {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        #bg-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.72) 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at top, rgba(51, 255, 51, 0.08), transparent 30%),
+                radial-gradient(circle at right, rgba(51, 255, 51, 0.05), transparent 25%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: linear-gradient(rgba(51, 255, 51, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(51, 255, 51, 0.03) 1px, transparent 1px);
+            background-size: 38px 38px;
+            opacity: 0.22;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            background: rgba(0, 0, 0, 0.7);
+            border-bottom: 1px solid rgba(51, 255, 51, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .page-header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .logo-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.85rem;
+            color: #b7ffb7;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .logo-link:hover {
+            color: #d7ffd7;
+            transform: translateY(-1px);
+        }
+
+        .logo-link img {
+            width: 36px;
+            height: 36px;
+            object-fit: cover;
+            object-position: center 32%;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(51, 255, 51, 0.24);
+            transition: box-shadow 0.2s ease;
+        }
+
+        .logo-link:hover img {
+            box-shadow: 0 0 28px rgba(51, 255, 51, 0.35);
+        }
+
+        .logo-link span {
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .nav-toggle {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            flex-direction: column;
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            border: 1px solid rgba(51, 255, 51, 0.32);
+            background: rgba(0, 0, 0, 0.42);
+            color: #dfffdc;
+            cursor: pointer;
+            box-shadow: 0 0 18px rgba(51, 255, 51, 0.12);
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            border-radius: 999px;
+            background: currentColor;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .nav-toggle.is-open span:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        .nav-toggle.is-open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.is-open span:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+
+        .nav-links a {
+            color: #9cff9c;
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 0.55rem 0.75rem;
+            border-radius: 999px;
+            transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(51, 255, 51, 0.18);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 25px rgba(51, 255, 51, 0.18);
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--neon-green);
+            outline-offset: 3px;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 8, 0, 0.95);
+            backdrop-filter: blur(25px);
+            z-index: 9999;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 420px;
+            background: #0d0d0d;
+            border: 1px solid rgba(51, 255, 51, 0.34);
+            box-shadow: 0 0 60px rgba(51, 255, 51, 0.15);
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background: rgba(51, 255, 51, 0.1);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(51, 255, 51, 0.2);
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: #33ff33;
+            border-radius: 50%;
+            margin-right: 15px;
+            box-shadow: 0 0 10px #33ff33;
+            animation: pulse 2s infinite;
+        }
+
+        .terminal-title {
+            flex-grow: 1;
+            color: #33ff33;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
+            font-size: 0.65rem;
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #fff;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.02);
+            transition: 0.4s;
+        }
+
+        .contact-item:hover {
+            border-color: #33ff33;
+            background: rgba(51, 255, 51, 0.05);
+            transform: translateX(10px);
+            box-shadow: 0 0 18px rgba(51, 255, 51, 0.18);
+        }
+
+        .icon-box {
+            width: 40px;
+            text-align: center;
+            font-size: 1.8rem;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .label-box {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.2rem;
+        }
+
+        .main-label {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .sub-label {
+            color: #6d8b6d;
+            font-size: 0.75rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .wa:hover .icon-box i {
+            color: #25D366;
+        }
+
+        .phone:hover .icon-box i {
+            color: #34b7f1;
+        }
+
+        .email:hover .icon-box i {
+            color: #ff3333;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 18px;
+            cursor: pointer;
+            color: #33ff33;
+            font-size: 1.5rem;
+            line-height: 1;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+            color: #fff;
+        }
+
+        .page-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.45rem 0.9rem;
+            border: 1px solid rgba(51, 255, 51, 0.28);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.04);
+            color: #caffca;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-family: var(--mono);
+            margin-bottom: 1rem;
+        }
+
+        .page-title {
+            margin: 0 0 1rem;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-shadow: 0 0 22px rgba(51, 255, 51, 0.22);
+        }
+
+        .page-copy {
+            max-width: 800px;
+            margin: 0 0 2.2rem;
+            color: var(--text-dim);
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        .catalog-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0 0 1.4rem;
+        }
+
+        .catalog-nav a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.65rem 0.95rem;
+            border-radius: 999px;
+            border: 1px solid rgba(51, 255, 51, 0.16);
+            background: rgba(255, 255, 255, 0.03);
+            color: #d8ffd8;
+            text-decoration: none;
+            font-family: var(--mono);
+            font-size: 0.76rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .catalog-stack {
+            display: grid;
+            gap: 1.3rem;
+        }
+
+        .catalog-section {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .catalog-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            padding: 1rem 1.1rem;
+            border-radius: 22px;
+            border: 1px solid rgba(51, 255, 51, 0.14);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .catalog-label {
+            display: block;
+            margin-bottom: 0.45rem;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #9fe6c5;
+        }
+
+        .catalog-head h2 {
+            margin: 0;
+            color: #f0fff0;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+        }
+
+        .catalog-head p {
+            margin: 0.55rem 0 0;
+            max-width: 44rem;
+            color: #b7d9b6;
+            line-height: 1.7;
+        }
+
+        .catalog-note {
+            max-width: 18rem;
+            color: #dfffdc;
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            line-height: 1.7;
+            letter-spacing: 0.04em;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .console-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr);
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .tool-card {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 24px;
+            padding: 1.75rem;
+            box-shadow: inset 0 0 24px rgba(0, 255, 0, 0.05), 0 10px 28px rgba(0, 0, 0, 0.16);
+            backdrop-filter: blur(12px);
+            transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 10, 0, 0.08), rgba(0, 10, 0, 0.72));
+            pointer-events: none;
+        }
+
+        .tool-card>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .tool-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .tool-brand {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 56px;
+            height: 56px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, rgba(123, 255, 191, 0.18), rgba(127, 231, 255, 0.08));
+            color: #effff3;
+            font-family: var(--mono);
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            box-shadow: 0 0 18px rgba(123, 255, 191, 0.1);
+        }
+
+        .tool-track {
+            color: #9de8cb;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-6px) scale(1.03);
+            border-color: rgba(51, 255, 51, 0.35);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22), 0 0 40px rgba(51, 255, 51, 0.35);
+        }
+
+        .tool-name {
+            margin: 0 0 1rem;
+            font-size: 1.45rem;
+            letter-spacing: 0.07em;
+            color: #e5ffe5;
+        }
+
+        .tool-visual {
+            height: 146px;
+            border-radius: 18px;
+            border: 1px solid rgba(51, 255, 51, 0.12);
+            background-size: cover;
+            background-position: center;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+        }
+
+        .tool-neural {
+            background-image: linear-gradient(180deg, rgba(0, 12, 0, 0.06), rgba(0, 12, 0, 0.58)), url('https://images.pexels.com/photos/8386437/pexels-photo-8386437.jpeg?auto=compress&cs=tinysrgb&w=1200');
+        }
+
+        .tool-data {
+            background-image: linear-gradient(180deg, rgba(0, 12, 0, 0.06), rgba(0, 12, 0, 0.58)), url('https://images.pexels.com/photos/8442027/pexels-photo-8442027.jpeg?auto=compress&cs=tinysrgb&w=1200');
+        }
+
+        .tool-chat {
+            background-image: linear-gradient(180deg, rgba(0, 12, 0, 0.06), rgba(0, 12, 0, 0.58)), url('https://images.pexels.com/photos/9784238/pexels-photo-9784238.jpeg?auto=compress&cs=tinysrgb&w=1200');
+        }
+
+        .tool-quantum {
+            background-image: linear-gradient(180deg, rgba(0, 12, 0, 0.06), rgba(0, 12, 0, 0.58)), url('https://images.pexels.com/photos/15410078/pexels-photo-15410078.jpeg?auto=compress&cs=tinysrgb&w=1200');
+        }
+
+        .tool-vision {
+            background-image: linear-gradient(180deg, rgba(0, 12, 0, 0.06), rgba(0, 12, 0, 0.58)), url('https://images.pexels.com/photos/12899149/pexels-photo-12899149.jpeg?auto=compress&cs=tinysrgb&w=1200');
+        }
+
+        .tool-nlp {
+            background-image: linear-gradient(180deg, rgba(0, 12, 0, 0.06), rgba(0, 12, 0, 0.58)), url('https://images.pexels.com/photos/5212666/pexels-photo-5212666.jpeg?auto=compress&cs=tinysrgb&w=1200');
+        }
+
+        .tool-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+            margin-bottom: 0.95rem;
+        }
+
+        .tool-chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.45rem 0.8rem;
+            border-radius: 999px;
+            border: 1px solid rgba(51, 255, 51, 0.16);
+            background: rgba(255, 255, 255, 0.04);
+            color: #d8ffd8;
+            font-size: 0.74rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-family: var(--mono);
+        }
+
+        .tool-desc {
+            margin: 0 0 1.5rem;
+            color: #c8f3c8;
+            line-height: 1.75;
+            opacity: 0.92;
+        }
+
+        .tool-usecase {
+            margin: -0.8rem 0 1.2rem;
+            color: #9dcab0;
+            line-height: 1.6;
+            font-size: 0.88rem;
+        }
+
+        .tool-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            align-items: center;
+        }
+
+        .tool-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1rem;
+            border-radius: 999px;
+            border: 1px solid rgba(51, 255, 51, 0.16);
+            background: rgba(255, 255, 255, 0.03);
+            color: #d8ffd8;
+            text-decoration: none;
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, rgba(140, 255, 140, 0.96), rgba(90, 235, 90, 0.84));
+            color: #021102;
+            padding: 0.95rem 1.6rem;
+            border-radius: 999px;
+            border: none;
+            text-decoration: none;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.24s ease, box-shadow 0.24s ease;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(51, 255, 51, 0.18);
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: translateY(-2px) scale(1);
+            }
+
+            50% {
+                transform: translateY(-2px) scale(1.05);
+            }
+        }
+
+        .terminal-card {
+            margin-top: 2rem;
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 24px;
+            padding: 1.75rem;
+            box-shadow: inset 0 0 24px rgba(0, 255, 0, 0.05);
+            backdrop-filter: blur(12px);
+        }
+
+        .terminal {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(51, 255, 51, 0.16);
+            padding: 1rem;
+            height: 200px;
+            overflow-y: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            color: #0f0;
+            border-radius: 12px;
+        }
+
+        .terminal::before {
+            content: 'user@ai-console:~$ ';
+            color: #0f0;
+        }
+
+        .log-entry {
+            margin: 0.25rem 0;
+        }
+
+        .cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0 0;
+        }
+
+        .cta-row a,
+        .cta-row button {
+            background: linear-gradient(135deg, rgba(140, 255, 140, 0.96), rgba(90, 235, 90, 0.84));
+            color: #021102;
+            padding: 0.95rem 1.6rem;
+            border-radius: 999px;
+            border: none;
+            text-decoration: none;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.24s ease, box-shadow 0.24s ease, filter 0.24s ease;
+        }
+
+        .cta-row a:hover,
+        .cta-row button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(51, 255, 51, 0.18);
+            filter: saturate(1.08);
+        }
+
+        .session-banner {
+            margin: 0 0 1.5rem;
+            padding: 1rem 1.2rem;
+            border-radius: 18px;
+            border: 1px solid rgba(51, 255, 51, 0.16);
+            background: rgba(0, 14, 0, 0.52);
+            color: #ddffdd;
+            line-height: 1.65;
+            box-shadow: inset 0 0 20px rgba(51, 255, 51, 0.05);
+        }
+
+        .session-banner.is-pending {
+            color: #d7ffd7;
+        }
+
+        .session-banner.is-success {
+            border-color: rgba(51, 255, 120, 0.28);
+            box-shadow: 0 0 24px rgba(51, 255, 120, 0.12);
+        }
+
+        .session-banner.is-error {
+            color: #ffe3e3;
+            background: rgba(90, 18, 18, 0.74);
+            border-color: rgba(255, 90, 90, 0.28);
+            box-shadow: 0 0 24px rgba(255, 90, 90, 0.12);
+        }
+
+        .rail-card,
+        .manifest-card,
+        .visual-sources-card,
+        .command-ribbon {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 24px;
+            box-shadow: inset 0 0 24px rgba(0, 255, 0, 0.05);
+            backdrop-filter: blur(12px);
+        }
+
+        .rail-stack {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .rail-card,
+        .manifest-card,
+        .visual-sources-card {
+            padding: 1.35rem;
+        }
+
+        .rail-card h3,
+        .manifest-card h3,
+        .visual-sources-card h3 {
+            margin: 0 0 0.8rem;
+            color: #ebffeb;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.92rem;
+        }
+
+        .telemetry-grid,
+        .compare-values {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.8rem;
+        }
+
+        .telemetry-card,
+        .compare-panel,
+        .history-card {
+            padding: 0.95rem 1rem;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(51, 255, 51, 0.1);
+        }
+
+        .telemetry-card span,
+        .compare-label,
+        .history-card span,
+        .manifest-caption,
+        .source-links a {
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-family: var(--mono);
+        }
+
+        .telemetry-card span,
+        .manifest-caption,
+        .compare-label,
+        .history-card span {
+            color: #94c394;
+        }
+
+        .telemetry-card strong,
+        .history-card strong,
+        .compare-panel strong {
+            display: block;
+            margin: 0.35rem 0;
+            color: #f0fff0;
+        }
+
+        .history-list,
+        .compare-list {
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .history-card.is-selected {
+            border-color: rgba(51, 255, 51, 0.34);
+            box-shadow: 0 0 24px rgba(51, 255, 51, 0.12);
+        }
+
+        .history-card.is-secondary {
+            border-color: rgba(122, 230, 255, 0.34);
+            box-shadow: 0 0 24px rgba(122, 230, 255, 0.12);
+        }
+
+        .history-actions,
+        .manifest-actions,
+        .source-links,
+        .command-ribbon-inner {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .history-action,
+        .manifest-action,
+        .command-chip,
+        .source-links a {
+            padding: 0.58rem 0.9rem;
+            border-radius: 999px;
+            border: 1px solid rgba(51, 255, 51, 0.16);
+            background: rgba(255, 255, 255, 0.03);
+            color: #d8ffd8;
+            text-decoration: none;
+        }
+
+        .history-action,
+        .manifest-action {
+            cursor: pointer;
+        }
+
+        .manifest-card pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            color: #cdf4cd;
+            line-height: 1.6;
+            font-size: 0.88rem;
+            font-family: var(--mono);
+        }
+
+        .compare-row {
+            padding: 0.95rem 1rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            background: rgba(255, 255, 255, 0.025);
+            display: grid;
+            gap: 0.7rem;
+        }
+
+        .compare-row.is-changed {
+            border-color: rgba(51, 255, 51, 0.2);
+            box-shadow: 0 0 18px rgba(51, 255, 51, 0.08);
+        }
+
+        .compare-empty,
+        .manifest-empty {
+            padding: 1rem;
+            border-radius: 16px;
+            border: 1px dashed rgba(51, 255, 51, 0.16);
+            color: #92bd92;
+            line-height: 1.7;
+        }
+
+        .command-ribbon {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto 1.5rem;
+            padding: 0.9rem 1rem;
+        }
+
+        .command-chip span {
+            color: #ecffec;
+            margin-right: 0.35rem;
+        }
+
+        .toast-stack {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 40;
+            display: grid;
+            gap: 0.7rem;
+            width: min(320px, calc(100vw - 32px));
+        }
+
+        .toast-item {
+            padding: 0.95rem 1rem;
+            border-radius: 16px;
+            border: 1px solid rgba(51, 255, 51, 0.16);
+            background: rgba(0, 10, 0, 0.88);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.32);
+        }
+
+        .toast-item strong,
+        .toast-item span {
+            display: block;
+        }
+
+        .toast-item span {
+            margin-top: 0.25rem;
+            color: #c7e7c7;
+            line-height: 1.55;
+        }
+
+        .command-palette {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 8, 0, 0.78);
+            backdrop-filter: blur(18px);
+            display: none;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 8vh 1rem 1rem;
+            z-index: 50;
+        }
+
+        .command-palette.is-open {
+            display: flex;
+        }
+
+        .command-panel {
+            width: min(760px, 100%);
+            border-radius: 24px;
+            border: 1px solid rgba(51, 255, 51, 0.18);
+            background: rgba(0, 10, 0, 0.92);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.34);
+            overflow: hidden;
+        }
+
+        .command-panel input {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: none;
+            border-bottom: 1px solid rgba(51, 255, 51, 0.12);
+            background: rgba(255, 255, 255, 0.02);
+            color: #eaffea;
+            font-size: 1rem;
+        }
+
+        .command-list {
+            display: grid;
+            gap: 0.4rem;
+            padding: 0.8rem;
+            max-height: 55vh;
+            overflow: auto;
+        }
+
+        .command-item {
+            padding: 0.9rem 1rem;
+            border-radius: 16px;
+            border: 1px solid transparent;
+            background: rgba(255, 255, 255, 0.03);
+            color: #dfffdc;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .command-item.is-active {
+            border-color: rgba(51, 255, 51, 0.22);
+            background: rgba(51, 255, 51, 0.1);
+        }
+
+        .command-item strong,
+        .command-item span {
+            display: block;
+        }
+
+        .command-item span {
+            margin-top: 0.25rem;
+            color: #b8d8b8;
+        }
+
+        .reveal-target {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.45s ease, transform 0.45s ease;
+        }
+
+        .reveal-target.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .download-btn:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .download-btn:disabled:hover {
+            animation: none;
+            transform: none;
+            box-shadow: none;
+        }
+
+        footer {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 1.5rem 2rem;
+            color: #8cff8c;
+            text-align: center;
+            opacity: 0.75;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-family: var(--mono);
+        }
+
+        @media (max-width: 960px) {
+
+            .console-grid,
+            .telemetry-grid,
+            .compare-values {
+                grid-template-columns: 1fr;
+            }
+
+            .tools-grid {
+                grid-template-columns: repeat(2, minmax(220px, 1fr));
+            }
+        }
+
+        @media (max-width: 700px) {
+            .page-header {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .logo-link {
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+                letter-spacing: 0.12em;
+                font-size: 0.92rem;
+                gap: 0.65rem;
+            }
+
+            .logo-link span {
+                white-space: normal;
+            }
+
+            .nav-toggle {
+                display: inline-flex;
+                align-self: flex-end;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+                justify-content: center;
+                gap: 0.5rem;
+                padding-top: 0.35rem;
+            }
+
+            .nav-links.is-open {
+                display: flex;
+            }
+
+            .nav-links a {
+                font-size: 0.84rem;
+                padding: 0.55rem 0.7rem;
+                text-align: center;
+            }
+
+            .page-content {
+                padding: 2rem 1rem 3rem;
+            }
+
+            .page-kicker {
+                font-size: 0.68rem;
+                letter-spacing: 0.12em;
+            }
+
+            .page-title {
+                font-size: clamp(2rem, 11vw, 2.8rem);
+                letter-spacing: 0.12em;
+            }
+
+            .contact-grid {
+                padding: 20px;
+            }
+
+            .contact-item {
+                padding: 16px;
+            }
+
+            .cta-row {
+                flex-direction: column;
+            }
+
+            .cta-row a,
+            .cta-row button {
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .catalog-head,
+            .tool-card-header,
+            .tool-actions {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .command-ribbon {
+                margin: 0 1rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="video-container">
+        <video autoplay muted loop playsinline id="bg-video">
+            <source src="assets/bg-animation.mp4" type="video/mp4">
+            <source src="assets/cyber-animation.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="overlay"></div>
+    </div>
+    <header>
+        <div class="page-header">
+            <a class="logo-link" href="profile.html">
+                <img src="AI.jpg" alt="AI logo" />
+                <span>Floscar Vanguard</span>
+            </a>
+            <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false"
+                aria-controls="site-nav"><span></span><span></span><span></span></button>
+            <nav class="nav-links" id="site-nav">
+                <a href="home.html">Home</a>
+                <a href="home.html#features">Features</a>
+                <a href="login.html">Login</a>
+                <a href="trends.html">Trends</a>
+                <a href="self-discovery.html">Self-Discovery</a>
+                <a href="tools.html">Tools</a>
+                <a href="profile.html">Profile</a>
+                <a href="javascript:void(0)" onclick="openContactModal()">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <main class="page-content">
+        <p class="page-kicker">Access Matrix // Secure Tooling Layer</p>
+        <h1 class="page-title">AI Tools Console</h1>
+        <p class="page-copy">A research-driven catalog of real AI consoles, local runtimes, and interaction layers. Open
+            official sites, inspect structured tool packets, and keep a reusable history of serious AI software worth
+            installing.</p>
+        <div class="catalog-nav">
+            <a href="#local-apps">Local Apps</a>
+            <a href="#self-hosted">Workspace Consoles</a>
+            <a href="#developer-stack">Developer Stack</a>
+        </div>
+        <div class="session-banner is-pending" id="tools-session-status" role="status" aria-live="polite">Checking
+            account sync for saved tool packets...</div>
+        <div class="console-grid">
+            <div>
+                <div class="catalog-stack">
+                    <section class="catalog-section" id="local-apps">
+                        <div class="catalog-head reveal-target">
+                            <div>
+                                <span class="catalog-label">Category 01</span>
+                                <h2>Local AI Apps</h2>
+                                <p>For users who want a native desktop surface for chatting with local models, managing
+                                    downloads, and testing assistant workflows without assembling a stack from scratch.
+                                </p>
+                            </div>
+                            <div class="catalog-note">Best for solo builders, offline-first workflows, and rapid local
+                                experimentation.</div>
+                        </div>
+                        <div class="tools-grid">
+                            <div class="tool-card reveal-target">
+                                <div class="tool-visual tool-neural" aria-hidden="true"></div>
+                                <div class="tool-card-header">
+                                    <div class="tool-brand">JN</div>
+                                    <div class="tool-track">Local assistant desktop</div>
+                                </div>
+                                <div>
+                                    <div class="tool-meta">
+                                        <span class="tool-chip">Desktop App</span>
+                                        <span class="tool-chip">Local LLM</span>
+                                    </div>
+                                    <h2 class="tool-name">Jan</h2>
+                                    <p class="tool-desc">A polished open-source local AI app for chatting with models on
+                                        your own machine, managing assistants, and exploring personal AI workflows
+                                        without depending on a browser tab alone.</p>
+                                    <p class="tool-usecase">Use this when you want a local-first ChatGPT-style app with
+                                        better ownership of models and workflow state.</p>
+                                </div>
+                                <div class="tool-actions">
+                                    <button class="download-btn" data-tool="Jan">Open Official</button>
+                                    <a class="tool-link" href="https://jan.ai/" target="_blank"
+                                        rel="noopener noreferrer">Official Site</a>
+                                </div>
+                            </div>
+                            <div class="tool-card reveal-target">
+                                <div class="tool-visual tool-data" aria-hidden="true"></div>
+                                <div class="tool-card-header">
+                                    <div class="tool-brand">LM</div>
+                                    <div class="tool-track">Local model lab</div>
+                                </div>
+                                <div>
+                                    <div class="tool-meta">
+                                        <span class="tool-chip">Desktop Runtime</span>
+                                        <span class="tool-chip">Model Lab</span>
+                                    </div>
+                                    <h2 class="tool-name">LM Studio</h2>
+                                    <p class="tool-desc">A mature local model workstation for downloading, serving,
+                                        testing, and tuning open models with a clean interface and developer-friendly
+                                        inference controls.</p>
+                                    <p class="tool-usecase">Use this when you need a stronger local inference
+                                        workstation and want to inspect, serve, and compare models quickly.</p>
+                                </div>
+                                <div class="tool-actions">
+                                    <button class="download-btn" data-tool="LM Studio">Open Official</button>
+                                    <a class="tool-link" href="https://lmstudio.ai/" target="_blank"
+                                        rel="noopener noreferrer">Official Site</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="catalog-section" id="self-hosted">
+                        <div class="catalog-head reveal-target">
+                            <div>
+                                <span class="catalog-label">Category 02</span>
+                                <h2>Workspace Consoles</h2>
+                                <p>For teams or advanced operators who want a browser-accessible AI control layer,
+                                    document workflows, retrieval, and multi-session orchestration under their own
+                                    environment.</p>
+                            </div>
+                            <div class="catalog-note">Best for shared workspaces, internal deployments, and AI knowledge
+                                operations.</div>
+                        </div>
+                        <div class="tools-grid">
+                            <div class="tool-card reveal-target">
+                                <div class="tool-visual tool-chat" aria-hidden="true"></div>
+                                <div class="tool-card-header">
+                                    <div class="tool-brand">OW</div>
+                                    <div class="tool-track">Self-hosted UI layer</div>
+                                </div>
+                                <div>
+                                    <div class="tool-meta">
+                                        <span class="tool-chip">Self-Hosted</span>
+                                        <span class="tool-chip">Chat UI</span>
+                                    </div>
+                                    <h2 class="tool-name">Open WebUI</h2>
+                                    <p class="tool-desc">A serious self-hosted interface for interacting with local and
+                                        remote models, ideal for users who want a production-feeling chat surface with
+                                        documents, tools, and admin controls.</p>
+                                    <p class="tool-usecase">Use this when you want a controlled web console for local or
+                                        remote models with a stronger admin and user surface.</p>
+                                </div>
+                                <div class="tool-actions">
+                                    <button class="download-btn" data-tool="Open WebUI">Open Official</button>
+                                    <a class="tool-link" href="https://openwebui.com/" target="_blank"
+                                        rel="noopener noreferrer">Official Site</a>
+                                </div>
+                            </div>
+                            <div class="tool-card reveal-target">
+                                <div class="tool-visual tool-quantum" aria-hidden="true"></div>
+                                <div class="tool-card-header">
+                                    <div class="tool-brand">AL</div>
+                                    <div class="tool-track">RAG workspace</div>
+                                </div>
+                                <div>
+                                    <div class="tool-meta">
+                                        <span class="tool-chip">Workspace Agent</span>
+                                        <span class="tool-chip">RAG Layer</span>
+                                    </div>
+                                    <h2 class="tool-name">AnythingLLM</h2>
+                                    <p class="tool-desc">A practical local AI workspace for chat, documents, retrieval,
+                                        and agent-style workflows when users need more than a raw inference window.</p>
+                                    <p class="tool-usecase">Use this when your priority is document grounding, retained
+                                        context, and a task-oriented AI workspace.</p>
+                                </div>
+                                <div class="tool-actions">
+                                    <button class="download-btn" data-tool="AnythingLLM">Open Official</button>
+                                    <a class="tool-link" href="https://anythingllm.com/" target="_blank"
+                                        rel="noopener noreferrer">Official Site</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="catalog-section" id="developer-stack">
+                        <div class="catalog-head reveal-target">
+                            <div>
+                                <span class="catalog-label">Category 03</span>
+                                <h2>Developer Stack</h2>
+                                <p>For builders who want the runtime and editor-side pieces that power local model
+                                    execution, coding assistants, and programmable AI integrations.</p>
+                            </div>
+                            <div class="catalog-note">Best for coding, local APIs, scriptable automation, and
+                                editor-native AI workflows.</div>
+                        </div>
+                        <div class="tools-grid">
+                            <div class="tool-card reveal-target">
+                                <div class="tool-visual tool-vision" aria-hidden="true"></div>
+                                <div class="tool-card-header">
+                                    <div class="tool-brand">OL</div>
+                                    <div class="tool-track">Runtime backbone</div>
+                                </div>
+                                <div>
+                                    <div class="tool-meta">
+                                        <span class="tool-chip">Model Runtime</span>
+                                        <span class="tool-chip">CLI</span>
+                                    </div>
+                                    <h2 class="tool-name">Ollama</h2>
+                                    <p class="tool-desc">The default local runtime many developers use to pull, serve,
+                                        and script open models from the terminal or through apps layered on top of it.
+                                    </p>
+                                    <p class="tool-usecase">Use this when you need a dependable local API/runtime that
+                                        other AI apps and scripts can build on.</p>
+                                </div>
+                                <div class="tool-actions">
+                                    <button class="download-btn" data-tool="Ollama">Open Official</button>
+                                    <a class="tool-link" href="https://ollama.com/" target="_blank"
+                                        rel="noopener noreferrer">Official Site</a>
+                                </div>
+                            </div>
+                            <div class="tool-card reveal-target">
+                                <div class="tool-visual tool-nlp" aria-hidden="true"></div>
+                                <div class="tool-card-header">
+                                    <div class="tool-brand">CT</div>
+                                    <div class="tool-track">Editor-side agent</div>
+                                </div>
+                                <div>
+                                    <div class="tool-meta">
+                                        <span class="tool-chip">IDE Extension</span>
+                                        <span class="tool-chip">Coding Agent</span>
+                                    </div>
+                                    <h2 class="tool-name">Continue</h2>
+                                    <p class="tool-desc">A developer-facing AI coding layer that connects IDE workflows
+                                        to local or remote models for autocomplete, chat, edits, and codebase
+                                        interaction.</p>
+                                    <p class="tool-usecase">Use this when you want coding assistance embedded directly
+                                        into VS Code or JetBrains instead of a separate console.</p>
+                                </div>
+                                <div class="tool-actions">
+                                    <button class="download-btn" data-tool="Continue">Open Official</button>
+                                    <a class="tool-link" href="https://www.continue.dev/" target="_blank"
+                                        rel="noopener noreferrer">Official Site</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="manifest-card reveal-target" style="margin-top:1.5rem;">
+                    <h3>Intel Packet Console</h3>
+                    <div class="manifest-caption" id="manifestCaption">Awaiting official tool access event.</div>
+                    <pre
+                        id="manifestPreview">No tool packet loaded yet. Open an official tool page to inspect its packet, copy it, or compare it against another entry in your research history.</pre>
+                    <div class="manifest-actions" style="margin-top:1rem;">
+                        <button class="manifest-action" type="button" id="copyManifestBtn">Copy Packet</button>
+                        <button class="manifest-action" type="button" id="shareManifestBtn">Share Packet</button>
+                    </div>
+                </div>
+            </div>
+            <aside class="rail-stack">
+                <div class="rail-card reveal-target">
+                    <h3>Tool Telemetry</h3>
+                    <div class="telemetry-grid">
+                        <div class="telemetry-card">
+                            <span>Sync State</span>
+                            <strong id="telemetrySessionState">Pending</strong>
+                            <div id="telemetrySessionNote">Checking account sync for saved packets.</div>
+                        </div>
+                        <div class="telemetry-card">
+                            <span>Packets Logged</span>
+                            <strong id="telemetryDownloadCount">0</strong>
+                            <div id="telemetryDownloadNote">No tool packets captured yet.</div>
+                        </div>
+                        <div class="telemetry-card">
+                            <span>Latest Tool</span>
+                            <strong id="telemetryLatestTool">Awaiting</strong>
+                            <div id="telemetryLatestNote">The most recent opened tool packet will appear here.</div>
+                        </div>
+                        <div class="telemetry-card">
+                            <span>Compare State</span>
+                            <strong id="telemetryCompareState">Idle</strong>
+                            <div id="telemetryCompareNote">Select two tool packets to inspect deltas.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rail-card reveal-target">
+                    <h3>Recent Tool Packets</h3>
+                    <div class="history-list" id="downloadHistoryList">
+                        <div class="history-card">
+                            <strong>No packets stored yet</strong>
+                            <div>Open a real tool page to build recall and compare history.</div>
+                            <span>Awaiting first packet</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="rail-card reveal-target">
+                    <h3>Compare Console</h3>
+                    <div class="compare-list" id="compareConsole">
+                        <div class="compare-empty">Select two saved tool packets to compare track, description,
+                            platforms, and install surfaces.</div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+        <div class="cta-row">
+            <a href="home.html">Return Home</a>
+            <a href="trends.html">Explore Trends</a>
+        </div>
+    </main>
+    <div class="command-ribbon">
+        <div class="command-ribbon-inner">
+            <div class="command-chip"><span>/</span> Command Palette</div>
+            <div class="command-chip"><span>D</span> Open Selected</div>
+            <div class="command-chip"><span>C</span> Copy Packet</div>
+            <div class="command-chip"><span>S</span> Share Packet</div>
+        </div>
+    </div>
+    <div id="contactModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="terminal-header"><span class="status-dot"></span><span
+                    class="terminal-title">ENCRYPTED_COMMS_HUB_ESTABLISHED</span><span class="close-btn"
+                    onclick="closeContactModal()">&times;</span></div>
+            <div class="contact-grid"><a href="javascript:void(0)" onclick="openWhatsAppContact()"
+                    class="contact-item wa">
+                    <div class="icon-box"><i class="fab fa-whatsapp"></i></div>
+                    <div class="label-box"><span class="main-label">WhatsApp</span><span class="sub-label">Instant App
+                            Redirection</span></div>
+                </a><a href="javascript:void(0)" onclick="openPhoneContact()" class="contact-item phone">
+                    <div class="icon-box"><i class="fas fa-phone-alt"></i></div>
+                    <div class="label-box"><span class="main-label">Direct Line</span><span class="sub-label">Voice
+                            Comms Protocol</span></div>
+                </a><a href="javascript:void(0)" onclick="openEmailContact()" class="contact-item email">
+                    <div class="icon-box"><i class="fas fa-envelope"></i></div>
+                    <div class="label-box"><span class="main-label">Secure Mail</span><span
+                            class="sub-label">vordzorgbeoscar02@gmail.com</span></div>
+                </a></div>
+        </div>
+    </div>
+    <section class="page-content" style="padding-top:0;">
+        <div class="visual-sources-card reveal-target">
+            <h3>Research Notes</h3>
+            <div>This console now focuses on real tools with official sites and install surfaces. The catalog
+                prioritizes serious local AI apps, self-hosted chat layers, developer runtimes, and IDE-facing
+                assistants that users can actually install.</div>
+            <div class="source-links" style="margin-top:0.9rem;">
+                <a href="https://jan.ai/" target="_blank" rel="noopener noreferrer">Jan</a>
+                <a href="https://lmstudio.ai/" target="_blank" rel="noopener noreferrer">LM Studio</a>
+                <a href="https://openwebui.com/" target="_blank" rel="noopener noreferrer">Open WebUI</a>
+                <a href="https://anythingllm.com/" target="_blank" rel="noopener noreferrer">AnythingLLM</a>
+                <a href="https://ollama.com/" target="_blank" rel="noopener noreferrer">Ollama</a>
+                <a href="https://www.continue.dev/" target="_blank" rel="noopener noreferrer">Continue</a>
+            </div>
+        </div>
+    </section>
+    <footer>Floscar Vanguard • AI Tools Console • Real Tool Intel • Futuristic Interface Layer</footer>
+    <div class="toast-stack" id="toastStack" aria-live="polite" aria-atomic="true"></div>
+    <div class="command-palette" id="commandPalette" aria-hidden="true">
+        <div class="command-panel">
+            <input id="commandPaletteInput" type="text" placeholder="Search commands or tools" autocomplete="off">
+            <div class="command-list" id="commandPaletteList"></div>
+        </div>
+    </div>
+    <script>
+        const TOOL_LIBRARY = {
+            'Jan': {
+                name: 'Jan',
+                version: 'Current public desktop release',
+                description: 'Open-source local AI app for chatting with models on your own machine and managing practical assistant workflows.',
+                payload: {
+                    category: 'Local AI Apps',
+                    officialUrl: 'https://jan.ai/',
+                    installSurface: 'Desktop app',
+                    platforms: ['Windows', 'macOS', 'Linux'],
+                    strengths: ['local-first chat', 'assistant personas', 'model management'],
+                    idealFor: 'Users who want a polished local AI app with minimal setup friction.'
+                }
+            },
+            'LM Studio': {
+                name: 'LM Studio',
+                version: 'Current public desktop release',
+                description: 'Local model workstation for downloading, serving, and testing open models with a serious desktop workflow.',
+                payload: {
+                    category: 'Local AI Apps',
+                    officialUrl: 'https://lmstudio.ai/',
+                    installSurface: 'Desktop runtime',
+                    platforms: ['Windows', 'macOS', 'Linux'],
+                    strengths: ['model downloads', 'local serving', 'developer inference controls'],
+                    idealFor: 'Developers who need a local model lab and quick serving workflow.'
+                }
+            },
+            'Open WebUI': {
+                name: 'Open WebUI',
+                version: 'Current public self-hosted release',
+                description: 'Self-hosted AI interaction surface for local and remote models with document, admin, and multi-user workflows.',
+                payload: {
+                    category: 'Workspace Consoles',
+                    officialUrl: 'https://openwebui.com/',
+                    installSurface: 'Self-hosted web console',
+                    platforms: ['Docker', 'Linux server', 'Local network'],
+                    strengths: ['chat UI', 'document flows', 'admin controls'],
+                    idealFor: 'Teams or power users who want a production-feeling AI console under their own control.'
+                }
+            },
+            'AnythingLLM': {
+                name: 'AnythingLLM',
+                version: 'Current public workspace release',
+                description: 'Workspace-oriented local AI layer for retrieval, documents, agent tasks, and persistent knowledge contexts.',
+                payload: {
+                    category: 'Workspace Consoles',
+                    officialUrl: 'https://anythingllm.com/',
+                    installSurface: 'Desktop and self-hosted workspace',
+                    platforms: ['Windows', 'macOS', 'Linux', 'Docker'],
+                    strengths: ['RAG workflows', 'agent tasks', 'workspace memory'],
+                    idealFor: 'Users who want more than chat and need an AI workspace with retained context.'
+                }
+            },
+            'Ollama': {
+                name: 'Ollama',
+                version: 'Current public runtime release',
+                description: 'The dominant local runtime for pulling, serving, and scripting open models from a command line or app stack.',
+                payload: {
+                    category: 'Developer Stack',
+                    officialUrl: 'https://ollama.com/',
+                    installSurface: 'CLI runtime',
+                    platforms: ['Windows', 'macOS', 'Linux'],
+                    strengths: ['model runtime', 'CLI control', 'API serving'],
+                    idealFor: 'Builders who want a dependable local inference backbone.'
+                }
+            },
+            'Continue': {
+                name: 'Continue',
+                version: 'Current public extension release',
+                description: 'IDE-native AI coding layer for autocomplete, chat, edits, and codebase interaction across local or hosted models.',
+                payload: {
+                    category: 'Developer Stack',
+                    officialUrl: 'https://www.continue.dev/',
+                    installSurface: 'IDE extension',
+                    platforms: ['VS Code', 'JetBrains'],
+                    strengths: ['coding chat', 'inline edits', 'local model support'],
+                    idealFor: 'Developers who want AI interaction embedded directly into the editor.'
+                }
+            }
+        };
+
+        const STORAGE_KEYS = {
+            history: 'floscar-tools-download-history',
+            lastManifest: 'floscar-tools-last-manifest'
+        };
+
+        const sessionStatus = document.getElementById('tools-session-status');
+        const toastStack = document.getElementById('toastStack');
+        const manifestPreview = document.getElementById('manifestPreview');
+        const manifestCaption = document.getElementById('manifestCaption');
+        const commandPalette = document.getElementById('commandPalette');
+        const commandPaletteInput = document.getElementById('commandPaletteInput');
+        const commandPaletteList = document.getElementById('commandPaletteList');
+        let hasActiveSession = false;
+        const uiState = {
+            activeManifest: null,
+            compareSelection: [],
+            commandItems: [],
+            filteredCommandItems: [],
+            activeCommandIndex: 0,
+            csrfToken: '',
+            isAuthenticated: false
+        };
+
+        function loadStoredJson(key, fallback) {
+            try {
+                const raw = window.localStorage.getItem(key);
+                return raw ? JSON.parse(raw) : fallback;
+            } catch {
+                return fallback;
+            }
+        }
+
+        function saveStoredJson(key, value) {
+            try {
+                window.localStorage.setItem(key, JSON.stringify(value));
+            } catch {
+                // Ignore storage failures.
+            }
+        }
+
+        function escapeHtml(text) {
+            return String(text || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function showToast(title, message) {
+            if (!toastStack) {
+                return;
+            }
+
+            const toast = document.createElement('div');
+            toast.className = 'toast-item';
+            toast.innerHTML = `<strong>${escapeHtml(title)}</strong><span>${escapeHtml(message)}</span>`;
+            toastStack.appendChild(toast);
+            window.setTimeout(() => toast.remove(), 2600);
+        }
+
+        function normalizeHistoryEntry(entry) {
+            if (!entry || typeof entry !== 'object') {
+                return null;
+            }
+
+            return {
+                id: String(entry.id || `${entry.name || 'tool'}-${entry.downloadedAt || Date.now()}`),
+                name: String(entry.name || 'Unknown Tool'),
+                version: String(entry.version || 'Current public release'),
+                description: String(entry.description || ''),
+                payload: entry.payload && typeof entry.payload === 'object' ? entry.payload : {},
+                downloadedAt: entry.downloadedAt || new Date().toISOString(),
+                fileName: String(entry.fileName || `${String(entry.name || 'tool').replace(/\s+/g, '_').toLowerCase()}.json`)
+            };
+        }
+
+        function isSupportedToolEntry(entry) {
+            return Boolean(entry && TOOL_LIBRARY[String(entry.name || '')]);
+        }
+
+        function getDownloadHistory() {
+            return loadStoredJson(STORAGE_KEYS.history, []).map(normalizeHistoryEntry).filter(isSupportedToolEntry);
+        }
+
+        function saveDownloadHistory(entries) {
+            saveStoredJson(STORAGE_KEYS.history, entries.map(normalizeHistoryEntry).filter(isSupportedToolEntry));
+        }
+
+        function mergeDownloadHistory(...collections) {
+            const seenIds = new Set();
+            return collections
+                .flat()
+                .map(normalizeHistoryEntry)
+                .filter(entry => {
+                    if (!isSupportedToolEntry(entry) || seenIds.has(entry.id)) {
+                        return false;
+                    }
+                    seenIds.add(entry.id);
+                    return true;
+                })
+                .sort((left, right) => new Date(right.downloadedAt).getTime() - new Date(left.downloadedAt).getTime())
+                .slice(0, 8);
+        }
+
+        async function apiRequest(url, options = {}) {
+            const method = (options.method || 'GET').toUpperCase();
+            const response = await fetch(url, {
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(method !== 'GET' && uiState.csrfToken ? { 'X-CSRF-Token': uiState.csrfToken } : {}),
+                    ...(options.headers || {})
+                },
+                ...options
+            });
+
+            const isJson = response.headers.get('content-type')?.includes('application/json');
+            const data = isJson ? await response.json() : null;
+
+            if (data?.csrfToken) {
+                uiState.csrfToken = data.csrfToken;
+            }
+
+            if (!response.ok) {
+                const error = new Error(data?.error || 'Request failed.');
+                error.status = response.status;
+                throw error;
+            }
+
+            return data;
+        }
+
+        function syncLocalDownloadState(latest, history) {
+            const normalizedHistory = mergeDownloadHistory(history || []);
+            const normalizedLatestCandidate = normalizeHistoryEntry(latest);
+            const normalizedLatest = isSupportedToolEntry(normalizedLatestCandidate) ? normalizedLatestCandidate : (normalizedHistory[0] || null);
+
+            saveDownloadHistory(normalizedHistory);
+            if (normalizedLatest) {
+                saveStoredJson(STORAGE_KEYS.lastManifest, normalizedLatest);
+            }
+
+            return { latest: normalizedLatest, history: normalizedHistory };
+        }
+
+        async function hydrateToolHistoryFromServer(profile = null) {
+            if (!uiState.isAuthenticated && !profile) {
+                return;
+            }
+
+            try {
+                const remoteLatest = profile?.toolLatest || null;
+                const remoteHistory = Array.isArray(profile?.toolHistory) ? profile.toolHistory : [];
+                const localLatest = loadStoredJson(STORAGE_KEYS.lastManifest, null);
+                const localHistory = getDownloadHistory();
+                const mergedHistory = mergeDownloadHistory(remoteHistory, localHistory, remoteLatest ? [remoteLatest] : [], localLatest ? [localLatest] : []);
+                const freshest = mergedHistory[0] || normalizeHistoryEntry(remoteLatest) || normalizeHistoryEntry(localLatest);
+                syncLocalDownloadState(freshest, mergedHistory);
+                if (!loadManifestFromUrl() && freshest) {
+                    renderManifest(freshest);
+                }
+                renderHistory();
+            } catch {
+                // Keep local history as fallback.
+            }
+        }
+
+        async function persistManifestToServer(entry) {
+            if (!uiState.isAuthenticated) {
+                return null;
+            }
+
+            try {
+                const response = await apiRequest('/api/tools/history', {
+                    method: 'POST',
+                    body: JSON.stringify({ toolManifest: entry })
+                });
+                return syncLocalDownloadState(response.latest, response.history);
+            } catch (error) {
+                if (error.status === 401) {
+                    uiState.isAuthenticated = false;
+                    return null;
+                }
+
+                throw error;
+            }
+        }
+
+        function formatStamp(value) {
+            return new Date(value).toLocaleString([], { month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' });
+        }
+
+        function readUrlState() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                manifest: params.get('manifest')
+            };
+        }
+
+        function loadManifestFromUrl() {
+            const manifestId = readUrlState().manifest;
+            if (!manifestId) {
+                return false;
+            }
+
+            const target = getDownloadHistory().find(entry => entry.id === manifestId);
+            if (!target) {
+                return false;
+            }
+
+            renderManifest(target);
+            return true;
+        }
+
+        function renderManifest(manifest) {
+            uiState.activeManifest = manifest ? normalizeHistoryEntry(manifest) : null;
+            if (!uiState.activeManifest) {
+                manifestCaption.textContent = 'Awaiting official tool access event.';
+                manifestPreview.textContent = 'No tool packet loaded yet. Open a real tool page to inspect its packet, copy it, or compare it against another saved entry.';
+                return;
+            }
+
+            manifestCaption.textContent = `${uiState.activeManifest.name} // ${uiState.activeManifest.version} // ${formatStamp(uiState.activeManifest.downloadedAt)}`;
+            manifestPreview.textContent = JSON.stringify({
+                name: uiState.activeManifest.name,
+                track: uiState.activeManifest.version,
+                description: uiState.activeManifest.description,
+                payload: uiState.activeManifest.payload
+            }, null, 2);
+            saveStoredJson(STORAGE_KEYS.lastManifest, uiState.activeManifest);
+        }
+
+        function updateTelemetry() {
+            const history = getDownloadHistory();
+            document.getElementById('telemetrySessionState').textContent = hasActiveSession ? 'Synced' : 'Local';
+            document.getElementById('telemetrySessionNote').textContent = hasActiveSession ? 'Opened tool packets will sync into your profile history.' : 'Public research mode is active. Log in if you want packet history on your account.';
+            document.getElementById('telemetryDownloadCount').textContent = String(history.length);
+            document.getElementById('telemetryDownloadNote').textContent = history.length ? `${history.length} packet${history.length === 1 ? '' : 's'} stored for recall and compare.` : 'No tool packets captured yet.';
+            document.getElementById('telemetryLatestTool').textContent = history[0]?.name || 'Awaiting';
+            document.getElementById('telemetryLatestNote').textContent = history[0] ? `${history[0].version} // ${formatStamp(history[0].downloadedAt)}` : 'The most recent opened tool packet will appear here.';
+            document.getElementById('telemetryCompareState').textContent = uiState.compareSelection.length === 2 ? 'Ready' : (uiState.compareSelection.length === 1 ? 'Primed' : 'Idle');
+            document.getElementById('telemetryCompareNote').textContent = uiState.compareSelection.length === 2 ? 'Two packets selected for delta inspection.' : 'Select two tool packets to inspect deltas.';
+        }
+
+        function renderHistory() {
+            const historyList = document.getElementById('downloadHistoryList');
+            const history = getDownloadHistory();
+
+            if (!history.length) {
+                historyList.innerHTML = '<div class="history-card"><strong>No packets stored yet</strong><div>Open a real tool page to build recall and compare history.</div><span>Awaiting first packet</span></div>';
+                updateTelemetry();
+                renderCompareConsole();
+                return;
+            }
+
+            historyList.innerHTML = history.map(entry => {
+                const isPrimary = uiState.compareSelection[0] === entry.id;
+                const isSecondary = uiState.compareSelection[1] === entry.id;
+                return `
+                    <div class="history-card ${isPrimary ? 'is-selected' : ''} ${isSecondary ? 'is-secondary' : ''}">
+                        <strong>${escapeHtml(entry.name)}</strong>
+                        <div>${escapeHtml(entry.description)}</div>
+                        <span>${escapeHtml(entry.version)} // ${escapeHtml(formatStamp(entry.downloadedAt))}</span>
+                        <div class="history-actions" style="margin-top:0.8rem;">
+                            <button class="history-action" type="button" data-action="load" data-id="${escapeHtml(entry.id)}">Load</button>
+                            <button class="history-action" type="button" data-action="compare" data-id="${escapeHtml(entry.id)}">${isPrimary || isSecondary ? 'Selected' : 'Compare'}</button>
+                            <button class="history-action" type="button" data-action="open" data-name="${escapeHtml(entry.name)}">Open Again</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            historyList.querySelectorAll('.history-action').forEach(button => {
+                button.addEventListener('click', async () => {
+                    if (button.dataset.action === 'load') {
+                        const target = history.find(entry => entry.id === button.dataset.id);
+                        renderManifest(target);
+                        showToast('Manifest Loaded', `${target.name} was restored into the manifest console.`);
+                    }
+                    if (button.dataset.action === 'compare') {
+                        toggleCompareSelection(button.dataset.id);
+                    }
+                    if (button.dataset.action === 'open') {
+                        await accessToolResource(button.dataset.name);
+                    }
+                });
+            });
+
+            updateTelemetry();
+            renderCompareConsole();
+        }
+
+        function toggleCompareSelection(entryId) {
+            const nextSelection = [...uiState.compareSelection];
+            const existingIndex = nextSelection.indexOf(entryId);
+            if (existingIndex >= 0) {
+                nextSelection.splice(existingIndex, 1);
+            } else if (nextSelection.length < 2) {
+                nextSelection.push(entryId);
+            } else {
+                nextSelection.shift();
+                nextSelection.push(entryId);
+            }
+            uiState.compareSelection = nextSelection;
+            renderHistory();
+            showToast('Compare Updated', nextSelection.length ? 'Tool compare console updated.' : 'Compare selection cleared.');
+        }
+
+        function renderCompareConsole() {
+            const compareConsole = document.getElementById('compareConsole');
+            const history = getDownloadHistory();
+            const selectedEntries = uiState.compareSelection.map(id => history.find(entry => entry.id === id)).filter(Boolean);
+
+            if (!selectedEntries.length) {
+                compareConsole.innerHTML = '<div class="compare-empty">Select two saved tool packets to compare track, description, install surface, and official endpoints.</div>';
+                return;
+            }
+
+            if (selectedEntries.length === 1) {
+                compareConsole.innerHTML = `<div class="compare-empty">${escapeHtml(selectedEntries[0].name)} is primed. Select one more packet to inspect differences across tracks, descriptions, and official surfaces.</div>`;
+                return;
+            }
+
+            const orderedEntries = [...selectedEntries].sort((left, right) => new Date(left.downloadedAt).getTime() - new Date(right.downloadedAt).getTime());
+            const rows = [
+                { label: 'Name', earlier: orderedEntries[0].name, later: orderedEntries[1].name },
+                { label: 'Track', earlier: orderedEntries[0].version, later: orderedEntries[1].version },
+                { label: 'Description', earlier: orderedEntries[0].description, later: orderedEntries[1].description },
+                { label: 'Install Surface', earlier: orderedEntries[0].payload.installSurface || '', later: orderedEntries[1].payload.installSurface || '' },
+                { label: 'Official URL', earlier: orderedEntries[0].payload.officialUrl || '', later: orderedEntries[1].payload.officialUrl || '' },
+                { label: 'Platforms', earlier: (orderedEntries[0].payload.platforms || []).join(', '), later: (orderedEntries[1].payload.platforms || []).join(', ') }
+            ].map(row => ({ ...row, changed: row.earlier !== row.later }));
+            const changedCount = rows.filter(row => row.changed).length;
+
+            compareConsole.innerHTML = `
+                <div class="compare-row ${changedCount ? 'is-changed' : ''}">
+                    <div class="compare-label">Change Summary</div>
+                    <div>${changedCount} of ${rows.length} tracked tool signals changed between these saved packets.</div>
+                </div>
+                ${rows.map(row => `
+                    <div class="compare-row ${row.changed ? 'is-changed' : ''}">
+                        <div class="compare-label">${escapeHtml(row.label)}</div>
+                        <div class="compare-values">
+                            <div class="compare-panel"><span>Earlier</span><strong>${escapeHtml(row.earlier)}</strong></div>
+                            <div class="compare-panel"><span>Later</span><strong>${escapeHtml(row.later)}</strong></div>
+                        </div>
+                    </div>
+                `).join('')}
+            `;
+        }
+
+        async function storeDownloadedManifest(tool, fileName) {
+            const entry = normalizeHistoryEntry({
+                ...tool,
+                fileName,
+                downloadedAt: new Date().toISOString(),
+                id: `${tool.name}-${Date.now()}`
+            });
+            const nextHistory = [entry, ...getDownloadHistory().filter(item => item.name !== entry.name || item.version !== entry.version)].slice(0, 8);
+            saveDownloadHistory(nextHistory);
+            renderManifest(entry);
+            renderHistory();
+
+            try {
+                const serverState = await persistManifestToServer(entry);
+                if (serverState?.latest) {
+                    renderManifest(serverState.latest);
+                }
+                renderHistory();
+            } catch (error) {
+                showToast('Saved Locally', error.message || 'The account sync failed, but this manifest is still available on this device.');
+            }
+
+            return entry;
+        }
+
+        async function copyCurrentManifest() {
+            if (!uiState.activeManifest) {
+                showToast('No Packet Yet', 'Open or load a tool packet before copying.');
+                return;
+            }
+            await navigator.clipboard.writeText(manifestPreview.textContent);
+            showToast('Packet Copied', `${uiState.activeManifest.name} packet is now on your clipboard.`);
+        }
+
+        async function shareCurrentManifest() {
+            if (!uiState.activeManifest) {
+                showToast('No Packet Yet', 'Open or load a tool packet before sharing.');
+                return;
+            }
+            const shareText = `${uiState.activeManifest.name} // ${uiState.activeManifest.version}\n\n${manifestPreview.textContent}`;
+            if (navigator.share) {
+                await navigator.share({ title: `${uiState.activeManifest.name} Packet`, text: shareText, url: window.location.href });
+                showToast('Packet Shared', 'The active tool packet was sent to the system share sheet.');
+                return;
+            }
+            await navigator.clipboard.writeText(`${shareText}\n\n${window.location.href}`);
+            showToast('Share Link Copied', 'The packet and page link were copied to your clipboard.');
+        }
+
+        function openCommandPalette() {
+            commandPalette.classList.add('is-open');
+            commandPalette.setAttribute('aria-hidden', 'false');
+            filterCommandPalette('');
+            commandPaletteInput.value = '';
+            commandPaletteInput.focus();
+        }
+
+        function closeCommandPalette() {
+            commandPalette.classList.remove('is-open');
+            commandPalette.setAttribute('aria-hidden', 'true');
+        }
+
+        function renderCommandPalette() {
+            if (!uiState.filteredCommandItems.length) {
+                commandPaletteList.innerHTML = '<div class="compare-empty">No matching commands.</div>';
+                return;
+            }
+            commandPaletteList.innerHTML = uiState.filteredCommandItems.map((item, index) => `
+                <button class="command-item ${index === uiState.activeCommandIndex ? 'is-active' : ''}" type="button" data-index="${index}">
+                    <strong>${escapeHtml(item.title)}</strong>
+                    <span>${escapeHtml(item.description)}</span>
+                </button>
+            `).join('');
+            commandPaletteList.querySelectorAll('.command-item').forEach(button => {
+                button.addEventListener('click', async () => {
+                    const item = uiState.filteredCommandItems[Number(button.dataset.index)];
+                    if (item) {
+                        await item.run();
+                        closeCommandPalette();
+                    }
+                });
+            });
+        }
+
+        function filterCommandPalette(query) {
+            const value = query.trim().replace(/^\/+/, '').toLowerCase();
+            uiState.filteredCommandItems = uiState.commandItems.filter(item => !value || item.title.toLowerCase().includes(value) || item.description.toLowerCase().includes(value));
+            uiState.activeCommandIndex = 0;
+            renderCommandPalette();
+        }
+
+        function setupCommandPalette() {
+            uiState.commandItems = [
+                ...Array.from(document.querySelectorAll('.download-btn')).map(button => ({
+                    title: `Open: ${button.dataset.tool}`,
+                    description: 'Open the official site or download page for this researched tool and save an intel packet.',
+                    run: () => accessToolResource(button.dataset.tool)
+                })),
+                { title: 'Copy Packet', description: 'Copy the active tool packet JSON to the clipboard.', run: () => copyCurrentManifest().catch(() => showToast('Copy Failed', 'The browser could not copy the active packet.')) },
+                { title: 'Share Packet', description: 'Share the active tool packet or copy a sharable version.', run: () => shareCurrentManifest().catch(() => showToast('Share Failed', 'The browser could not share the active packet.')) },
+                { title: 'Recheck Sync', description: 'Verify whether account-backed history sync is currently available.', run: checkSession }
+            ];
+
+            commandPaletteInput.addEventListener('input', event => filterCommandPalette(event.target.value));
+            commandPaletteInput.addEventListener('keydown', async event => {
+                if (event.key === 'ArrowDown') {
+                    event.preventDefault();
+                    uiState.activeCommandIndex = Math.min(uiState.activeCommandIndex + 1, Math.max(uiState.filteredCommandItems.length - 1, 0));
+                    renderCommandPalette();
+                }
+                if (event.key === 'ArrowUp') {
+                    event.preventDefault();
+                    uiState.activeCommandIndex = Math.max(uiState.activeCommandIndex - 1, 0);
+                    renderCommandPalette();
+                }
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    const item = uiState.filteredCommandItems[uiState.activeCommandIndex];
+                    if (item) {
+                        await item.run();
+                        closeCommandPalette();
+                    }
+                }
+                if (event.key === 'Escape') {
+                    event.preventDefault();
+                    closeCommandPalette();
+                }
+            });
+            commandPalette.addEventListener('click', event => {
+                if (event.target === commandPalette) {
+                    closeCommandPalette();
+                }
+            });
+        }
+
+        function setupSectionReveals() {
+            const targets = Array.from(document.querySelectorAll('.reveal-target'));
+            if (!('IntersectionObserver' in window)) {
+                targets.forEach(target => target.classList.add('is-visible'));
+                return;
+            }
+            const observer = new IntersectionObserver((entries, revealObserver) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
+                    entry.target.classList.add('is-visible');
+                    revealObserver.unobserve(entry.target);
+                });
+            }, { threshold: 0.18 });
+            targets.forEach(target => observer.observe(target));
+        }
+
+        function setupMobileMenu() {
+            const toggle = document.querySelector('.nav-toggle');
+            const nav = document.querySelector('.nav-links');
+            if (!toggle || !nav) return;
+            const closeMenu = () => {
+                nav.classList.remove('is-open');
+                toggle.classList.remove('is-open');
+                toggle.setAttribute('aria-expanded', 'false');
+            };
+            toggle.addEventListener('click', () => {
+                const willOpen = !nav.classList.contains('is-open');
+                nav.classList.toggle('is-open', willOpen);
+                toggle.classList.toggle('is-open', willOpen);
+                toggle.setAttribute('aria-expanded', String(willOpen));
+            });
+            nav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+            window.addEventListener('resize', () => {
+                if (window.getComputedStyle(toggle).display === 'none') closeMenu();
+            });
+        }
+
+        function openContactModal() { document.getElementById('contactModal').style.display = 'block'; }
+        function closeContactModal() { document.getElementById('contactModal').style.display = 'none'; }
+        function openWhatsAppContact() { const appUrl = 'whatsapp://send?phone=233547912435&text=Hello%20Oscar%2C%20I%20would%20like%20to%20discuss%20a%20project.'; const webUrl = 'https://wa.me/233547912435?text=Hello%20Oscar%2C%20I%20would%20like%20to%20discuss%20a%20project.'; const startedAt = Date.now(); window.location.href = appUrl; window.setTimeout(() => { if (document.visibilityState === 'visible' && Date.now() - startedAt < 1600) { window.open(webUrl, '_blank', 'noopener'); } }, 900); }
+        function openPhoneContact() { const dialUrl = 'tel:+233547912435'; const startedAt = Date.now(); window.location.href = dialUrl; window.setTimeout(() => { if (document.visibilityState === 'visible' && Date.now() - startedAt < 1600) { window.alert('Call Oscar at +233 54 791 2435'); } }, 900); }
+        function openEmailContact() { const mailAppUrl = 'mailto:vordzorgbeoscar02@gmail.com?subject=Project%20Inquiry%20-%20Floscar%20Vanguard'; const webMailUrl = 'https://mail.google.com/mail/?view=cm&fs=1&to=vordzorgbeoscar02@gmail.com&su=Project%20Inquiry%20-%20Floscar%20Vanguard'; const startedAt = Date.now(); window.location.href = mailAppUrl; window.setTimeout(() => { if (document.visibilityState === 'visible' && Date.now() - startedAt < 1600) { window.open(webMailUrl, '_blank', 'noopener'); } }, 900); }
+
+        function setSessionStatus(type, message) {
+            sessionStatus.className = `session-banner ${type ? `is-${type}` : ''}`.trim();
+            sessionStatus.textContent = message;
+            updateTelemetry();
+        }
+
+        function setDownloadButtonsDisabled(disabled) {
+            document.querySelectorAll('.download-btn').forEach(button => {
+                button.disabled = disabled;
+            });
+        }
+
+        async function checkSession() {
+            setSessionStatus('pending', 'Checking account sync for saved tool packets...');
+            setDownloadButtonsDisabled(false);
+
+            try {
+                const data = await apiRequest('/api/session-status');
+
+                if (!data.authenticated) {
+                    throw new Error('anonymous');
+                }
+
+                hasActiveSession = true;
+                uiState.isAuthenticated = true;
+                setSessionStatus('success', 'Account sync verified. Open official tools and save packets into your profile history.');
+                setDownloadButtonsDisabled(false);
+                await hydrateToolHistoryFromServer(data.profile);
+                showToast('Sync Verified', 'Opened tool packets can now sync into your account.');
+            } catch (error) {
+                hasActiveSession = false;
+                uiState.isAuthenticated = false;
+                setSessionStatus('pending', 'Public research mode active. Log in if you want packet history saved to your account.');
+                setDownloadButtonsDisabled(false);
+            }
+        }
+
+        async function accessToolResource(toolName) {
+            const tool = TOOL_LIBRARY[toolName];
+            if (!tool) {
+                showToast('Tool Missing', 'This researched tool is not currently available in the catalog.');
+                return;
+            }
+
+            setSessionStatus('pending', `Opening ${toolName} official access surface...`);
+
+            try {
+                const packet = await storeDownloadedManifest(tool, `${tool.name.replace(/\s+/g, '-').toLowerCase()}-packet.json`);
+                const targetUrl = tool.payload.officialUrl;
+                const popup = window.open(targetUrl, '_blank', 'noopener');
+                if (!popup) {
+                    window.location.href = targetUrl;
+                }
+                setSessionStatus(hasActiveSession ? 'success' : 'pending', hasActiveSession
+                    ? `${toolName} official page opened and packet synced to your account.`
+                    : `${toolName} official page opened. Packet saved locally on this device.`);
+                showToast('Official Tool Opened', `${toolName} was opened from its official source.`);
+                renderManifest(packet);
+            } catch (error) {
+                setSessionStatus('error', error.message);
+                showToast('Open Failed', error.message);
+            }
+        }
+
+        document.querySelectorAll('.download-btn').forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const toolName = btn.getAttribute('data-tool');
+                await accessToolResource(toolName);
+            });
+        });
+
+        document.getElementById('copyManifestBtn').addEventListener('click', () => {
+            copyCurrentManifest().catch(() => showToast('Copy Failed', 'The browser could not copy the active manifest.'));
+        });
+
+        document.getElementById('shareManifestBtn').addEventListener('click', () => {
+            shareCurrentManifest().catch(() => showToast('Share Failed', 'The browser could not share the active manifest.'));
+        });
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            setupMobileMenu();
+            setupCommandPalette();
+            setupSectionReveals();
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                const linkPage = new URL(link.href, window.location.origin).pathname.split('/').pop();
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+
+            const storedManifest = normalizeHistoryEntry(loadStoredJson(STORAGE_KEYS.lastManifest, null));
+            if (storedManifest) {
+                if (isSupportedToolEntry(storedManifest)) {
+                    renderManifest(storedManifest);
+                } else {
+                    saveStoredJson(STORAGE_KEYS.lastManifest, null);
+                }
+            }
+            renderHistory();
+            loadManifestFromUrl();
+
+            await checkSession();
+
+            document.addEventListener('keydown', event => {
+                const activeTag = document.activeElement?.tagName;
+                const isEditable = activeTag === 'INPUT' || activeTag === 'TEXTAREA' || activeTag === 'SELECT';
+                const hasModifier = event.ctrlKey || event.metaKey || event.altKey;
+
+                if (hasModifier) {
+                    return;
+                }
+
+                if (event.key === 'Escape' && commandPalette.classList.contains('is-open')) {
+                    closeCommandPalette();
+                    return;
+                }
+
+                if (!isEditable && event.key === '/' && !commandPalette.classList.contains('is-open')) {
+                    event.preventDefault();
+                    openCommandPalette();
+                    return;
+                }
+
+                if (!isEditable && (event.key === 'c' || event.key === 'C')) {
+                    event.preventDefault();
+                    copyCurrentManifest().catch(() => showToast('Copy Failed', 'The browser could not copy the active packet.'));
+                }
+
+                if (!isEditable && (event.key === 's' || event.key === 'S')) {
+                    event.preventDefault();
+                    shareCurrentManifest().catch(() => showToast('Share Failed', 'The browser could not share the active packet.'));
+                }
+
+                if (!isEditable && (event.key === 'd' || event.key === 'D') && uiState.activeManifest) {
+                    event.preventDefault();
+                    accessToolResource(uiState.activeManifest.name);
+                }
+            });
+        });
+        window.onclick = function (event) { const modal = document.getElementById('contactModal'); if (event.target === modal) { modal.style.display = 'none'; } };
+    </script>
+    <script src="contact-hub.js"></script>
+</body>
+
+</html>

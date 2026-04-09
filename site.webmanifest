@@ -1,0 +1,22 @@
+{
+    "name": "Floscar Vanguard",
+    "short_name": "Floscar",
+    "description": "Futuristic AI strategy, intelligence, tools, and digital architecture platform.",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#020406",
+    "theme_color": "#020406",
+    "icons": [
+        {
+            "src": "/AI.jpg",
+            "sizes": "192x192",
+            "type": "image/jpeg"
+        },
+        {
+            "src": "/AI.jpg",
+            "sizes": "512x512",
+            "type": "image/jpeg"
+        }
+    ]
+}

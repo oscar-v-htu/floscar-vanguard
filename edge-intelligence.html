@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Explore edge intelligence, on-device AI, distributed inference, and low-latency autonomous systems through Floscar Vanguard research signals.">
+    <meta name="theme-color" content="#000000">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Floscar Vanguard">
+    <meta property="og:title" content="Edge Intelligence | Floscar Vanguard">
+    <meta property="og:description"
+        content="Research signals on edge AI, low-latency execution, privacy-aware computation, and distributed intelligence.">
+    <meta property="og:url" content="https://www.floscarvanguard.com/edge-intelligence.html">
+    <meta property="og:image" content="https://www.floscarvanguard.com/AI.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Edge Intelligence | Floscar Vanguard">
+    <meta name="twitter:description"
+        content="Research signals on edge AI, on-device inference, and distributed intelligence.">
+    <link rel="canonical" href="https://www.floscarvanguard.com/edge-intelligence.html">
+    <link rel="icon" href="AI.jpg" type="image/jpeg">
+    <link rel="manifest" href="site.webmanifest">
+    <title>Edge Intelligence | Floscar Vanguard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/fv-polish.css">
+    <script src="assets/fv-polish.js" defer></script>
+    <style>
+        :root {
+            --neon-green: #33ff33;
+            --text-main: #dfffdc;
+            --text-dim: #b6d9b6;
+            --panel-bg: rgba(0, 10, 0, 0.62);
+            --panel-border: rgba(51, 255, 51, 0.16);
+            --mono: 'Courier New', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+            background: #000;
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        ::selection {
+            background: rgba(51, 255, 51, 0.28);
+            color: #031003;
+        }
+
+        .video-container {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        #bg-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.72) 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at top, rgba(51, 255, 51, 0.08), transparent 30%),
+                radial-gradient(circle at right, rgba(51, 255, 51, 0.05), transparent 25%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: linear-gradient(rgba(51, 255, 51, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(51, 255, 51, 0.03) 1px, transparent 1px);
+            background-size: 38px 38px;
+            opacity: 0.22;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            background: rgba(0, 0, 0, 0.7);
+            border-bottom: 1px solid rgba(51, 255, 51, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .page-header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .logo-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.85rem;
+            color: #b7ffb7;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .logo-link:hover {
+            color: #d7ffd7;
+            transform: translateY(-1px);
+        }
+
+        .logo-link img {
+            width: 36px;
+            height: 36px;
+            object-fit: cover;
+            object-position: center 32%;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(51, 255, 51, 0.24);
+            transition: box-shadow 0.2s ease;
+        }
+
+        .logo-link:hover img {
+            box-shadow: 0 0 28px rgba(51, 255, 51, 0.35);
+        }
+
+        .logo-link span {
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .nav-toggle {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            flex-direction: column;
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            border: 1px solid rgba(51, 255, 51, 0.32);
+            background: rgba(0, 0, 0, 0.42);
+            color: #dfffdc;
+            cursor: pointer;
+            box-shadow: 0 0 18px rgba(51, 255, 51, 0.12);
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            border-radius: 999px;
+            background: currentColor;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .nav-toggle.is-open span:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        .nav-toggle.is-open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.is-open span:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+
+        .nav-links a {
+            color: #9cff9c;
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 0.55rem 0.75rem;
+            border-radius: 999px;
+            transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(51, 255, 51, 0.18);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 25px rgba(51, 255, 51, 0.18);
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--neon-green);
+            outline-offset: 3px;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 8, 0, 0.95);
+            backdrop-filter: blur(25px);
+            z-index: 9999;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 420px;
+            background: #0d0d0d;
+            border: 1px solid rgba(51, 255, 51, 0.34);
+            box-shadow: 0 0 60px rgba(51, 255, 51, 0.15);
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background: rgba(51, 255, 51, 0.1);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(51, 255, 51, 0.2);
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: #33ff33;
+            border-radius: 50%;
+            margin-right: 15px;
+            box-shadow: 0 0 10px #33ff33;
+            animation: pulse 2s infinite;
+        }
+
+        .terminal-title {
+            flex-grow: 1;
+            color: #33ff33;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
+            font-size: 0.65rem;
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #fff;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.02);
+            transition: 0.4s;
+        }
+
+        .contact-item:hover {
+            border-color: #33ff33;
+            background: rgba(51, 255, 51, 0.05);
+            transform: translateX(10px);
+            box-shadow: 0 0 18px rgba(51, 255, 51, 0.18);
+        }
+
+        .icon-box {
+            width: 40px;
+            text-align: center;
+            font-size: 1.8rem;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .label-box {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.2rem;
+        }
+
+        .main-label {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .sub-label {
+            color: #6d8b6d;
+            font-size: 0.75rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .wa:hover .icon-box i {
+            color: #25D366;
+        }
+
+        .phone:hover .icon-box i {
+            color: #34b7f1;
+        }
+
+        .email:hover .icon-box i {
+            color: #ff3333;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 18px;
+            cursor: pointer;
+            color: #33ff33;
+            font-size: 1.5rem;
+            line-height: 1;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+            color: #fff;
+        }
+
+        .page-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.45rem 0.9rem;
+            border: 1px solid rgba(51, 255, 51, 0.28);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.04);
+            color: #caffca;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-family: var(--mono);
+            margin-bottom: 1rem;
+        }
+
+        .page-title {
+            margin: 0 0 1rem;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-shadow: 0 0 22px rgba(51, 255, 51, 0.22);
+        }
+
+        .page-copy {
+            max-width: 800px;
+            margin: 0 0 2.2rem;
+            color: var(--text-dim);
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        .section {
+            margin: 3rem 0;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            letter-spacing: 0.1em;
+            margin: 0 0 1rem;
+            color: #e5ffe5;
+        }
+
+        .section p {
+            line-height: 1.75;
+            opacity: 0.92;
+            margin: 0 0 1rem;
+        }
+
+        .research-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .research-list li {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 14px;
+            backdrop-filter: blur(12px);
+            box-shadow: inset 0 0 22px rgba(0, 255, 0, 0.05), 0 8px 24px rgba(0, 0, 0, 0.14);
+        }
+
+        .research-list a {
+            color: #b7ffb7;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .research-list a:hover {
+            text-decoration: underline;
+        }
+
+        .cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0 0;
+        }
+
+        .cta-row a,
+        .cta-row button {
+            background: linear-gradient(135deg, rgba(140, 255, 140, 0.96), rgba(90, 235, 90, 0.84));
+            color: #021102;
+            padding: 0.95rem 1.6rem;
+            border-radius: 999px;
+            border: none;
+            text-decoration: none;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.24s ease, box-shadow 0.24s ease, filter 0.24s ease;
+        }
+
+        .cta-row a:hover,
+        .cta-row button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(51, 255, 51, 0.18);
+            filter: saturate(1.08);
+        }
+
+        footer {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 1.5rem 2rem;
+            color: #8cff8c;
+            text-align: center;
+            opacity: 0.75;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-family: var(--mono);
+        }
+
+        @media (max-width: 700px) {
+            .page-header {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .logo-link {
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+                letter-spacing: 0.12em;
+                font-size: 0.92rem;
+                gap: 0.65rem;
+            }
+
+            .logo-link span {
+                white-space: normal;
+            }
+
+            .nav-toggle {
+                display: inline-flex;
+                align-self: flex-end;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+                justify-content: center;
+                gap: 0.5rem;
+                padding-top: 0.35rem;
+            }
+
+            .nav-links.is-open {
+                display: flex;
+            }
+
+            .nav-links a {
+                font-size: 0.84rem;
+                padding: 0.55rem 0.7rem;
+                text-align: center;
+            }
+
+            .page-content {
+                padding: 2rem 1rem 3rem;
+            }
+
+            .page-kicker {
+                font-size: 0.68rem;
+                letter-spacing: 0.12em;
+            }
+
+            .page-title {
+                font-size: clamp(2rem, 11vw, 2.8rem);
+                letter-spacing: 0.12em;
+            }
+
+            .page-copy {
+                font-size: 0.98rem;
+                line-height: 1.7;
+            }
+
+            .contact-grid {
+                padding: 20px;
+            }
+
+            .contact-item {
+                padding: 16px;
+            }
+
+            .cta-row {
+                flex-direction: column;
+            }
+
+            .cta-row a,
+            .cta-row button {
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="video-container">
+        <video autoplay muted loop playsinline id="bg-video">
+            <source src="assets/bg-animation.mp4" type="video/mp4">
+            <source src="assets/cyber-animation.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="overlay"></div>
+    </div>
+    <header>
+        <div class="page-header">
+            <a class="logo-link" href="profile.html">
+                <img src="AI.jpg" alt="AI logo" />
+                <span>Floscar Vanguard</span>
+            </a>
+            <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false"
+                aria-controls="site-nav"><span></span><span></span><span></span></button>
+            <nav class="nav-links" id="site-nav">
+                <a href="home.html">Home</a>
+                <a href="home.html#features">Features</a>
+                <a href="login.html">Login</a>
+                <a href="trends.html">Trends</a>
+                <a href="self-discovery.html">Self-Discovery</a>
+                <a href="tools.html">Tools</a>
+                <a href="profile.html">Profile</a>
+                <a href="javascript:void(0)" onclick="openContactModal()">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <main class="page-content">
+        <p class="page-kicker">Distributed Systems // Edge Signal Layer</p>
+        <h1 class="page-title">Edge Intelligence</h1>
+        <p class="page-copy">Discover how artificial intelligence is moving to the network edge, enabling real-time
+            processing, reduced latency, and privacy-preserving computations on devices and local servers.</p>
+
+        <div class="section">
+            <h2>What Is Edge Intelligence?</h2>
+            <p>Edge Intelligence refers to the deployment of AI models and processing capabilities at the network edge,
+                closer to data sources like IoT devices, smartphones, and sensors. This paradigm shift reduces reliance
+                on cloud computing, enabling faster responses, lower bandwidth usage, and enhanced privacy.</p>
+            <p>Key benefits include:</p>
+            <ul>
+                <li><strong>Low Latency:</strong> Real-time decision-making for critical applications.</li>
+                <li><strong>Bandwidth Efficiency:</strong> Process data locally to minimize cloud transfers.</li>
+                <li><strong>Privacy & Security:</strong> Keep sensitive data on-device, reducing exposure risks.</li>
+                <li><strong>Scalability:</strong> Support for distributed AI across heterogeneous devices.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Latest Research (2024-2026)</h2>
+            <p>Cutting-edge research in edge intelligence focuses on hardware acceleration, federated learning, and
+                energy-efficient AI deployment:</p>
+            <ul class="research-list">
+                <li><a href="https://arxiv.org/abs/2604.04507">DHFP-PE: Dual-Precision Hybrid Floating Point Processing
+                        Element for AI Acceleration</a> - Hardware for efficient edge AI processing.</li>
+                <li><a href="https://arxiv.org/abs/2604.03267">A reconfigurable smart camera implementation for jet
+                        flames characterization</a> - FPGA-based edge AI for industrial sensing.</li>
+                <li><a href="https://arxiv.org/abs/2604.02501">ECG Foundation Models and Medical LLMs for Agentic
+                        Cardiovascular Intelligence at the Edge</a> - Foundation models for edge medical AI.</li>
+                <li><a href="https://arxiv.org/abs/2603.29535">Quantization with Unified Adaptive Distillation to enable
+                        multi-LoRA based one-for-all Generative Vision Models on edge</a> - Efficient generative models
+                    for mobile devices.</li>
+                <li><a href="https://arxiv.org/abs/2603.29311">Spoken Digit Recognition and Speaker Classification by
+                        Nonlinear Interfered Spin Wave-Based Physical Reservoir Computing</a> - Novel hardware for edge
+                    speech recognition.</li>
+                <li><a href="https://arxiv.org/abs/2603.29146">Enabling Programmable Inference and ISAC at the 6GR Edge
+                        with dApps</a> - Decentralized apps for 6G edge intelligence.</li>
+                <li><a href="https://arxiv.org/abs/2603.28622">Trust-Aware Routing for Distributed Generative AI
+                        Inference at the Edge</a> - Secure routing for edge AI inference.</li>
+                <li><a href="https://arxiv.org/abs/2603.28405">EdgeDiT: Hardware-Aware Diffusion Transformers for
+                        Efficient On-Device Image Generation</a> - Optimized transformers for edge image synthesis.</li>
+                <li><a href="https://arxiv.org/abs/2603.28282">Pre-Deployment Complexity Estimation for Federated
+                        Perception Systems</a> - Estimating costs for federated edge AI.</li>
+                <li><a href="https://arxiv.org/abs/2603.26722">Brain-inspired AI for Edge Intelligence: a systematic
+                        review</a> - Review of spiking neural networks for edge computing.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Applications</h2>
+            <p>Edge Intelligence is revolutionizing various sectors with on-device AI capabilities:</p>
+            <ul>
+                <li><strong>Autonomous Vehicles:</strong> Real-time object detection and decision-making.</li>
+                <li><strong>Smart Cities:</strong> IoT sensor networks for traffic management and environmental
+                    monitoring.</li>
+                <li><strong>Healthcare:</strong> Wearable devices for continuous health monitoring and diagnostics.</li>
+                <li><strong>Manufacturing:</strong> Predictive maintenance and quality control on factory floors.</li>
+                <li><strong>Retail:</strong> Personalized shopping experiences and inventory management.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Future Outlook</h2>
+            <p>The future of edge intelligence lies in advanced hardware like neuromorphic chips, improved federated
+                learning protocols, and seamless integration with 6G networks. As devices become more capable, edge AI
+                will enable ubiquitous intelligence while addressing energy constraints and privacy challenges.</p>
+        </div>
+
+        <div class="cta-row">
+            <a href="trends.html">Back to Trends</a>
+            <a href="tools.html">Explore AI Tools</a>
+            <a href="home.html">Return Home</a>
+        </div>
+    </main>
+    <div id="contactModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="terminal-header"><span class="status-dot"></span><span
+                    class="terminal-title">ENCRYPTED_COMMS_HUB_ESTABLISHED</span><span class="close-btn"
+                    onclick="closeContactModal()">&times;</span></div>
+            <div class="contact-grid"><a href="javascript:void(0)" onclick="openWhatsAppContact()"
+                    class="contact-item wa">
+                    <div class="icon-box"><i class="fab fa-whatsapp"></i></div>
+                    <div class="label-box"><span class="main-label">WhatsApp</span><span class="sub-label">Instant App
+                            Redirection</span></div>
+                </a><a href="javascript:void(0)" onclick="openPhoneContact()" class="contact-item phone">
+                    <div class="icon-box"><i class="fas fa-phone-alt"></i></div>
+                    <div class="label-box"><span class="main-label">Direct Line</span><span class="sub-label">Voice
+                            Comms Protocol</span></div>
+                </a><a href="javascript:void(0)" onclick="openEmailContact()" class="contact-item email">
+                    <div class="icon-box"><i class="fas fa-envelope"></i></div>
+                    <div class="label-box"><span class="main-label">Secure Mail</span><span
+                            class="sub-label">vordzorgbeoscar02@gmail.com</span></div>
+                </a></div>
+        </div>
+    </div>
+    <footer>Floscar Vanguard • Edge Intelligence • Research Signals • Futuristic Interface Layer</footer>
+    <script>
+        function setupMobileMenu() {
+            const toggle = document.querySelector('.nav-toggle');
+            const nav = document.querySelector('.nav-links');
+            if (!toggle || !nav) return;
+
+            const closeMenu = () => {
+                nav.classList.remove('is-open');
+                toggle.classList.remove('is-open');
+                toggle.setAttribute('aria-expanded', 'false');
+            };
+
+            toggle.addEventListener('click', () => {
+                const willOpen = !nav.classList.contains('is-open');
+                nav.classList.toggle('is-open', willOpen);
+                toggle.classList.toggle('is-open', willOpen);
+                toggle.setAttribute('aria-expanded', String(willOpen));
+            });
+
+            nav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+            window.addEventListener('resize', () => {
+                if (window.getComputedStyle(toggle).display === 'none') {
+                    closeMenu();
+                }
+            });
+        }
+
+        function openContactModal() { document.getElementById('contactModal').style.display = 'block'; }
+        function closeContactModal() { document.getElementById('contactModal').style.display = 'none'; }
+        function openWhatsAppContact() {
+            const appUrl = 'whatsapp://send?phone=233547912435&text=Hello%20Oscar%2C%20I%20would%20like%20to%20discuss%20a%20project.';
+            const webUrl = 'https://wa.me/233547912435?text=Hello%20Oscar%2C%20I%20would%20like%20to%20discuss%20a%20project.';
+            const startedAt = Date.now();
+            window.location.href = appUrl;
+            window.setTimeout(() => {
+                if (document.visibilityState === 'visible' && Date.now() - startedAt < 1600) {
+                    window.open(webUrl, '_blank', 'noopener');
+                }
+            }, 900);
+        }
+
+        function openPhoneContact() {
+            const dialUrl = 'tel:+233547912435';
+            const startedAt = Date.now();
+            window.location.href = dialUrl;
+            window.setTimeout(() => {
+                if (document.visibilityState === 'visible' && Date.now() - startedAt < 1600) {
+                    window.alert('Call Oscar at +233 54 791 2435');
+                }
+            }, 900);
+        }
+
+        function openEmailContact() {
+            const mailAppUrl = 'mailto:vordzorgbeoscar02@gmail.com?subject=Project%20Inquiry%20-%20Floscar%20Vanguard';
+            const webMailUrl = 'https://mail.google.com/mail/?view=cm&fs=1&to=vordzorgbeoscar02@gmail.com&su=Project%20Inquiry%20-%20Floscar%20Vanguard';
+            const startedAt = Date.now();
+            window.location.href = mailAppUrl;
+            window.setTimeout(() => {
+                if (document.visibilityState === 'visible' && Date.now() - startedAt < 1600) {
+                    window.open(webMailUrl, '_blank', 'noopener');
+                }
+            }, 900);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setupMobileMenu();
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                const linkPage = new URL(link.href, window.location.origin).pathname.split('/').pop();
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        window.onclick = function (event) {
+            const modal = document.getElementById('contactModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+    </script>
+    <script src="contact-hub.js"></script>
+    <script src="article-console.js"></script>
+</body>
+
+</html>

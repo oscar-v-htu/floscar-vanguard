@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: floscar-vanguard
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        value: 3000
+      - key: COOKIE_SECURE
+        value: true
+      - key: SESSION_TTL_MS
+        value: 86400000
+      - key: PASSWORD_PEPPER
+        generateValue: true
+      - key: DATA_DIR
+        value: /var/data/floscar-vanguard
+    disk:
+      name: floscar-data
+      mountPath: /var/data/floscar-vanguard
+      sizeGB: 1

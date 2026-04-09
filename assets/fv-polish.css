@@ -1,0 +1,554 @@
+:root {
+    --fv-accent: #7bffbf;
+    --fv-accent-2: #85f3ff;
+    --fv-accent-soft: rgba(123, 255, 191, 0.12);
+    --fv-accent-strong: rgba(123, 255, 191, 0.26);
+    --fv-border: rgba(123, 255, 191, 0.18);
+    --fv-border-strong: rgba(133, 243, 255, 0.28);
+    --fv-panel: rgba(5, 15, 11, 0.72);
+    --fv-panel-deep: rgba(3, 11, 8, 0.9);
+    --fv-text: #effff5;
+    --fv-text-dim: #b7cec0;
+    --fv-shadow: 0 18px 60px rgba(0, 0, 0, 0.34);
+}
+
+body[data-page="home"] {
+    --fv-accent: #8dff7a;
+    --fv-accent-2: #7bffbf;
+}
+
+body[data-page="login"] {
+    --fv-accent: #7bffbf;
+    --fv-accent-2: #8fe8ff;
+}
+
+body[data-page="tools"] {
+    --fv-accent: #7fe7ff;
+    --fv-accent-2: #7bffbf;
+}
+
+body[data-page="trends"] {
+    --fv-accent: #9eff7a;
+    --fv-accent-2: #f6ff8c;
+}
+
+body[data-page="profile"] {
+    --fv-accent: #9dffcf;
+    --fv-accent-2: #8aebff;
+}
+
+body[data-page="self-discovery"] {
+    --fv-accent: #b6ff7a;
+    --fv-accent-2: #7bffbf;
+}
+
+body[data-page="article"] {
+    --fv-accent: #7bffbf;
+    --fv-accent-2: #99a7ff;
+}
+
+body[data-page="welcome"] {
+    --fv-accent: #7bffbf;
+    --fv-accent-2: #7fe7ff;
+}
+
+html {
+    scrollbar-color: rgba(123, 255, 191, 0.55) rgba(4, 16, 12, 0.85);
+}
+
+body {
+    background-image:
+        radial-gradient(circle at 12% 10%, color-mix(in srgb, var(--fv-accent) 16%, transparent), transparent 22%),
+        radial-gradient(circle at 88% 14%, color-mix(in srgb, var(--fv-accent-2) 16%, transparent), transparent 20%),
+        radial-gradient(circle at 70% 80%, color-mix(in srgb, var(--fv-accent) 10%, transparent), transparent 24%);
+    color: var(--fv-text) !important;
+}
+
+::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, color-mix(in srgb, var(--fv-accent) 70%, transparent), color-mix(in srgb, var(--fv-accent-2) 48%, transparent));
+    border-radius: 999px;
+    border: 2px solid rgba(3, 10, 8, 0.82);
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(3, 10, 8, 0.82);
+}
+
+.site-header,
+header,
+.page-header,
+.command-bar,
+.ticker-wrap {
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22), inset 0 -1px 0 color-mix(in srgb, var(--fv-accent) 18%, transparent) !important;
+}
+
+.site-header,
+header {
+    backdrop-filter: blur(14px) saturate(135%) !important;
+}
+
+.brand img,
+.logo-link img {
+    box-shadow: 0 0 22px color-mix(in srgb, var(--fv-accent) 34%, transparent), 0 0 42px color-mix(in srgb, var(--fv-accent-2) 16%, transparent) !important;
+}
+
+.nav-links a,
+.command-chip,
+.mode-toggle button,
+.hero-actions a,
+.hero-actions button,
+.cta-row a,
+.cta-row button,
+.actions a,
+button,
+.button-row a,
+.button-row button,
+.quick-links a,
+.track-card,
+.filter-chip,
+.credits-panel summary {
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease, color 0.22s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active,
+.command-chip:hover,
+.mode-toggle button:hover,
+.mode-toggle button.is-active,
+.hero-actions a:hover,
+.hero-actions button:hover,
+.cta-row a:hover,
+.cta-row button:hover,
+.actions a:hover,
+button:hover,
+.button-row a:hover,
+.button-row button:hover,
+.track-card:hover,
+.track-card.is-active,
+.filter-chip:hover,
+.filter-chip.is-active,
+.quick-links a:hover,
+.credits-panel summary:hover {
+    border-color: var(--fv-border-strong) !important;
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--fv-accent) 12%, transparent), 0 12px 28px color-mix(in srgb, var(--fv-accent) 18%, transparent);
+}
+
+.hero,
+.hero-panel,
+.hero-copy,
+.signal-panel,
+.login-panel,
+.auth-console,
+.intel-rail-card,
+.panel,
+.panel-main,
+.panel-side,
+.dashboard-card,
+.summary-card,
+.detail-card,
+.service-card,
+.m-card,
+.tool-card,
+.manifest-card,
+.rail-card,
+.visual-sources-card,
+.command-panel,
+.result-card,
+.status-card,
+.telemetry-card,
+.history-card,
+.compare-panel,
+.compare-overview-card,
+.compare-diff-panel,
+.profile-header,
+.contact-card,
+.psychometric-card,
+.timeline-card,
+.reflection-identity-card,
+.tools-identity-card,
+.quote-card,
+.metric-card,
+.avatar-card,
+.redirect-card,
+.trend-card,
+.modal-content,
+.secondary-panel,
+.signal-card,
+.telemetry-cell,
+.briefing-panel,
+.activity-log,
+.mission-control,
+.alert-queue,
+.snapshot-history-card,
+.snapshot-compare-panel,
+.command-palette-card {
+    position: relative;
+    border-color: var(--fv-border) !important;
+    background: linear-gradient(180deg, rgba(10, 24, 18, 0.78), rgba(4, 12, 9, 0.9)) !important;
+    box-shadow: var(--fv-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+    backdrop-filter: blur(16px) saturate(135%) !important;
+}
+
+.fv-surface {
+    isolation: isolate;
+}
+
+.hero::before,
+.hero-panel::before,
+.hero-copy::before,
+.signal-panel::before,
+.login-panel::before,
+.auth-console::before,
+.intel-rail-card::before,
+.panel::before,
+.panel-main::before,
+.panel-side::before,
+.dashboard-card::before,
+.summary-card::before,
+.detail-card::before,
+.service-card::before,
+.m-card::before,
+.tool-card::before,
+.manifest-card::before,
+.rail-card::before,
+.visual-sources-card::before,
+.command-panel::before,
+.result-card::before,
+.status-card::before,
+.telemetry-card::before,
+.history-card::before,
+.compare-panel::before,
+.compare-overview-card::before,
+.compare-diff-panel::before,
+.profile-header::before,
+.contact-card::before,
+.psychometric-card::before,
+.timeline-card::before,
+.reflection-identity-card::before,
+.tools-identity-card::before,
+.quote-card::before,
+.metric-card::before,
+.avatar-card::before,
+.redirect-card::before,
+.trend-card::before,
+.modal-content::before,
+.secondary-panel::before,
+.signal-card::before,
+.telemetry-cell::before,
+.briefing-panel::before,
+.mission-control::before,
+.snapshot-history-card::before,
+.snapshot-compare-panel::before,
+.command-palette-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background:
+        linear-gradient(135deg, rgba(123, 255, 191, 0.18), transparent 18%, transparent 82%, rgba(133, 243, 255, 0.16)),
+        radial-gradient(circle at top right, rgba(133, 243, 255, 0.12), transparent 26%),
+        linear-gradient(90deg, rgba(123, 255, 191, 0.08), transparent 10%, transparent 90%, rgba(123, 255, 191, 0.08));
+    opacity: 0.95;
+    pointer-events: none;
+}
+
+.fv-edge-tracer {
+    position: absolute;
+    pointer-events: none;
+    z-index: 2;
+    border-radius: 999px;
+    opacity: 0.8;
+    filter: blur(0.4px);
+    mix-blend-mode: screen;
+}
+
+.fv-edge-tracer.is-top,
+.fv-edge-tracer.is-bottom {
+    left: 12%;
+    width: 32%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--fv-accent) 85%, white), transparent);
+    animation: fv-trace-x 4.8s linear infinite;
+}
+
+.fv-edge-tracer.is-top {
+    top: 0;
+}
+
+.fv-edge-tracer.is-bottom {
+    bottom: 0;
+    animation-delay: -2.4s;
+}
+
+.fv-edge-tracer.is-left,
+.fv-edge-tracer.is-right {
+    top: 18%;
+    width: 2px;
+    height: 34%;
+    background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--fv-accent-2) 80%, white), transparent);
+    animation: fv-trace-y 5.4s linear infinite;
+}
+
+.fv-edge-tracer.is-left {
+    left: 0;
+}
+
+.fv-edge-tracer.is-right {
+    right: 0;
+    animation-delay: -2.7s;
+}
+
+.hero>*,
+.hero-panel>*,
+.hero-copy>*,
+.signal-panel>*,
+.login-panel>*,
+.auth-console>*,
+.intel-rail-card>*,
+.panel>*,
+.panel-main>*,
+.panel-side>*,
+.dashboard-card>*,
+.summary-card>*,
+.detail-card>*,
+.service-card>*,
+.m-card>*,
+.tool-card>*,
+.manifest-card>*,
+.rail-card>*,
+.visual-sources-card>*,
+.command-panel>*,
+.result-card>*,
+.status-card>*,
+.telemetry-card>*,
+.history-card>*,
+.compare-panel>*,
+.compare-overview-card>*,
+.compare-diff-panel>*,
+.profile-header>*,
+.contact-card>*,
+.psychometric-card>*,
+.timeline-card>*,
+.reflection-identity-card>*,
+.tools-identity-card>*,
+.quote-card>*,
+.metric-card>*,
+.avatar-card>*,
+.redirect-card>*,
+.trend-card>*,
+.modal-content>*,
+.secondary-panel>*,
+.signal-card>*,
+.telemetry-cell>*,
+.briefing-panel>*,
+.mission-control>*,
+.snapshot-history-card>*,
+.snapshot-compare-panel>*,
+.command-palette-card>* {
+    position: relative;
+    z-index: 1;
+}
+
+.service-card:hover,
+.m-card:hover,
+.tool-card:hover,
+.rail-card:hover,
+.status-card:hover,
+.result-card:hover,
+.history-card:hover,
+.trend-card:hover,
+.signal-card:hover,
+.telemetry-cell:hover,
+.intel-rail-card:hover,
+.summary-card:hover,
+.detail-card:hover,
+.timeline-card:hover,
+.reflection-identity-card:hover,
+.tools-identity-card:hover,
+.contact-card:hover,
+.psychometric-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--fv-accent) 12%, transparent), 0 26px 60px rgba(0, 0, 0, 0.36), 0 0 36px color-mix(in srgb, var(--fv-accent) 16%, transparent) !important;
+}
+
+.panel-kicker,
+.hero-kicker,
+.signal-label,
+.command-label,
+.card-label,
+.eyebrow,
+.telemetry-cell span,
+.auth-status-chip span {
+    color: #aefed0 !important;
+    text-shadow: 0 0 12px color-mix(in srgb, var(--fv-accent) 16%, transparent);
+}
+
+h1,
+h2,
+h3,
+.page-title,
+.signal-value,
+.metric-value,
+.hero-title {
+    text-shadow: 0 0 24px color-mix(in srgb, var(--fv-accent) 12%, transparent);
+}
+
+p,
+li,
+small,
+.field-hint,
+.signal-copy,
+.page-copy,
+.submit-note {
+    color: var(--fv-text-dim) !important;
+}
+
+input,
+textarea,
+select {
+    background: rgba(4, 10, 8, 0.72) !important;
+    border-color: rgba(123, 255, 191, 0.18) !important;
+    box-shadow: inset 0 0 0 1px rgba(123, 255, 191, 0.03);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: rgba(133, 243, 255, 0.4) !important;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--fv-accent) 16%, transparent), 0 0 22px color-mix(in srgb, var(--fv-accent-2) 16%, transparent) !important;
+}
+
+button,
+.actions a,
+.cta-row a,
+.cta-row button,
+.hero-actions a,
+.hero-actions button,
+.button-row a,
+.button-row button {
+    background-image: linear-gradient(135deg, rgba(123, 255, 191, 0.18), rgba(133, 243, 255, 0.1));
+}
+
+.modal-overlay {
+    background: radial-gradient(circle at top, rgba(123, 255, 191, 0.12), transparent 24%), rgba(0, 6, 4, 0.94) !important;
+}
+
+.terminal-header,
+.command-palette-header {
+    background: linear-gradient(90deg, color-mix(in srgb, var(--fv-accent) 16%, transparent), color-mix(in srgb, var(--fv-accent-2) 8%, transparent)) !important;
+    border-bottom-color: rgba(123, 255, 191, 0.18) !important;
+}
+
+.status-dot {
+    box-shadow: 0 0 12px var(--fv-accent), 0 0 24px color-mix(in srgb, var(--fv-accent-2) 50%, transparent) !important;
+}
+
+.ticker {
+    text-shadow: 0 0 10px rgba(123, 255, 191, 0.08);
+}
+
+.visual-sources-card,
+.credits-panel,
+.command-panel,
+.summary-card,
+.dashboard-card,
+.panel,
+.hero,
+.hero-copy,
+.auth-console {
+    overflow: hidden;
+}
+
+.fv-motion-ready .reveal-target {
+    opacity: 0;
+    transform: translateY(28px) scale(0.985);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), filter 0.7s ease;
+    transition-delay: var(--fv-delay, 0ms);
+    filter: blur(8px);
+}
+
+.fv-motion-ready .reveal-target.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+}
+
+@keyframes fv-trace-x {
+    0% {
+        transform: translateX(-26%);
+        opacity: 0;
+    }
+
+    12% {
+        opacity: 0.95;
+    }
+
+    50% {
+        transform: translateX(128%);
+        opacity: 0.95;
+    }
+
+    100% {
+        transform: translateX(128%);
+        opacity: 0;
+    }
+}
+
+@keyframes fv-trace-y {
+    0% {
+        transform: translateY(-26%);
+        opacity: 0;
+    }
+
+    12% {
+        opacity: 0.95;
+    }
+
+    50% {
+        transform: translateY(132%);
+        opacity: 0.95;
+    }
+
+    100% {
+        transform: translateY(132%);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 760px) {
+
+    .site-header,
+    header {
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.24);
+    }
+
+    .service-card:hover,
+    .m-card:hover,
+    .tool-card:hover,
+    .rail-card:hover,
+    .status-card:hover,
+    .result-card:hover,
+    .history-card:hover,
+    .trend-card:hover,
+    .signal-card:hover,
+    .telemetry-cell:hover,
+    .intel-rail-card:hover,
+    .summary-card:hover,
+    .detail-card:hover,
+    .timeline-card:hover,
+    .reflection-identity-card:hover,
+    .tools-identity-card:hover,
+    .contact-card:hover,
+    .psychometric-card:hover {
+        transform: none;
+    }
+
+    .fv-edge-tracer {
+        opacity: 0.55;
+    }
+}

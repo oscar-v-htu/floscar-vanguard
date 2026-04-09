@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,follow">
+    <meta name="description"
+        content="Authenticated Floscar Vanguard profile workspace for synchronized activity, saved tools, trends, reflections, and article briefs.">
+    <meta name="theme-color" content="#000000">
+    <link rel="canonical" href="https://www.floscarvanguard.com/profile.html">
+    <link rel="icon" href="AI.jpg" type="image/jpeg">
+    <link rel="manifest" href="site.webmanifest">
+    <title>Profile | Floscar Vanguard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/fv-polish.css">
+    <script src="assets/fv-polish.js" defer></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+            overflow-x: hidden;
+            background: #000;
+            color: #33ff33;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        ::selection {
+            background: rgba(51, 255, 51, 0.28);
+            color: #031003;
+        }
+
+        .video-container {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        #bg-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.72) 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.55) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .scanline {
+            position: fixed;
+            inset: 0;
+            background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0));
+            background-size: 100% 12px;
+            opacity: 0.18;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 3;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.35);
+            border-bottom: 1px solid rgba(51, 255, 51, 0.12);
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #b7ffb7;
+            text-decoration: none;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .brand:hover {
+            color: #d7ffd7;
+            transform: translateY(-1px);
+        }
+
+        .brand img {
+            width: 38px;
+            height: 38px;
+            object-fit: contain;
+            object-fit: cover;
+            object-position: center 32%;
+            box-shadow: 0 0 18px rgba(51, 255, 51, 0.28);
+            transition: box-shadow 0.2s ease;
+        }
+
+        .brand:hover img {
+            box-shadow: 0 0 25px rgba(51, 255, 51, 0.4);
+        }
+
+        .brand span {
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .nav-toggle {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            flex-direction: column;
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            border: 1px solid rgba(51, 255, 51, 0.32);
+            background: rgba(0, 0, 0, 0.42);
+            color: #b7ffb7;
+            cursor: pointer;
+            box-shadow: 0 0 18px rgba(51, 255, 51, 0.12);
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            border-radius: 999px;
+            background: currentColor;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .nav-toggle.is-open span:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        .nav-toggle.is-open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.is-open span:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+
+        .nav-links a {
+            color: #9cff9c;
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 0.5rem 0.65rem;
+            border-radius: 999px;
+            transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(51, 255, 51, 0.18);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 25px rgba(51, 255, 51, 0.18);
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 8, 0, 0.95);
+            backdrop-filter: blur(25px);
+            z-index: 9999;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 420px;
+            background: #0d0d0d;
+            border: 1px solid rgba(51, 255, 51, 0.34);
+            box-shadow: 0 0 60px rgba(51, 255, 51, 0.15);
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background: rgba(51, 255, 51, 0.1);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(51, 255, 51, 0.2);
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: #33ff33;
+            border-radius: 50%;
+            margin-right: 15px;
+            box-shadow: 0 0 10px #33ff33;
+            animation: pulse 2s infinite;
+        }
+
+        .terminal-title {
+            flex-grow: 1;
+            color: #33ff33;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
+            font-size: 0.65rem;
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #fff;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.02);
+            transition: 0.4s;
+        }
+
+        .contact-item:hover {
+            border-color: #33ff33;
+            background: rgba(51, 255, 51, 0.05);
+            transform: translateX(10px);
+            box-shadow: 0 0 18px rgba(51, 255, 51, 0.18);
+        }
+
+        .icon-box {
+            width: 40px;
+            text-align: center;
+            font-size: 1.8rem;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .label-box {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.2rem;
+        }
+
+        .main-label {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .sub-label {
+            color: #6d8b6d;
+            font-size: 0.75rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .wa:hover .icon-box i {
+            color: #25D366;
+        }
+
+        .phone:hover .icon-box i {
+            color: #34b7f1;
+        }
+
+        .email:hover .icon-box i {
+            color: #ff3333;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 18px;
+            cursor: pointer;
+            color: #33ff33;
+            font-size: 1.5rem;
+            line-height: 1;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+            color: #fff;
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible,
+        select:focus-visible {
+            outline: 2px solid #33ff33;
+            outline-offset: 3px;
+        }
+
+        .page-content {
+            position: relative;
+            z-index: 2;
+            padding: 140px 2rem 4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            align-items: center;
+            width: min(1200px, 100%);
+            margin: 0 auto;
+        }
+
+        .profile-section {
+            width: 100%;
+            max-width: 600px;
+            background: rgba(2, 13, 5, 0.75);
+            border: 1px solid rgba(51, 255, 51, 0.18);
+            border-radius: 28px;
+            padding: 2.5rem;
+            box-shadow: 0 0 80px rgba(51, 255, 51, 0.08);
+            backdrop-filter: blur(16px);
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .profile-header {
+            text-align: center;
+            border-bottom: 1px solid rgba(51, 255, 51, 0.2);
+            padding-bottom: 1.5rem;
+        }
+
+        .profile-header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-shadow: 0 0 18px rgba(51, 255, 51, 0.35);
+        }
+
+        .profile-avatar,
+        .photo-preview {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(51, 255, 51, 0.3), rgba(51, 255, 51, 0.1));
+            border: 1px solid rgba(51, 255, 51, 0.4);
+            box-shadow: 0 0 25px rgba(51, 255, 51, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #d7ffd7;
+            margin: 0 auto 1rem;
+            overflow: hidden;
+        }
+
+        .profile-avatar img,
+        .photo-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-details,
+        .edit-form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .detail-item,
+        .field-group,
+        .upload-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+            padding: 1rem 1.1rem;
+            border-radius: 18px;
+            background: rgba(0, 10, 0, 0.45);
+            border: 1px solid rgba(51, 255, 51, 0.12);
+        }
+
+        .detail-label,
+        .field-group label,
+        .upload-group label {
+            font-size: 0.82rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #9cff9c;
+        }
+
+        .detail-value {
+            color: #d7ffd7;
+            font-size: 1rem;
+        }
+
+        .field-group input,
+        .field-group textarea,
+        .upload-group input {
+            width: 100%;
+            border: 1px solid rgba(51, 255, 51, 0.24);
+            border-radius: 14px;
+            background: rgba(0, 0, 0, 0.35);
+            color: #e2ffe2;
+            padding: 0.85rem 1rem;
+            font: inherit;
+        }
+
+        .field-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .field-group input:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .file-hint {
+            color: #b7ffb7;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .inline-status {
+            display: none;
+            padding: 1rem 1.2rem;
+            border-radius: 18px;
+            border: 1px solid transparent;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            box-shadow: inset 0 0 18px rgba(51, 255, 51, 0.06);
+        }
+
+        .inline-status.is-visible {
+            display: block;
+        }
+
+        .inline-status.is-error {
+            color: #ffe3e3;
+            background: rgba(110, 20, 20, 0.78);
+            border-color: rgba(255, 90, 90, 0.32);
+            box-shadow: 0 0 24px rgba(255, 90, 90, 0.14);
+        }
+
+        .inline-status.is-success {
+            color: #dbffe0;
+            background: rgba(15, 80, 30, 0.78);
+            border-color: rgba(51, 255, 120, 0.28);
+            box-shadow: 0 0 24px rgba(51, 255, 120, 0.14);
+        }
+
+        .contact-card,
+        .psychometric-card,
+        .reflection-identity-card,
+        .tools-identity-card,
+        .timeline-card {
+            padding: 1.75rem;
+            background: rgba(0, 10, 0, 0.45);
+            border: 1px solid rgba(51, 255, 51, 0.14);
+            border-radius: 22px;
+            box-shadow: inset 0 0 20px rgba(51, 255, 51, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-card h3,
+        .psychometric-card h3,
+        .reflection-identity-card h3,
+        .tools-identity-card h3,
+        .timeline-card h3,
+        .psychometric-question h4 {
+            margin: 0;
+            color: #c4ffc4;
+            letter-spacing: 0.08em;
+        }
+
+        .contact-card p,
+        .psychometric-card p,
+        .reflection-identity-card p,
+        .tools-identity-card p,
+        .timeline-card p {
+            margin: 0;
+            color: #d6ffd6;
+            line-height: 1.75;
+            opacity: 0.94;
+        }
+
+        .timeline-list {
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .timeline-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+        }
+
+        .timeline-filter {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.55rem 0.9rem;
+            border-radius: 999px;
+            border: 1px solid rgba(51, 255, 51, 0.16);
+            background: rgba(255, 255, 255, 0.03);
+            color: #ccf5cc;
+            cursor: pointer;
+            transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .timeline-filter:hover,
+        .timeline-filter.is-active {
+            background: rgba(51, 255, 51, 0.14);
+            border-color: rgba(51, 255, 51, 0.28);
+            transform: translateY(-1px);
+        }
+
+        .timeline-item {
+            padding: 0.95rem 1rem;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(51, 255, 51, 0.1);
+            display: grid;
+            gap: 0.35rem;
+        }
+
+        .timeline-item-link {
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .timeline-item-link:hover {
+            transform: translateY(-1px);
+            border-color: rgba(51, 255, 51, 0.24);
+            background: rgba(51, 255, 51, 0.06);
+        }
+
+        .timeline-item strong {
+            color: #efffef;
+        }
+
+        .timeline-type {
+            display: inline-flex;
+            width: fit-content;
+            padding: 0.35rem 0.65rem;
+            border-radius: 999px;
+            background: rgba(51, 255, 51, 0.12);
+            border: 1px solid rgba(51, 255, 51, 0.16);
+            color: #b8ffb8;
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .timeline-meta {
+            color: #8bb48b;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .timeline-empty {
+            padding: 1rem;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(51, 255, 51, 0.08);
+            color: #b8d9b8;
+        }
+
+        .reflection-visual {
+            width: 100%;
+            height: 180px;
+            border-radius: 18px;
+            background-image: linear-gradient(180deg, rgba(0, 12, 0, 0.08), rgba(0, 12, 0, 0.5)), url('https://images.pexels.com/photos/8386437/pexels-photo-8386437.jpeg?auto=compress&cs=tinysrgb&w=1200');
+            background-size: cover;
+            background-position: center;
+            border: 1px solid rgba(51, 255, 51, 0.12);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+        }
+
+        .tools-visual {
+            width: 100%;
+            height: 180px;
+            border-radius: 18px;
+            background-image: linear-gradient(180deg, rgba(0, 12, 0, 0.08), rgba(0, 12, 0, 0.5)), url('https://images.pexels.com/photos/15410078/pexels-photo-15410078.jpeg?auto=compress&cs=tinysrgb&w=1200');
+            background-size: cover;
+            background-position: center;
+            border: 1px solid rgba(51, 255, 51, 0.12);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+        }
+
+        .reflection-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.9rem;
+        }
+
+        .reflection-stat {
+            padding: 0.9rem 1rem;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(51, 255, 51, 0.1);
+        }
+
+        .reflection-stat span {
+            display: block;
+            margin-bottom: 0.35rem;
+            font-size: 0.74rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #91c891;
+        }
+
+        .reflection-stat strong {
+            display: block;
+            font-size: 1.05rem;
+            color: #f0fff0;
+        }
+
+        .reflection-chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .reflection-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.55rem 0.95rem;
+            border-radius: 999px;
+            background: rgba(51, 255, 51, 0.12);
+            border: 1px solid rgba(51, 255, 51, 0.16);
+            color: #d9ffd9;
+            font-weight: 600;
+        }
+
+        .reflection-history-mini {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .tools-history-mini {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .reflection-history-item {
+            padding: 0.9rem 1rem;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(51, 255, 51, 0.1);
+        }
+
+        .tools-history-item {
+            padding: 0.9rem 1rem;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(51, 255, 51, 0.1);
+        }
+
+        .reflection-history-item strong {
+            display: block;
+            margin-bottom: 0.3rem;
+            color: #f1fff1;
+        }
+
+        .tools-history-item strong {
+            display: block;
+            margin-bottom: 0.3rem;
+            color: #f1fff1;
+        }
+
+        .reflection-history-item span {
+            display: block;
+            margin-top: 0.35rem;
+            color: #8bb48b;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .tools-history-item span {
+            display: block;
+            margin-top: 0.35rem;
+            color: #8bb48b;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .contact-card a {
+            color: #33ff33;
+            text-decoration: none;
+        }
+
+        .contact-card button,
+        .psychometric-actions button,
+        .profile-actions button,
+        .not-logged-in button {
+            padding: 0.85rem 1.5rem;
+            border: 1px solid rgba(51, 255, 51, 0.6);
+            border-radius: 999px;
+            background: rgba(51, 255, 51, 0.1);
+            color: #33ff33;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .contact-card button {
+            width: fit-content;
+        }
+
+        .contact-card button:hover,
+        .psychometric-actions button:hover,
+        .profile-actions button:hover,
+        .not-logged-in button:hover {
+            background: rgba(51, 255, 51, 0.18);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(51, 255, 51, 0.2);
+        }
+
+        .psychometric-actions,
+        .profile-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .psychometric-form {
+            display: grid;
+            gap: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .psychometric-question {
+            padding: 1rem;
+            border-radius: 16px;
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(51, 255, 51, 0.12);
+        }
+
+        .psychometric-question h4 {
+            margin-bottom: 0.85rem;
+        }
+
+        .psychometric-question label {
+            display: block;
+            margin-bottom: 0.65rem;
+            color: #d6ffd6;
+            cursor: pointer;
+        }
+
+        .psychometric-question input {
+            margin-right: 0.8rem;
+        }
+
+        .result-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.55rem 1rem;
+            border-radius: 999px;
+            background: rgba(51, 255, 51, 0.12);
+            color: #b7ffb7;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            width: fit-content;
+        }
+
+        .logout-btn {
+            background: rgba(255, 51, 51, 0.1) !important;
+            border-color: rgba(255, 51, 51, 0.6) !important;
+            color: #ff6666 !important;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 51, 51, 0.2) !important;
+            box-shadow: 0 8px 20px rgba(255, 51, 51, 0.2) !important;
+        }
+
+        .not-logged-in {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .not-logged-in h2 {
+            margin-bottom: 1rem;
+            color: #ff6666;
+        }
+
+        .not-logged-in p {
+            margin-bottom: 2rem;
+            color: #c9ffc9;
+        }
+
+        footer {
+            width: 100%;
+            padding: 1.5rem 0;
+            text-align: center;
+            color: #7cff7c;
+            opacity: 0.8;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        @media (max-width: 720px) {
+            .site-header {
+                position: sticky;
+                flex-direction: column;
+                gap: 0.75rem;
+                padding: 1rem;
+                align-items: stretch;
+            }
+
+            .brand {
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+                font-size: 0.92rem;
+                letter-spacing: 0.16em;
+            }
+
+            .brand span {
+                white-space: normal;
+            }
+
+            .nav-toggle {
+                display: inline-flex;
+                align-self: flex-end;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+                justify-content: center;
+                gap: 0.5rem;
+                padding-top: 0.35rem;
+            }
+
+            .nav-links.is-open {
+                display: flex;
+            }
+
+            .nav-links a {
+                font-size: 0.84rem;
+                padding: 0.55rem 0.72rem;
+                text-align: center;
+            }
+
+            .page-content {
+                padding: 2rem 1rem 3rem;
+            }
+
+            .profile-section {
+                padding: 1.65rem 1.15rem;
+                border-radius: 22px;
+            }
+
+            .profile-header h1 {
+                font-size: clamp(1.9rem, 10vw, 2.4rem);
+                letter-spacing: 0.1em;
+            }
+
+            .profile-actions,
+            .psychometric-actions {
+                flex-direction: column;
+            }
+
+            .reflection-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-card button,
+            .psychometric-actions button,
+            .profile-actions button,
+            .not-logged-in button {
+                width: 100%;
+            }
+
+            .contact-grid {
+                padding: 20px;
+            }
+
+            .contact-item {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="video-container">
+        <video autoplay muted loop playsinline id="bg-video">
+            <source src="assets/bg-animation.mp4" type="video/mp4">
+            <source src="assets/cyber-animation.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="overlay"></div>
+    </div>
+    <div class="scanline"></div>
+    <header class="site-header">
+        <a href="profile.html" class="brand">
+            <img src="AI.jpg" alt="AI logo">
+            <span>Floscar Vanguard</span>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false"
+            aria-controls="site-nav">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="nav-links" id="site-nav">
+            <a href="home.html">Home</a>
+            <a href="trends.html">Trends</a>
+            <a href="self-discovery.html">Self-Discovery</a>
+            <a href="tools.html">Tools</a>
+            <a href="profile.html" class="active">Profile</a>
+            <a href="javascript:void(0)" onclick="openContactModal()">Contact</a>
+        </nav>
+    </header>
+
+    <main class="page-content">
+        <section class="profile-section" id="profile-content"></section>
+    </main>
+
+    <div id="contactModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="terminal-header">
+                <span class="status-dot"></span>
+                <span class="terminal-title">ENCRYPTED_COMMS_HUB_ESTABLISHED</span>
+                <span class="close-btn" onclick="closeContactModal()">&times;</span>
+            </div>
+            <div class="contact-grid">
+                <a href="javascript:void(0)" onclick="openWhatsAppContact()" class="contact-item wa">
+                    <div class="icon-box"><i class="fab fa-whatsapp"></i></div>
+                    <div class="label-box"><span class="main-label">WhatsApp</span><span class="sub-label">Instant App
+                            Redirection</span></div>
+                </a>
+                <a href="javascript:void(0)" onclick="openPhoneContact()" class="contact-item phone">
+                    <div class="icon-box"><i class="fas fa-phone-alt"></i></div>
+                    <div class="label-box"><span class="main-label">Direct Line</span><span class="sub-label">Voice
+                            Comms Protocol</span></div>
+                </a>
+                <a href="javascript:void(0)" onclick="openEmailContact()" class="contact-item email">
+                    <div class="icon-box"><i class="fas fa-envelope"></i></div>
+                    <div class="label-box"><span class="main-label">Secure Mail</span><span
+                            class="sub-label">vordzorgbeoscar02@gmail.com</span></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>Floscar Vanguard • Built with glowing neon styling and secure profile workflows.</footer>
+
+    <script>
+        function setupMobileMenu() {
+            const toggle = document.querySelector('.nav-toggle');
+            const nav = document.querySelector('.nav-links');
+            if (!toggle || !nav) {
+                return;
+            }
+            const closeMenu = () => {
+                nav.classList.remove('is-open');
+                toggle.classList.remove('is-open');
+                toggle.setAttribute('aria-expanded', 'false');
+            };
+            toggle.addEventListener('click', () => {
+                const willOpen = !nav.classList.contains('is-open');
+                nav.classList.toggle('is-open', willOpen);
+                toggle.classList.toggle('is-open', willOpen);
+                toggle.setAttribute('aria-expanded', String(willOpen));
+            });
+            nav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+            window.addEventListener('resize', () => {
+                if (window.getComputedStyle(toggle).display === 'none') {
+                    closeMenu();
+                }
+            });
+        }
+
+        function openContactModal() { document.getElementById('contactModal').style.display = 'block'; }
+        function closeContactModal() { document.getElementById('contactModal').style.display = 'none'; }
+        function openWhatsAppContact() {
+            const appUrl = 'whatsapp://send?phone=233547912435&text=Hello%20Oscar%2C%20I%20would%20like%20to%20discuss%20a%20project.';
+            const webUrl = 'https://wa.me/233547912435?text=Hello%20Oscar%2C%20I%20would%20like%20to%20discuss%20a%20project.';
+            const startedAt = Date.now();
+            window.location.href = appUrl;
+            window.setTimeout(() => {
+                if (document.visibilityState === 'visible' && Date.now() - startedAt < 1600) {
+                    window.open(webUrl, '_blank', 'noopener');
+                }
+            }, 900);
+        }
+        function openPhoneContact() {
+            const dialUrl = 'tel:+233547912435';
+            const startedAt = Date.now();
+            window.location.href = dialUrl;
+            window.setTimeout(() => {
+                if (document.visibilityState === 'visible' && Date.now() - startedAt < 1600) {
+                    window.alert('Call Oscar at +233 54 791 2435');
+                }
+            }, 900);
+        }
+        function openEmailContact() {
+            const mailAppUrl = 'mailto:vordzorgbeoscar02@gmail.com?subject=Project%20Inquiry%20-%20Floscar%20Vanguard';
+            const webMailUrl = 'https://mail.google.com/mail/?view=cm&fs=1&to=vordzorgbeoscar02@gmail.com&su=Project%20Inquiry%20-%20Floscar%20Vanguard';
+            const startedAt = Date.now();
+            window.location.href = mailAppUrl;
+            window.setTimeout(() => {
+                if (document.visibilityState === 'visible' && Date.now() - startedAt < 1600) {
+                    window.open(webMailUrl, '_blank', 'noopener');
+                }
+            }, 900);
+        }
+        let currentProfile = null;
+        let csrfToken = '';
+        let statusState = { type: '', message: '' };
+        setupMobileMenu();
+        const maxPhotoBytes = 2 * 1024 * 1024;
+        const allowedPhotoTypes = new Set(['image/png', 'image/jpeg', 'image/gif', 'image/webp']);
+
+        const psychometricQuestions = [
+            {
+                id: 'q1',
+                prompt: 'When facing a challenge, you prefer to:',
+                options: [
+                    { label: 'Analyze all available data first', value: 'analytical' },
+                    { label: 'Trust instincts and adapt quickly', value: 'creative' },
+                    { label: 'Build a structured plan', value: 'strategic' },
+                    { label: 'Seek consensus and balance', value: 'empathic' }
+                ]
+            },
+            {
+                id: 'q2',
+                prompt: 'In a team, you usually act as the:',
+                options: [
+                    { label: 'Detail-oriented analyst', value: 'analytical' },
+                    { label: 'Big-picture visionary', value: 'creative' },
+                    { label: 'Task organizer and strategist', value: 'strategic' },
+                    { label: 'Communicator and supporter', value: 'empathic' }
+                ]
+            },
+            {
+                id: 'q3',
+                prompt: 'Your ideal learning style is:',
+                options: [
+                    { label: 'Structured courses and data', value: 'analytical' },
+                    { label: 'Creative experiments and ideas', value: 'creative' },
+                    { label: 'Simulations and real-world practice', value: 'strategic' },
+                    { label: 'Collaboration and feedback', value: 'empathic' }
+                ]
+            },
+            {
+                id: 'q4',
+                prompt: 'When planning the future, you focus on:',
+                options: [
+                    { label: 'Precision and measurable progress', value: 'analytical' },
+                    { label: 'Innovation and bold new concepts', value: 'creative' },
+                    { label: 'Efficiency and long-term systems', value: 'strategic' },
+                    { label: 'People, purpose, and connection', value: 'empathic' }
+                ]
+            },
+            {
+                id: 'q5',
+                prompt: 'Your strongest contribution is:',
+                options: [
+                    { label: 'Clear analysis and accuracy', value: 'analytical' },
+                    { label: 'Fresh ideas and originality', value: 'creative' },
+                    { label: 'Planning and execution', value: 'strategic' },
+                    { label: 'Supportive guidance and empathy', value: 'empathic' }
+                ]
+            }
+        ];
+
+        const REFLECTION_STORAGE_KEYS = {
+            result: 'floscar-self-discovery-result',
+            history: 'floscar-self-discovery-history'
+        };
+
+        const TOOL_STORAGE_KEYS = {
+            lastManifest: 'floscar-tools-last-manifest',
+            history: 'floscar-tools-download-history'
+        };
+
+        const TREND_STORAGE_KEYS = {
+            history: 'floscar-trends-snapshot-history'
+        };
+
+        let timelineFilter = 'all';
+
+        function escapeHtml(text) {
+            return String(text || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function buildTimelineHref(item) {
+            if (!item) {
+                return 'profile.html';
+            }
+
+            if (item.type === 'reflection') {
+                const params = new URLSearchParams();
+                if (item.trackKey) {
+                    params.set('track', item.trackKey);
+                }
+                if (item.modeKey) {
+                    params.set('mode', item.modeKey);
+                }
+                if (item.id) {
+                    params.set('entry', item.id);
+                }
+                return `self-discovery.html${params.toString() ? `?${params.toString()}` : ''}`;
+            }
+
+            if (item.type === 'tool') {
+                return `tools.html${item.id ? `?manifest=${encodeURIComponent(item.id)}` : ''}`;
+            }
+
+            if (item.type === 'trend') {
+                const params = new URLSearchParams();
+                if (item.filterKey) {
+                    params.set('filter', item.filterKey);
+                }
+                if (item.id) {
+                    params.set('snapshot', item.id);
+                }
+                return `trends.html${params.toString() ? `?${params.toString()}` : ''}`;
+            }
+
+            if (item.type === 'article') {
+                const targetPage = item.pageKey || 'biometric-ai.html';
+                return `${targetPage}${item.id ? `?brief=${encodeURIComponent(item.id)}` : ''}`;
+            }
+
+            return 'profile.html';
+        }
+
+        async function apiRequest(url, options = {}) {
+            const method = (options.method || 'GET').toUpperCase();
+            const response = await fetch(url, {
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(method !== 'GET' && csrfToken ? { 'X-CSRF-Token': csrfToken } : {}),
+                    ...(options.headers || {})
+                },
+                ...options
+            });
+
+            const isJson = response.headers.get('content-type')?.includes('application/json');
+            const data = isJson ? await response.json() : null;
+
+            if (data?.csrfToken) {
+                csrfToken = data.csrfToken;
+            }
+
+            if (!response.ok) {
+                throw new Error(data?.error || 'Request failed.');
+            }
+
+            return data;
+        }
+
+        function getAvatarMarkup(profile) {
+            const firstLetter = (profile.name || 'U').charAt(0).toUpperCase();
+            return profile.photo
+                ? `<img src="${profile.photo}" alt="Profile photo">`
+                : firstLetter;
+        }
+
+        function renderInlineStatus() {
+            return '<div id="inline-status" class="inline-status" role="status" aria-live="polite"></div>';
+        }
+
+        function syncInlineStatus() {
+            const statusNode = document.getElementById('inline-status');
+            if (!statusNode) {
+                return;
+            }
+
+            statusNode.className = 'inline-status';
+            statusNode.textContent = '';
+
+            if (!statusState.message) {
+                return;
+            }
+
+            statusNode.textContent = statusState.message;
+            statusNode.classList.add('is-visible', statusState.type === 'success' ? 'is-success' : 'is-error');
+        }
+
+        function setInlineStatus(type, message) {
+            statusState = { type, message };
+            syncInlineStatus();
+        }
+
+        function clearInlineStatus() {
+            statusState = { type: '', message: '' };
+            syncInlineStatus();
+        }
+
+        function loadStoredReflectionState() {
+            const serverLatest = currentProfile?.reflectionLatest || null;
+            const serverHistory = Array.isArray(currentProfile?.reflectionHistory) ? currentProfile.reflectionHistory : [];
+
+            if (serverLatest || serverHistory.length) {
+                return {
+                    result: serverLatest,
+                    history: serverHistory,
+                    source: 'account'
+                };
+            }
+
+            try {
+                return {
+                    result: JSON.parse(window.localStorage.getItem(REFLECTION_STORAGE_KEYS.result) || 'null'),
+                    history: JSON.parse(window.localStorage.getItem(REFLECTION_STORAGE_KEYS.history) || '[]'),
+                    source: 'device'
+                };
+            } catch {
+                return { result: null, history: [], source: 'device' };
+            }
+        }
+
+        function loadStoredToolState() {
+            const serverLatest = currentProfile?.toolLatest || null;
+            const serverHistory = Array.isArray(currentProfile?.toolHistory) ? currentProfile.toolHistory : [];
+
+            if (serverLatest || serverHistory.length) {
+                return {
+                    latest: serverLatest,
+                    history: serverHistory,
+                    source: 'account'
+                };
+            }
+
+            try {
+                return {
+                    latest: JSON.parse(window.localStorage.getItem(TOOL_STORAGE_KEYS.lastManifest) || 'null'),
+                    history: JSON.parse(window.localStorage.getItem(TOOL_STORAGE_KEYS.history) || '[]'),
+                    source: 'device'
+                };
+            } catch {
+                return { latest: null, history: [], source: 'device' };
+            }
+        }
+
+        function loadStoredTrendState() {
+            const serverLatest = currentProfile?.trendLatest || null;
+            const serverHistory = Array.isArray(currentProfile?.trendHistory) ? currentProfile.trendHistory : [];
+
+            if (serverLatest || serverHistory.length) {
+                return {
+                    latest: serverLatest,
+                    history: serverHistory,
+                    source: 'account'
+                };
+            }
+
+            try {
+                const history = JSON.parse(window.localStorage.getItem(TREND_STORAGE_KEYS.history) || '[]');
+                return {
+                    latest: history[0] || null,
+                    history,
+                    source: 'device'
+                };
+            } catch {
+                return { latest: null, history: [], source: 'device' };
+            }
+        }
+
+        function loadStoredArticleState() {
+            const serverLatest = currentProfile?.articleLatest || null;
+            const serverHistory = Array.isArray(currentProfile?.articleHistory) ? currentProfile.articleHistory : [];
+
+            if (serverLatest || serverHistory.length) {
+                return {
+                    latest: serverLatest,
+                    history: serverHistory,
+                    source: 'account'
+                };
+            }
+
+            try {
+                const articleEntries = Object.keys(window.localStorage)
+                    .filter(key => key.startsWith('floscar-article-brief-history:'))
+                    .flatMap(key => {
+                        const history = JSON.parse(window.localStorage.getItem(key) || '[]');
+                        return Array.isArray(history) ? history : [];
+                    });
+
+                articleEntries.sort((left, right) => new Date(right.createdAt).getTime() - new Date(left.createdAt).getTime());
+
+                return {
+                    latest: articleEntries[0] || null,
+                    history: articleEntries,
+                    source: 'device'
+                };
+            } catch {
+                return { latest: null, history: [], source: 'device' };
+            }
+        }
+
+        function formatReflectionDate(value) {
+            if (!value) {
+                return 'Awaiting';
+            }
+
+            return new Date(value).toLocaleString([], {
+                month: 'short',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function renderReflectionIdentityCard() {
+            const reflectionState = loadStoredReflectionState();
+            const latest = reflectionState.result;
+            const history = Array.isArray(reflectionState.history) ? reflectionState.history : [];
+
+            if (!latest) {
+                return `
+                    <div class="reflection-identity-card">
+                        <h3>Reflection Identity Layer</h3>
+                        <div class="reflection-visual" aria-hidden="true"></div>
+                        <p>Your saved self-discovery output can appear here as a living identity layer once you run and save a reflection brief.</p>
+                        <div class="profile-actions">
+                            <button type="button" onclick="window.location.href='self-discovery.html'">Open Self-Discovery</button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            return `
+                <div class="reflection-identity-card">
+                    <h3>Reflection Identity Layer</h3>
+                    <div class="reflection-visual" aria-hidden="true"></div>
+                    <p>Your latest self-discovery brief is now part of your profile identity view, surfacing the current archetype and reflective direction from the console.</p>
+                    <div class="reflection-chip-row">
+                        <div class="reflection-chip">${escapeHtml(latest.track || 'Reflection')}</div>
+                        <div class="reflection-chip">${escapeHtml(latest.mode || 'Mode')}</div>
+                        <div class="reflection-chip">${escapeHtml(latest.archetype || 'Archetype')}</div>
+                        <div class="reflection-chip">${reflectionState.source === 'account' ? 'Account Sync' : 'Device Cache'}</div>
+                    </div>
+                    <div class="reflection-grid">
+                        <div class="reflection-stat">
+                            <span>Clarity</span>
+                            <strong>${escapeHtml(String(latest.clarity || '0'))}%</strong>
+                        </div>
+                        <div class="reflection-stat">
+                            <span>Last Reflection</span>
+                            <strong>${escapeHtml(formatReflectionDate(latest.createdAt))}</strong>
+                        </div>
+                    </div>
+                    <p>${escapeHtml(latest.summary || 'No reflection summary available.')}</p>
+                    <div class="reflection-history-mini">
+                        ${history.slice(0, 3).map(entry => `
+                            <div class="reflection-history-item">
+                                <strong>${escapeHtml(entry.archetype || 'Reflection')}</strong>
+                                <div>${escapeHtml(entry.summary || '')}</div>
+                                <span>${escapeHtml(entry.track || 'Reflection')} // ${escapeHtml(entry.mode || 'Mode')} // ${escapeHtml(entry.action || 'save')} // ${escapeHtml(formatReflectionDate(entry.createdAt))}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="profile-actions">
+                        <button type="button" onclick="window.location.href='self-discovery.html'">Open Self-Discovery</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderToolDownloadsCard() {
+            const toolState = loadStoredToolState()
+            const latest = toolState.latest;
+            const history = Array.isArray(toolState.history) ? toolState.history : [];
+
+            if (!latest) {
+                return `
+                    <div class="tools-identity-card">
+                        <h3>Tool Access Layer</h3>
+                        <div class="tools-visual" aria-hidden="true"></div>
+                        <p>Your protected tool manifest history can appear here once you unlock the tools console and download server-backed manifests.</p>
+                        <div class="profile-actions">
+                            <button type="button" onclick="window.location.href='tools.html'">Open Tools Console</button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            return `
+                <div class="tools-identity-card">
+                    <h3>Tool Access Layer</h3>
+                    <div class="tools-visual" aria-hidden="true"></div>
+                    <p>Your latest protected tool manifest is now part of the profile layer, surfacing what you accessed most recently and which secure tools are active in your workflow.</p>
+                    <div class="reflection-chip-row">
+                        <div class="reflection-chip">${escapeHtml(latest.name || 'Tool')}</div>
+                        <div class="reflection-chip">${escapeHtml(latest.version || 'Version')}</div>
+                        <div class="reflection-chip">${toolState.source === 'account' ? 'Account Sync' : 'Device Cache'}</div>
+                    </div>
+                    <div class="reflection-grid">
+                        <div class="reflection-stat">
+                            <span>Manifest Count</span>
+                            <strong>${escapeHtml(String(history.length || 0))}</strong>
+                        </div>
+                        <div class="reflection-stat">
+                            <span>Last Download</span>
+                            <strong>${escapeHtml(formatReflectionDate(latest.downloadedAt))}</strong>
+                        </div>
+                    </div>
+                    <p>${escapeHtml(latest.description || 'No tool manifest description available.')}</p>
+                    <div class="tools-history-mini">
+                        ${history.slice(0, 3).map(entry => `
+                            <div class="tools-history-item">
+                                <strong>${escapeHtml(entry.name || 'Tool')}</strong>
+                                <div>${escapeHtml(entry.description || '')}</div>
+                                <span>${escapeHtml(entry.version || 'Version')} // ${escapeHtml(formatReflectionDate(entry.downloadedAt))}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="profile-actions">
+                        <button type="button" onclick="window.location.href='tools.html'">Open Tools Console</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderUnifiedActivityTimeline() {
+            const reflectionState = loadStoredReflectionState();
+            const toolState = loadStoredToolState();
+            const trendState = loadStoredTrendState();
+            const articleState = loadStoredArticleState();
+
+            const timelineItems = [
+                ...reflectionState.history.map(entry => ({
+                    type: 'reflection',
+                    id: entry.id || '',
+                    title: entry.archetype || 'Reflection',
+                    description: entry.summary || 'Reflection signal captured.',
+                    meta: `${entry.track || 'Reflection'} // ${entry.mode || 'Mode'} // ${entry.action || 'save'} // ${formatReflectionDate(entry.createdAt)}`,
+                    stamp: entry.createdAt || '',
+                    actionLabel: reflectionState.source === 'account' ? 'Account Sync' : 'Device Cache',
+                    trackKey: entry.trackKey || '',
+                    modeKey: entry.modeKey || ''
+                })),
+                ...toolState.history.map(entry => ({
+                    type: 'tool',
+                    id: entry.id || '',
+                    title: entry.name || 'Tool Manifest',
+                    description: entry.description || 'Protected tool manifest stored.',
+                    meta: `${entry.version || 'Version'} // ${formatReflectionDate(entry.downloadedAt)}`,
+                    stamp: entry.downloadedAt || '',
+                    actionLabel: toolState.source === 'account' ? 'Account Sync' : 'Device Cache'
+                })),
+                ...trendState.history.map(entry => ({
+                    type: 'trend',
+                    id: entry.id || '',
+                    title: `${entry.filterLabel || 'Signal'} Snapshot`,
+                    description: `${entry.visibleCount || 0} visible signal${entry.visibleCount === 1 ? '' : 's'} // alert ${String(entry.alertLevel || 'elevated').toLowerCase()} // health ${entry.signalHealth || '0%'}`,
+                    meta: `${entry.action || 'capture'} // ${formatReflectionDate(entry.createdAt)}`,
+                    stamp: entry.createdAt || '',
+                    actionLabel: trendState.source === 'account' ? 'Account Sync' : 'Device Cache',
+                    filterKey: entry.filterKey || 'all'
+                })),
+                ...articleState.history.map(entry => ({
+                    type: 'article',
+                    id: entry.id || '',
+                    title: entry.title || 'Article Brief',
+                    description: entry.summary || 'Stored research brief.',
+                    meta: `${entry.pageKey || 'article'} // ${entry.action || 'generate'} // ${formatReflectionDate(entry.createdAt)}`,
+                    stamp: entry.createdAt || '',
+                    actionLabel: articleState.source === 'account' ? 'Account Sync' : 'Device Cache',
+                    pageKey: entry.pageKey || ''
+                }))
+            ]
+                .sort((left, right) => new Date(right.stamp).getTime() - new Date(left.stamp).getTime())
+                .slice(0, 18);
+
+            const filteredItems = timelineFilter === 'all'
+                ? timelineItems
+                : timelineItems.filter(item => item.type === timelineFilter);
+
+            return `
+                <div class="timeline-card">
+                    <h3>Unified Activity Timeline</h3>
+                    <p>The profile now merges your latest reflection output, protected tool manifests, trend snapshots, and article briefs into one operator-facing activity stream.</p>
+                    <div class="timeline-filters">
+                        ${['all', 'reflection', 'tool', 'trend', 'article'].map(filter => `
+                            <button type="button" class="timeline-filter${timelineFilter === filter ? ' is-active' : ''}" onclick="setTimelineFilter('${filter}')">${escapeHtml(filter)}</button>
+                        `).join('')}
+                    </div>
+                    <div class="timeline-list">
+                        ${filteredItems.length ? filteredItems.slice(0, 9).map(item => `
+                            <a class="timeline-item timeline-item-link" href="${escapeHtml(buildTimelineHref(item))}">
+                                <div class="timeline-type">${escapeHtml(item.type)} // ${escapeHtml(item.actionLabel)}</div>
+                                <strong>${escapeHtml(item.title)}</strong>
+                                <div>${escapeHtml(item.description)}</div>
+                                <div class="timeline-meta">${escapeHtml(item.meta)}</div>
+                            </a>
+                        `).join('') : `<div class="timeline-empty">No ${escapeHtml(timelineFilter === 'all' ? 'activity' : timelineFilter)} activity has been captured yet.</div>`}
+                    </div>
+                    <div class="profile-actions">
+                        <button type="button" onclick="window.location.href='trends.html'">Open Trends Console</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function setTimelineFilter(filter) {
+            timelineFilter = filter;
+            displayProfile();
+        }
+
+        function showAccessDenied() {
+            document.getElementById('profile-content').innerHTML = `
+                <div class="not-logged-in">
+                    <h2>Access Denied</h2>
+                    <p>You must log in to view your profile.</p>
+                    <button onclick="window.location.href='login.html'">Go to Login</button>
+                </div>
+            `;
+        }
+
+        function displayProfile() {
+            if (!currentProfile) {
+                showAccessDenied();
+                return;
+            }
+
+            const joinDate = currentProfile.joinDate
+                ? new Date(currentProfile.joinDate).toLocaleDateString()
+                : 'Unknown';
+
+            document.getElementById('profile-content').innerHTML = `
+                <div class="profile-header">
+                    <div class="profile-avatar">${getAvatarMarkup(currentProfile)}</div>
+                    <h1>Welcome, ${escapeHtml(currentProfile.name)}</h1>
+                </div>
+                ${renderInlineStatus()}
+                <div class="profile-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Full Name</span>
+                        <span class="detail-value">${escapeHtml(currentProfile.name)}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Email Address</span>
+                        <span class="detail-value">${escapeHtml(currentProfile.email)}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Mission</span>
+                        <span class="detail-value">${escapeHtml(currentProfile.message || 'No mission set.')}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Member Since</span>
+                        <span class="detail-value">${joinDate}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Status</span>
+                        <span class="detail-value">Active Member</span>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <h3>Contact the Architect</h3>
+                    <p>For custom future-themed landing pages, prototypes, or themed portfolios, use the phone number below or open WhatsApp for instant support.</p>
+                    <p><strong>Phone:</strong> <a href="tel:+233547912435">0547912435</a> or <a href="tel:+233243671085">0243671085</a></p>
+                    <button type="button" onclick="window.open('https://wa.me/0547912435', '_blank', 'noopener')">Chat on WhatsApp</button>
+                </div>
+                ${renderReflectionIdentityCard()}
+                ${renderToolDownloadsCard()}
+                ${renderUnifiedActivityTimeline()}
+                <div class="psychometric-card">
+                    <h3>Psychometric Insight</h3>
+                    ${currentProfile.psychometric ? `<p>${escapeHtml(currentProfile.psychometric.summary)}</p><div class="result-chip">${escapeHtml(currentProfile.psychometric.type)}</div>` : `<p>Complete a short assessment to reveal your AI persona and strengths. Your choices define a tailored psychometric result.</p>`}
+                    <div class="psychometric-actions">
+                        <button type="button" onclick="showPsychometric()">Take Psychometric Test</button>
+                        ${currentProfile.psychometric ? '<button type="button" onclick="downloadPsychometric()">Download Results</button>' : ''}
+                    </div>
+                </div>
+                <div class="profile-actions">
+                    <button type="button" onclick="editProfile()">Edit Profile</button>
+                    <button type="button" onclick="logout()" class="logout-btn">Logout</button>
+                </div>
+            `;
+            syncInlineStatus();
+        }
+
+        function editProfile() {
+            if (!currentProfile) {
+                return;
+            }
+
+            document.getElementById('profile-content').innerHTML = `
+                <div class="profile-header">
+                    <div class="profile-avatar">${getAvatarMarkup(currentProfile)}</div>
+                    <h1>Edit Profile</h1>
+                </div>
+                ${renderInlineStatus()}
+                <form class="edit-form">
+                    <div class="field-group">
+                        <label for="edit-name">Full Name</label>
+                        <input id="edit-name" type="text" value="${escapeHtml(currentProfile.name)}" required>
+                    </div>
+                    <div class="field-group">
+                        <label for="edit-email">Email Address</label>
+                        <input id="edit-email" type="email" value="${escapeHtml(currentProfile.email)}" disabled>
+                    </div>
+                    <div class="field-group">
+                        <label for="edit-message">Mission</label>
+                        <textarea id="edit-message">${escapeHtml(currentProfile.message || '')}</textarea>
+                    </div>
+                    <div class="upload-group">
+                        <label for="edit-photo">Profile Photo</label>
+                        <div class="photo-preview" id="photo-preview">${getAvatarMarkup(currentProfile)}</div>
+                        <input id="edit-photo" type="file" accept="image/*">
+                        <span class="file-hint">Choose a photo to personalize your profile. Max 2MB recommended.</span>
+                    </div>
+                    <div class="profile-actions">
+                        <button type="button" onclick="saveProfile()">Save Changes</button>
+                        <button type="button" onclick="displayProfile()" class="logout-btn">Cancel</button>
+                    </div>
+                </form>
+            `;
+
+            document.getElementById('edit-photo').addEventListener('change', handlePhotoUpload);
+            syncInlineStatus();
+        }
+
+        function handlePhotoUpload(event) {
+            const file = event.target.files[0];
+            if (!file || !file.type.startsWith('image/')) {
+                return;
+            }
+            if (!allowedPhotoTypes.has(file.type)) {
+                setInlineStatus('error', 'Please upload a PNG, JPEG, GIF, or WebP image.');
+                event.target.value = '';
+                return;
+            }
+            if (file.size > maxPhotoBytes) {
+                setInlineStatus('error', 'Profile photo must be 2MB or smaller.');
+                event.target.value = '';
+                return;
+            }
+
+            clearInlineStatus();
+
+            const reader = new FileReader();
+            reader.onload = () => {
+                const photoPreview = document.getElementById('photo-preview');
+                if (!photoPreview) {
+                    return;
+                }
+                photoPreview.innerHTML = `<img src="${reader.result}" alt="Profile preview">`;
+                photoPreview.dataset.photo = reader.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function saveProfile() {
+            if (!currentProfile) {
+                return;
+            }
+
+            const name = document.getElementById('edit-name').value.trim();
+            const message = document.getElementById('edit-message').value.trim();
+            const photoPreview = document.getElementById('photo-preview');
+
+            if (!name) {
+                setInlineStatus('error', 'Please provide your name.');
+                return;
+            }
+
+            try {
+                const data = await apiRequest('/api/profile', {
+                    method: 'PUT',
+                    body: JSON.stringify({
+                        name,
+                        message,
+                        photo: photoPreview?.dataset.photo || currentProfile.photo || ''
+                    })
+                });
+                currentProfile = data.profile;
+                statusState = { type: 'success', message: 'Profile updated securely.' };
+                displayProfile();
+            } catch (error) {
+                setInlineStatus('error', error.message);
+            }
+        }
+
+        function showPsychometric() {
+            if (!currentProfile) {
+                return;
+            }
+
+            document.getElementById('profile-content').innerHTML = `
+                <div class="profile-header">
+                    <div class="profile-avatar">${getAvatarMarkup(currentProfile)}</div>
+                    <h1>Psychometric Assessment</h1>
+                </div>
+                ${renderInlineStatus()}
+                <form class="psychometric-form">
+                    ${psychometricQuestions.map((question) => `
+                        <div class="psychometric-question">
+                            <h4>${question.prompt}</h4>
+                            ${question.options.map((option) => `
+                                <label>
+                                    <input type="radio" name="${question.id}" value="${option.value}">
+                                    ${option.label}
+                                </label>
+                            `).join('')}
+                        </div>
+                    `).join('')}
+                    <div class="psychometric-actions">
+                        <button type="button" onclick="submitPsychometric()">Calculate Result</button>
+                        <button type="button" onclick="displayProfile()" class="logout-btn">Cancel</button>
+                    </div>
+                </form>
+            `;
+            syncInlineStatus();
+        }
+
+        async function submitPsychometric() {
+            if (!currentProfile) {
+                return;
+            }
+
+            const answers = {};
+            const scores = { analytical: 0, creative: 0, strategic: 0, empathic: 0 };
+
+            for (const question of psychometricQuestions) {
+                const selected = document.querySelector(`input[name="${question.id}"]:checked`);
+                if (!selected) {
+                    setInlineStatus('error', 'Please answer every psychometric question before continuing.');
+                    return;
+                }
+                answers[question.id] = selected.value;
+                scores[selected.value] += 1;
+            }
+
+            const sortedTypes = Object.keys(scores).sort((left, right) => scores[right] - scores[left]);
+            const topType = sortedTypes[0];
+            const summaryMap = {
+                analytical: 'Your psychometric profile reveals an analytical strategist who thrives on accuracy, data, and clear logic.',
+                creative: 'Your profile highlights a creative innovator who values fresh ideas, exploration, and expressive problem solving.',
+                strategic: 'Your profile points to a strategic planner with a strong sense for structure, execution, and future-ready systems.',
+                empathic: 'Your profile reflects an empathic leader who prioritizes people, connection, and meaningful collaboration.'
+            };
+
+            try {
+                const data = await apiRequest('/api/psychometric', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        psychometric: {
+                            type: topType.charAt(0).toUpperCase() + topType.slice(1),
+                            summary: summaryMap[topType],
+                            scores,
+                            answers,
+                            completedAt: new Date().toISOString()
+                        }
+                    })
+                });
+                currentProfile = data.profile;
+                statusState = { type: 'success', message: 'Psychometric result saved securely.' };
+                displayProfile();
+            } catch (error) {
+                setInlineStatus('error', error.message);
+            }
+        }
+
+        function downloadPsychometric() {
+            if (!currentProfile || !currentProfile.psychometric) {
+                setInlineStatus('error', 'No psychometric results are available to download.');
+                return;
+            }
+
+            const result = currentProfile.psychometric;
+            const lines = [
+                'Psychometric Result Summary',
+                '==========================',
+                `Name: ${currentProfile.name}`,
+                `Email: ${currentProfile.email}`,
+                `Completed: ${new Date(result.completedAt).toLocaleString()}`,
+                `Type: ${result.type}`,
+                '',
+                'Summary:',
+                result.summary,
+                '',
+                'Scores:',
+                `Analytical: ${result.scores.analytical}`,
+                `Creative: ${result.scores.creative}`,
+                `Strategic: ${result.scores.strategic}`,
+                `Empathic: ${result.scores.empathic}`,
+                '',
+                'Answers:'
+            ];
+
+            psychometricQuestions.forEach((question) => {
+                const answerValue = result.answers[question.id];
+                const answerLabel = question.options.find((option) => option.value === answerValue)?.label || answerValue;
+                lines.push(`- ${question.prompt}`);
+                lines.push(`  ${answerLabel}`);
+            });
+
+            const blob = new Blob([lines.join('\n')], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const anchor = document.createElement('a');
+            anchor.href = url;
+            anchor.download = `psychometric_${currentProfile.name.toLowerCase().replace(/\s+/g, '_')}.txt`;
+            document.body.appendChild(anchor);
+            anchor.click();
+            document.body.removeChild(anchor);
+            URL.revokeObjectURL(url);
+            setInlineStatus('success', 'Psychometric results downloaded.');
+        }
+
+        async function logout() {
+            if (!confirm('Are you sure you want to logout?')) {
+                return;
+            }
+
+            try {
+                await apiRequest('/api/auth/logout', { method: 'POST' });
+            } catch {
+                // Best effort logout.
+            }
+
+            currentProfile = null;
+            window.sessionStorage.removeItem('floscar-skip-intro');
+            window.location.href = 'login.html';
+        }
+
+        async function loadProfile() {
+            try {
+                const data = await apiRequest('/api/me');
+                currentProfile = data.profile;
+                displayProfile();
+            } catch {
+                showAccessDenied();
+            }
+        }
+
+        loadProfile();
+
+        window.onclick = function (event) {
+            const modal = document.getElementById('contactModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+    </script>
+    <script src="contact-hub.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,follow">
+    <meta name="description"
+        content="Secure account access for Floscar Vanguard. Sign in or register to sync your profile, reflections, tool packets, trends, and research briefs.">
+    <meta name="theme-color" content="#000000">
+    <link rel="canonical" href="https://www.floscarvanguard.com/login.html">
+    <link rel="icon" href="AI.jpg" type="image/jpeg">
+    <link rel="manifest" href="site.webmanifest">
+    <title>Secure Login | Floscar Vanguard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/fv-polish.css">
+    <script src="assets/fv-polish.js" defer></script>
+    <style>
+        :root {
+            color-scheme: dark;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #020202;
+            color: #e8f5e9;
+            --mono: 'Courier New', monospace;
+            --neon: #7bffbf;
+            --cyan: #7fe7ff;
+            --surface: rgba(4, 12, 10, 0.82);
+            --surface-soft: rgba(10, 22, 18, 0.7);
+            --line: rgba(123, 255, 191, 0.18);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: #000;
+            color: #e8f5e9;
+            scroll-behavior: smooth;
+        }
+
+        ::selection {
+            background: rgba(51, 255, 51, 0.28);
+            color: #031003;
+        }
+
+        .video-container {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        #bg-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.72) 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            gap: 1rem;
+            background: rgba(0, 0, 0, 0.72);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(51, 255, 51, 0.15);
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: #d0ffce;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+        }
+
+        .brand span {
+            white-space: nowrap;
+        }
+
+        .brand img {
+            width: 42px;
+            height: 42px;
+            border-radius: 999px;
+            object-fit: cover;
+            object-position: center 32%;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.85rem;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .nav-toggle {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            flex-direction: column;
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            border: 1px solid rgba(51, 255, 51, 0.32);
+            background: rgba(0, 0, 0, 0.42);
+            color: #e8f5e9;
+            cursor: pointer;
+            box-shadow: 0 0 18px rgba(51, 255, 51, 0.12);
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            border-radius: 999px;
+            background: currentColor;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .nav-toggle.is-open span:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        .nav-toggle.is-open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.is-open span:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+
+        .nav-links a {
+            color: #c8ffca;
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 0.6rem 0.9rem;
+            border-radius: 999px;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(51, 255, 51, 0.16);
+            color: #fff;
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible {
+            outline: 2px solid #33ff33;
+            outline-offset: 3px;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 8, 0, 0.95);
+            backdrop-filter: blur(25px);
+            z-index: 9999;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 420px;
+            background: #0d0d0d;
+            border: 1px solid rgba(51, 255, 51, 0.34);
+            box-shadow: 0 0 60px rgba(51, 255, 51, 0.15);
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background: rgba(51, 255, 51, 0.1);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(51, 255, 51, 0.2);
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: #33ff33;
+            border-radius: 50%;
+            margin-right: 15px;
+            box-shadow: 0 0 10px #33ff33;
+            animation: pulse 2s infinite;
+        }
+
+        .terminal-title {
+            flex-grow: 1;
+            color: #33ff33;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
+            font-size: 0.65rem;
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #fff;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.02);
+            transition: 0.4s;
+        }
+
+        .contact-item:hover {
+            border-color: #33ff33;
+            background: rgba(51, 255, 51, 0.05);
+            transform: translateX(10px);
+            box-shadow: 0 0 18px rgba(51, 255, 51, 0.18);
+        }
+
+        .icon-box {
+            width: 40px;
+            text-align: center;
+            font-size: 1.8rem;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .label-box {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.2rem;
+        }
+
+        .main-label {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .sub-label {
+            color: #6d8b6d;
+            font-size: 0.75rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .wa:hover .icon-box i {
+            color: #25D366;
+        }
+
+        .phone:hover .icon-box i {
+            color: #34b7f1;
+        }
+
+        .email:hover .icon-box i {
+            color: #ff3333;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 18px;
+            cursor: pointer;
+            color: #33ff33;
+            font-size: 1.5rem;
+            line-height: 1;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+            color: #fff;
+        }
+
+        .page-content {
+            position: relative;
+            z-index: 1;
+            padding: 4rem 2rem 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .ticker-wrap {
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            border-top: 1px solid rgba(123, 255, 191, 0.12);
+            border-bottom: 1px solid rgba(123, 255, 191, 0.12);
+            background: rgba(0, 0, 0, 0.52);
+            backdrop-filter: blur(10px);
+        }
+
+        .ticker {
+            display: inline-flex;
+            min-width: 100%;
+            gap: 2.5rem;
+            padding: 0.75rem 0;
+            animation: tickerMove 28s linear infinite;
+            white-space: nowrap;
+        }
+
+        .ticker-item {
+            color: #c7f7d8;
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .command-bar {
+            position: relative;
+            z-index: 1;
+            border-bottom: 1px solid rgba(123, 255, 191, 0.12);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+        }
+
+        .command-bar-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0.9rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .command-label,
+        .command-chip {
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .command-label {
+            color: #dfffea;
+            margin-right: 0.4rem;
+        }
+
+        .command-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.45rem 0.75rem;
+            border-radius: 999px;
+            border: 1px solid rgba(123, 255, 191, 0.16);
+            background: rgba(255, 255, 255, 0.035);
+            color: #abdcc0;
+        }
+
+        .command-chip kbd {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 22px;
+            height: 22px;
+            padding: 0 0.4rem;
+            border-radius: 8px;
+            background: rgba(123, 255, 191, 0.12);
+            border: 1px solid rgba(123, 255, 191, 0.2);
+            color: #ebfff2;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+        }
+
+        .page-shell {
+            display: grid;
+            gap: 1.6rem;
+        }
+
+        .hero-panel {
+            display: grid;
+            grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
+            gap: 1.4rem;
+        }
+
+        .hero-copy,
+        .signal-panel,
+        .auth-console,
+        .intel-rail-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 28px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(4, 10, 8, 0.86), rgba(3, 8, 6, 0.94));
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.36), inset 0 0 18px rgba(123, 255, 191, 0.03);
+        }
+
+        .hero-copy {
+            padding: 2rem;
+        }
+
+        .hero-copy::before,
+        .signal-panel::before,
+        .auth-console::before,
+        .intel-rail-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(127, 231, 255, 0.08), transparent 32%);
+            pointer-events: none;
+        }
+
+        .hero-copy>*,
+        .signal-panel>*,
+        .auth-console>*,
+        .intel-rail-card>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.46rem 0.92rem;
+            border-radius: 999px;
+            border: 1px solid rgba(123, 255, 191, 0.22);
+            background: rgba(255, 255, 255, 0.04);
+            color: #d4ffde;
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .page-title {
+            margin: 0;
+            font-size: clamp(2.6rem, 4vw, 4rem);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #effff3;
+        }
+
+        .page-copy {
+            margin: 1rem 0 0;
+            max-width: 44rem;
+            color: #afd1b9;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .page-copy strong {
+            color: #ecfff3;
+        }
+
+        .cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+            margin-top: 1.4rem;
+        }
+
+        .cta-row a,
+        .cta-row button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 0.85rem 1.15rem;
+            border-radius: 999px;
+            border: 1px solid rgba(123, 255, 191, 0.22);
+            background: rgba(255, 255, 255, 0.04);
+            color: #eaffef;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .cta-row a:hover,
+        .cta-row button:hover {
+            transform: translateY(-1px);
+            background: rgba(123, 255, 191, 0.12);
+            border-color: rgba(123, 255, 191, 0.4);
+        }
+
+        .signal-panel {
+            display: grid;
+            gap: 1rem;
+            padding: 1.25rem;
+        }
+
+        .signal-card {
+            padding: 1rem 1.05rem;
+            border-radius: 20px;
+            border: 1px solid rgba(123, 255, 191, 0.12);
+            background: rgba(255, 255, 255, 0.035);
+        }
+
+        .signal-label {
+            display: block;
+            color: #88c4a3;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            margin-bottom: 0.45rem;
+        }
+
+        .signal-value {
+            color: #f1fff3;
+            font-size: 1.45rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.4rem;
+        }
+
+        .signal-copy {
+            margin: 0;
+            color: #a8c7b0;
+            line-height: 1.7;
+            font-size: 0.9rem;
+        }
+
+        .auth-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+            gap: 1.4rem;
+        }
+
+        .auth-console {
+            padding: 1.6rem;
+        }
+
+        .auth-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.3rem;
+        }
+
+        .auth-title-block h2 {
+            margin: 0;
+            color: #f1fff3;
+            font-size: 2rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .auth-title-block p {
+            margin: 0.7rem 0 0;
+            color: #a8c7b0;
+            line-height: 1.7;
+        }
+
+        .auth-status-stack {
+            display: grid;
+            gap: 0.65rem;
+            min-width: 220px;
+        }
+
+        .auth-status-chip {
+            padding: 0.9rem 1rem;
+            border-radius: 18px;
+            border: 1px solid rgba(123, 255, 191, 0.14);
+            background: rgba(255, 255, 255, 0.035);
+        }
+
+        .auth-status-chip span {
+            display: block;
+            color: #83bb9d;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            margin-bottom: 0.45rem;
+        }
+
+        .auth-status-chip strong {
+            color: #f1fff3;
+            font-size: 1rem;
+            letter-spacing: 0.04em;
+        }
+
+        .login-panel {
+            display: grid;
+            gap: 1.2rem;
+            padding: 0;
+            background: transparent;
+            border: 0;
+            box-shadow: none;
+        }
+
+        .panel-kicker {
+            margin-bottom: 0.8rem;
+        }
+
+        #secure-login-form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .field-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .field-group.is-full {
+            grid-column: 1 / -1;
+        }
+
+        .field-group {
+            display: grid;
+            gap: 0.5rem;
+            padding: 1rem;
+            border-radius: 20px;
+            border: 1px solid rgba(123, 255, 191, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        label {
+            font-size: 0.85rem;
+            color: #b8f0b2;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-family: var(--mono);
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 0.95rem 1rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(0, 0, 0, 0.28);
+            color: #f4fff4;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .submit-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .submit-note {
+            color: #8eb39b;
+            font-size: 0.82rem;
+            line-height: 1.6;
+            max-width: 28rem;
+        }
+
+        .secondary-panel {
+            margin-top: 0;
+            padding: 1.2rem 1.3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(12, 24, 12, 0.66);
+        }
+
+        .intel-rail {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .intel-rail-card {
+            padding: 1.2rem;
+        }
+
+        .intel-rail-card h3 {
+            margin: 0 0 0.85rem;
+            color: #f1fff3;
+            font-size: 1rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .intel-rail-card p,
+        .intel-rail-card li,
+        .intel-rail-card small {
+            color: #a8c7b0;
+            line-height: 1.7;
+        }
+
+        .telemetry-grid {
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .telemetry-cell {
+            padding: 0.9rem 1rem;
+            border-radius: 18px;
+            border: 1px solid rgba(123, 255, 191, 0.12);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .telemetry-cell span {
+            display: block;
+            color: #7fb697;
+            font-family: var(--mono);
+            font-size: 0.67rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 0.35rem;
+        }
+
+        .telemetry-cell strong {
+            color: #f1fff3;
+            font-size: 1rem;
+        }
+
+        .rail-list {
+            margin: 0;
+            padding-left: 1rem;
+            display: grid;
+            gap: 0.55rem;
+        }
+
+        .quick-links {
+            display: grid;
+            gap: 0.7rem;
+        }
+
+        .quick-links a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0.9rem 1rem;
+            border-radius: 16px;
+            border: 1px solid rgba(123, 255, 191, 0.12);
+            background: rgba(255, 255, 255, 0.03);
+            color: #effff3;
+            text-decoration: none;
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .quick-links a:hover {
+            transform: translateX(6px);
+            border-color: rgba(123, 255, 191, 0.28);
+            background: rgba(123, 255, 191, 0.08);
+        }
+
+        .quick-links small {
+            display: block;
+            color: #87b49a;
+            font-size: 0.74rem;
+            margin-top: 0.2rem;
+        }
+
+        @keyframes tickerMove {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        .panel-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.45rem 0.9rem;
+            border: 1px solid rgba(51, 255, 51, 0.28);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.04);
+            color: #caffca;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-family: 'Courier New', monospace;
+            margin-bottom: 1rem;
+        }
+
+        .login-panel {
+            display: grid;
+            gap: 1.5rem;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.76);
+            border: 1px solid rgba(51, 255, 51, 0.12);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.36);
+        }
+
+        .login-panel h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3rem);
+            letter-spacing: 0.12em;
+            color: #e8ffe9;
+        }
+
+        .login-panel p {
+            margin: 0;
+            color: #a4d3a5;
+            line-height: 1.7;
+        }
+
+        .field-group {
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        label {
+            font-size: 0.95rem;
+            color: #b8f0b2;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 0.95rem 1rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.03);
+            color: #f4fff4;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: rgba(51, 255, 51, 0.65);
+            box-shadow: 0 0 0 4px rgba(51, 255, 51, 0.08);
+        }
+
+        textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        button[type="submit"],
+        .button-row a,
+        .button-row button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border: 1px solid rgba(51, 255, 51, 0.6);
+            background: rgba(51, 255, 51, 0.12);
+            color: #d4ffd6;
+            padding: 0.95rem 1.4rem;
+            border-radius: 999px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        button[type="submit"]:hover,
+        .button-row a:hover,
+        .button-row button:hover {
+            transform: translateY(-1px);
+            background: rgba(51, 255, 51, 0.24);
+        }
+
+        .success-box {
+            padding: 1rem 1.25rem;
+            border-radius: 16px;
+            background: rgba(20, 80, 30, 0.85);
+            border: 1px solid rgba(51, 255, 51, 0.25);
+            color: #d8ffe0;
+            box-shadow: 0 0 24px rgba(51, 255, 51, 0.12);
+            display: none;
+        }
+
+        .error-box {
+            padding: 1rem 1.25rem;
+            border-radius: 16px;
+            background: rgba(110, 20, 20, 0.85);
+            border: 1px solid rgba(255, 90, 90, 0.35);
+            color: #ffe1e1;
+            box-shadow: 0 0 24px rgba(255, 90, 90, 0.12);
+            display: none;
+        }
+
+        .mode-toggle {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .mode-toggle button {
+            flex: 1;
+            min-width: 160px;
+            min-height: 58px;
+            padding: 1.1rem 1.5rem;
+            font-size: 1rem;
+            letter-spacing: 0.04em;
+        }
+
+        .mode-toggle button.is-active {
+            background: rgba(51, 255, 51, 0.24);
+            box-shadow: 0 0 0 1px rgba(51, 255, 51, 0.2) inset;
+        }
+
+        .field-hint {
+            margin: 0;
+            color: #9dcc9c;
+            font-size: 0.85rem;
+        }
+
+        .secondary-panel {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(12, 24, 12, 0.66);
+        }
+
+        @media (max-width: 760px) {
+            .site-header {
+                padding: 1rem;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .brand {
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .brand span {
+                white-space: normal;
+            }
+
+            .nav-toggle {
+                display: inline-flex;
+                align-self: flex-end;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+                justify-content: center;
+                gap: 0.5rem;
+                padding-top: 0.35rem;
+            }
+
+            .nav-links.is-open {
+                display: flex;
+            }
+
+            .nav-links a {
+                font-size: 0.84rem;
+                padding: 0.55rem 0.75rem;
+                text-align: center;
+            }
+
+            .page-content {
+                padding: 2rem 1rem 2.5rem;
+            }
+
+            .command-bar-inner {
+                padding: 0.85rem 1rem;
+            }
+
+            .hero-panel,
+            .auth-layout,
+            .field-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .login-panel {
+                padding: 0;
+                border-radius: 20px;
+            }
+
+            .panel-kicker {
+                font-size: 0.68rem;
+                letter-spacing: 0.12em;
+            }
+
+            .login-panel h1 {
+                font-size: clamp(1.9rem, 10vw, 2.5rem);
+                letter-spacing: 0.08em;
+            }
+
+            .button-row {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .auth-head,
+            .submit-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            button[type="submit"],
+            .button-row a,
+            .button-row button {
+                width: 100%;
+            }
+
+            .mode-toggle button {
+                min-width: 100%;
+            }
+
+            .contact-grid {
+                padding: 20px;
+            }
+
+            .contact-item {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="video-container">
+        <video autoplay muted loop playsinline id="bg-video">
+            <source src="assets/bg-animation.mp4" type="video/mp4">
+            <source src="assets/cyber-animation.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="overlay"></div>
+    </div>
+    <header class="site-header">
+        <a href="profile.html" class="brand">
+            <img src="AI.jpg" alt="AI logo" />
+            <span>Floscar Vanguard</span>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false"
+            aria-controls="site-nav">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="nav-links" id="site-nav">
+            <a href="home.html">Home</a>
+            <a href="login.html">Login</a>
+            <a href="trends.html">Trends</a>
+            <a href="self-discovery.html">Self-Discovery</a>
+            <a href="tools.html">Tools</a>
+            <a href="profile.html">Profile</a>
+            <a href="javascript:void(0)" onclick="openContactModal()">Contact</a>
+        </nav>
+    </header>
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <span class="ticker-item">ACCESS_NODE: SECURE AUTHENTICATION LAYER ONLINE</span>
+            <span class="ticker-item">SESSION_SIGNAL: HTTPONLY COOKIE PROTECTION ENABLED</span>
+            <span class="ticker-item">IDENTITY_CHECK: REGISTER OR SIGN IN TO OPEN PROFILE ACCESS</span>
+            <span class="ticker-item">ARCHITECT_STATUS: OSCAR // SYSTEMS READY FOR DEPLOYMENT</span>
+            <span class="ticker-item">MISSION_FEED: PRIVATE REFLECTIONS, TOOL HISTORY, AND TREND INTELLIGENCE SYNC
+                HERE</span>
+            <span class="ticker-item">ACCESS_NODE: SECURE AUTHENTICATION LAYER ONLINE</span>
+            <span class="ticker-item">SESSION_SIGNAL: HTTPONLY COOKIE PROTECTION ENABLED</span>
+            <span class="ticker-item">IDENTITY_CHECK: REGISTER OR SIGN IN TO OPEN PROFILE ACCESS</span>
+        </div>
+    </div>
+    <div class="command-bar">
+        <div class="command-bar-inner">
+            <span class="command-label">Access Layer</span>
+            <span class="command-chip"><kbd>Tab</kbd> Advance Fields</span>
+            <span class="command-chip"><kbd>Enter</kbd> Authenticate</span>
+            <span class="command-chip"><kbd>S</kbd> Sign In Mode</span>
+            <span class="command-chip"><kbd>R</kbd> Register Mode</span>
+            <span class="command-chip"><kbd>Esc</kbd> Close Contact Hub</span>
+        </div>
+    </div>
+    <main class="page-content">
+        <div class="page-shell">
+            <section class="hero-panel">
+                <div class="hero-copy">
+                    <div class="page-kicker">System Access // Secure Session Layer</div>
+                    <h1 class="page-title">Login</h1>
+                    <p class="page-copy">This is the access gateway into your private Floscar Vanguard workspace.
+                        Authenticate to unlock <strong>protected profile telemetry</strong>, <strong>saved reflection
+                            history</strong>, <strong>tool manifests</strong>, and a unified intelligence timeline
+                        powered by the server rather than fragile browser-only state.</p>
+                    <div class="cta-row">
+                        <button type="button" onclick="document.getElementById('login-email').focus()">Open Auth
+                            Console</button>
+                        <a href="trends.html">Review Intelligence</a>
+                        <a href="tools.html">Browse Premium Tools</a>
+                    </div>
+                </div>
+                <aside class="signal-panel">
+                    <div class="signal-card">
+                        <span class="signal-label">Session Model</span>
+                        <div class="signal-value">Server-Backed</div>
+                        <p class="signal-copy">Authentication is issued through protected server APIs with session
+                            cookies and guarded profile routes.</p>
+                    </div>
+                    <div class="signal-card">
+                        <span class="signal-label">Security Posture</span>
+                        <div class="signal-value">HttpOnly + Rate Limits</div>
+                        <p class="signal-copy">Login and registration flows are hardened with throttling and protected
+                            storage semantics.</p>
+                    </div>
+                    <div class="signal-card">
+                        <span class="signal-label">Destination</span>
+                        <div class="signal-value">Unified Profile Rail</div>
+                        <p class="signal-copy">Successful auth routes you into the main profile layer where reflections,
+                            tools, trends, and article briefs converge.</p>
+                    </div>
+                </aside>
+            </section>
+
+            <section class="auth-layout">
+                <section class="auth-console">
+                    <div class="login-panel">
+                        <div class="auth-head">
+                            <div class="auth-title-block">
+                                <div class="panel-kicker">Identity Console // Live Access Gate</div>
+                                <h2 id="authModeHeadline">Secure Login</h2>
+                                <p id="authModeCopy">Sign in to restore your protected workspace and continue from your
+                                    last authenticated intelligence state.</p>
+                            </div>
+                            <div class="auth-status-stack">
+                                <div class="auth-status-chip">
+                                    <span>Current Mode</span>
+                                    <strong id="authModeStatus">Sign In</strong>
+                                </div>
+                                <div class="auth-status-chip">
+                                    <span>Profile Route</span>
+                                    <strong>/profile.html protected</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mode-toggle">
+                            <button type="button" id="sign-in-mode" class="is-active">Sign In</button>
+                            <button type="button" id="register-mode">Create Account</button>
+                        </div>
+
+                        <form id="secure-login-form">
+                            <div class="field-grid">
+                                <div class="field-group">
+                                    <label for="login-name">Name</label>
+                                    <input id="login-name" type="text" placeholder="Neo, Trinity, or Agent" required />
+                                    <p class="field-hint" id="name-hint">Required for new account creation.</p>
+                                </div>
+                                <div class="field-group">
+                                    <label for="login-email">Email</label>
+                                    <input id="login-email" type="email" placeholder="name@brightfuture.dev" required />
+                                </div>
+                                <div class="field-group">
+                                    <label for="login-password">Password</label>
+                                    <input id="login-password" type="password" placeholder="Minimum 8 characters"
+                                        required />
+                                </div>
+                                <div class="field-group is-full">
+                                    <label for="login-mission">Mission</label>
+                                    <textarea id="login-mission"
+                                        placeholder="Tell us why you're entering the portal"></textarea>
+                                </div>
+                            </div>
+                            <div class="submit-row">
+                                <button type="submit">Enter the Grid</button>
+                                <div class="submit-note">Authentication writes nothing sensitive to browser storage.
+                                    Session state is established through the backend and restored through protected
+                                    account endpoints.</div>
+                            </div>
+                            <div class="success-box" id="login-success" role="status" aria-live="polite">Login
+                                successful. Redirecting to profile...</div>
+                            <div class="error-box" id="login-error" role="alert" aria-live="assertive"></div>
+                        </form>
+
+                        <div class="secondary-panel">
+                            <p>Use Sign In for an existing identity or Create Account to open a new protected profile.
+                                Once authenticated, the system syncs into a server-backed workspace where your
+                                reflections, trends, and tool activity can follow you across sessions.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <aside class="intel-rail">
+                    <section class="intel-rail-card">
+                        <h3>Access Telemetry</h3>
+                        <div class="telemetry-grid">
+                            <div class="telemetry-cell">
+                                <span>Cookie State</span>
+                                <strong>HttpOnly Session</strong>
+                            </div>
+                            <div class="telemetry-cell">
+                                <span>History Scope</span>
+                                <strong>Profile + Tools + Trends</strong>
+                            </div>
+                            <div class="telemetry-cell">
+                                <span>Recovery Model</span>
+                                <strong>Server Restorable</strong>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="intel-rail-card">
+                        <h3>Why Authenticate</h3>
+                        <ul class="rail-list">
+                            <li>Restore reflection entries and continue deep-linked personal analysis.</li>
+                            <li>Track tool manifests and trend snapshots from one profile timeline.</li>
+                            <li>Move from device-only state into protected account-backed continuity.</li>
+                        </ul>
+                    </section>
+
+                    <section class="intel-rail-card">
+                        <h3>Quick Routes</h3>
+                        <div class="quick-links">
+                            <a href="trends.html">
+                                <span>Open Trends Feed<small>Scan the current intelligence landscape before
+                                        login.</small></span>
+                                <span>&rsaquo;</span>
+                            </a>
+                            <a href="self-discovery.html">
+                                <span>Run Self-Discovery<small>Explore the reflection engine and return when
+                                        ready.</small></span>
+                                <span>&rsaquo;</span>
+                            </a>
+                            <a href="tools.html">
+                                <span>Inspect Tool Layer<small>Review downloads and capability manifests.</small></span>
+                                <span>&rsaquo;</span>
+                            </a>
+                        </div>
+                    </section>
+                </aside>
+            </section>
+        </div>
+    </main>
+    <footer
+        style="position:relative; z-index:1; text-align:center; padding:0 1rem 2rem; color:#8cff8c; opacity:0.75; font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; font-family:'Courier New', monospace;">
+        Floscar Vanguard • Secure Login • Session Gateway • Futuristic Interface Layer</footer>
+    <div id="contactModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="terminal-header">
+                <span class="status-dot"></span>
+                <span class="terminal-title">ENCRYPTED_COMMS_HUB_ESTABLISHED</span>
+                <span class="close-btn" onclick="closeContactModal()">&times;</span>
+            </div>
+            <div class="contact-grid">
+                <a href="javascript:void(0)" onclick="openWhatsAppContact()" class="contact-item wa">
+                    <div class="icon-box"><i class="fab fa-whatsapp"></i></div>
+                    <div class="label-box"><span class="main-label">WhatsApp</span><span class="sub-label">Instant App
+                            Redirection</span></div>
+                </a>
+                <a href="javascript:void(0)" onclick="openPhoneContact()" class="contact-item phone">
+                    <div class="icon-box"><i class="fas fa-phone-alt"></i></div>
+                    <div class="label-box"><span class="main-label">Direct Line</span><span class="sub-label">Voice
+                            Comms Protocol</span></div>
+                </a>
+                <a href="javascript:void(0)" onclick="openEmailContact()" class="contact-item email">
+                    <div class="icon-box"><i class="fas fa-envelope"></i></div>
+                    <div class="label-box"><span class="main-label">Secure Mail</span><span
+                            class="sub-label">vordzorgbeoscar02@gmail.com</span></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            function setupMobileMenu() {
+                const toggle = document.querySelector('.nav-toggle');
+                const nav = document.querySelector('.nav-links');
+                if (!toggle || !nav) {
+                    return;
+                }
+                const closeMenu = () => {
+                    nav.classList.remove('is-open');
+                    toggle.classList.remove('is-open');
+                    toggle.setAttribute('aria-expanded', 'false');
+                };
+                toggle.addEventListener('click', () => {
+                    const willOpen = !nav.classList.contains('is-open');
+                    nav.classList.toggle('is-open', willOpen);
+                    toggle.classList.toggle('is-open', willOpen);
+                    toggle.setAttribute('aria-expanded', String(willOpen));
+                });
+                nav.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', closeMenu);
+                });
+                window.addEventListener('resize', () => {
+                    if (window.getComputedStyle(toggle).display === 'none') {
+                        closeMenu();
+                    }
+                });
+            }
+
+            function openContactModal() { document.getElementById('contactModal').style.display = 'block'; }
+            function closeContactModal() { document.getElementById('contactModal').style.display = 'none'; }
+            function openWhatsAppContact() {
+                const appUrl = 'whatsapp://send?phone=233547912435&text=Hello%20Oscar%2C%20I%20would%20like%20to%20discuss%20a%20project.';
+                const webUrl = 'https://wa.me/233547912435?text=Hello%20Oscar%2C%20I%20would%20like%20to%20discuss%20a%20project.';
+                const startedAt = Date.now();
+                window.location.href = appUrl;
+                window.setTimeout(() => {
+                    if (document.visibilityState === 'visible' && Date.now() - startedAt < 1600) {
+                        window.open(webUrl, '_blank', 'noopener');
+                    }
+                }, 900);
+            }
+            function openPhoneContact() {
+                const dialUrl = 'tel:+233547912435';
+                const startedAt = Date.now();
+                window.location.href = dialUrl;
+                window.setTimeout(() => {
+                    if (document.visibilityState === 'visible' && Date.now() - startedAt < 1600) {
+                        window.alert('Call Oscar at +233 54 791 2435');
+                    }
+                }, 900);
+            }
+            function openEmailContact() {
+                const mailAppUrl = 'mailto:vordzorgbeoscar02@gmail.com?subject=Project%20Inquiry%20-%20Floscar%20Vanguard';
+                const webMailUrl = 'https://mail.google.com/mail/?view=cm&fs=1&to=vordzorgbeoscar02@gmail.com&su=Project%20Inquiry%20-%20Floscar%20Vanguard';
+                const startedAt = Date.now();
+                window.location.href = mailAppUrl;
+                window.setTimeout(() => {
+                    if (document.visibilityState === 'visible' && Date.now() - startedAt < 1600) {
+                        window.open(webMailUrl, '_blank', 'noopener');
+                    }
+                }, 900);
+            }
+            window.openContactModal = openContactModal;
+            window.closeContactModal = closeContactModal;
+            window.openWhatsAppContact = openWhatsAppContact;
+            window.openPhoneContact = openPhoneContact;
+            window.openEmailContact = openEmailContact;
+            let mode = 'login';
+            setupMobileMenu();
+            const currentPage = window.location.pathname.split('/').pop() || 'login.html';
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                const linkPage = new URL(link.href, window.location.origin).pathname.split('/').pop();
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+
+            const form = document.getElementById('secure-login-form');
+            const nameField = document.getElementById('login-name');
+            const emailField = document.getElementById('login-email');
+            const passwordField = document.getElementById('login-password');
+            const missionField = document.getElementById('login-mission');
+            const submitButton = form.querySelector('button[type="submit"]');
+            const successBox = document.getElementById('login-success');
+            const errorBox = document.getElementById('login-error');
+            const signInModeButton = document.getElementById('sign-in-mode');
+            const registerModeButton = document.getElementById('register-mode');
+            const authModeHeadline = document.getElementById('authModeHeadline');
+            const authModeCopy = document.getElementById('authModeCopy');
+            const authModeStatus = document.getElementById('authModeStatus');
+
+            function showMessage(type, message) {
+                successBox.style.display = 'none';
+                errorBox.style.display = 'none';
+
+                if (!message) {
+                    return;
+                }
+
+                const box = type === 'success' ? successBox : errorBox;
+                box.textContent = message;
+                box.style.display = 'block';
+            }
+
+            function setMode(nextMode) {
+                mode = nextMode;
+                const isRegister = mode === 'register';
+                signInModeButton.classList.toggle('is-active', !isRegister);
+                registerModeButton.classList.toggle('is-active', isRegister);
+                nameField.required = isRegister;
+                missionField.required = false;
+                submitButton.textContent = isRegister ? 'Create Secure Account' : 'Enter the Grid';
+                authModeHeadline.textContent = isRegister ? 'Create Secure Account' : 'Secure Login';
+                authModeCopy.textContent = isRegister
+                    ? 'Open a new protected identity to sync reflections, tools, trends, and article intelligence into your server-backed profile.'
+                    : 'Sign in to restore your protected workspace and continue from your last authenticated intelligence state.';
+                authModeStatus.textContent = isRegister ? 'Register' : 'Sign In';
+                showMessage('', '');
+            }
+
+            async function checkSession() {
+                const response = await fetch('/api/session-status', { credentials: 'same-origin' });
+                if (!response.ok) {
+                    return;
+                }
+
+                const data = await response.json();
+                if (data.authenticated) {
+                    window.location.href = 'profile.html';
+                }
+            }
+
+            signInModeButton.addEventListener('click', () => setMode('login'));
+            registerModeButton.addEventListener('click', () => setMode('register'));
+
+            form.addEventListener('submit', async event => {
+                event.preventDefault();
+                showMessage('', '');
+
+                const payload = {
+                    name: nameField.value.trim(),
+                    email: emailField.value.trim(),
+                    password: passwordField.value,
+                    message: missionField.value.trim()
+                };
+
+                const endpoint = mode === 'register' ? '/api/auth/register' : '/api/auth/login';
+
+                try {
+                    const response = await fetch(endpoint, {
+                        method: 'POST',
+                        credentials: 'same-origin',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const data = await response.json();
+                    if (!response.ok) {
+                        throw new Error(data.error || 'Authentication failed.');
+                    }
+
+                    successBox.textContent = mode === 'register'
+                        ? 'Account created. Redirecting to profile...'
+                        : 'Login successful. Redirecting to profile...';
+                    showMessage('success', successBox.textContent);
+                    setTimeout(() => {
+                        window.location.href = 'profile.html';
+                    }, 800);
+                } catch (error) {
+                    showMessage('error', error.message);
+                }
+            });
+
+            setMode('login');
+            checkSession();
+        });
+
+        window.onclick = function (event) {
+            const modal = document.getElementById('contactModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+    </script>
+    <script src="contact-hub.js"></script>
+</body>
+
+</html>
